@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: hms-project
+    env: php
+    plan: free
+    healthCheckPath: /index.php
+    envVars:
+      - key: PHP_INI_SCAN_DIR
+        value: /opt/render/project/src/.render/php
+    disks:
+      - name: hms-data
+        mountPath: /var/data/hms
+    buildCommand: |
+      # This command runs on every deploy.
+      # It checks if the database file exists on the persistent disk.
+      # If it doesn't, it copies the initial schema from the repo.
+      if [ ! -f /var/data/hms/hms.sqlite ]; then
+        echo "Database not found, initializing from schema..."
+        sqlite3 /var/data/hms/hms.sqlite < database/schema_sqlite.sql
+      else
+        echo "Database already exists."
+      fi
+    startCommand: php -S 0.0.0.0:10000 -t .
