@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System - Complete Project Report</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 1in 1in 1in 1.5in;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            margin: 0;
+            padding: 40px;
+            color: #000;
+            background: #fff;
+        }
+        
+        .page {
+            page-break-after: always;
+            min-height: 27cm;
+            position: relative;
+            padding-bottom: 60px;
+        }
+        
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12pt;
+        }
+        
+        h1 {
+            font-size: 16pt;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        
+        h2 {
+            font-size: 14pt;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+        
+        h3 {
+            font-size: 12pt;
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        
+        h4 {
+            font-size: 12pt;
+            font-weight: bold;
+            margin-top: 12px;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+        
+        p {
+            text-align: justify;
+            margin-bottom: 12pt;
+            line-height: 1.5;
+        }
+        
+        ul, ol {
+            margin-bottom: 12pt;
+            padding-left: 40px;
+            line-height: 1.5;
+        }
+        
+        li {
+            margin-bottom: 6pt;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0 20px 0;
+            font-size: 11pt;
+        }
+        
+        table th, table td {
+            border: 1px solid #000;
+            padding: 8px 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        
+        table th {
+            background-color: #e8e8e8;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .caption {
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 11pt;
+        }
+        
+        .figure {
+            text-align: center;
+            margin: 20px 0;
+            page-break-inside: avoid;
+        }
+        
+        .code-block {
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            padding: 12px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 10pt;
+            overflow-x: auto;
+            line-height: 1.4;
+        }
+        
+        .toc {
+            line-height: 2;
+        }
+        
+        .toc-item {
+            margin: 8px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .toc-item::after {
+            content: "";
+            flex-grow: 1;
+            border-bottom: 1px dotted #666;
+            margin: 0 8px;
+        }
+        
+        .cover-page {
+            text-align: center;
+            padding-top: 180px;
+        }
+        
+        .cover-page h1 {
+            font-size: 20pt;
+            margin-bottom: 40px;
+            line-height: 1.3;
+        }
+        
+        .cover-page h2 {
+            font-size: 16pt;
+            margin-bottom: 60px;
+            font-weight: normal;
+        }
+        
+        .cover-page p {
+            font-size: 14pt;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .formal-page {
+            padding-top: 80px;
+        }
+        
+        .signature-section {
+            margin-top: 80px;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+            }
+            .page {
+                margin: 0;
+                padding: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Acknowledgement Page -->
+<div class="page formal-page">
+    <h1>ACKNOWLEDGEMENT</h1>
+    <br>
+    <p>I would like to express my sincere gratitude to all individuals who contributed to the successful completion of this Hospital Management System project.</p>
+    
+    <p>First and foremost, I extend my heartfelt thanks to my project guide for their invaluable guidance, continuous support, and constructive feedback throughout the development lifecycle. Their expertise in software engineering and healthcare IT systems significantly shaped the technical decisions and architecture of this project.</p>
+    
+    <p>I am deeply grateful to the faculty members of the Computer Science Department for providing comprehensive knowledge in database management systems, web development, object-oriented programming, and software engineering methodologies. The theoretical foundation they provided was instrumental in implementing this complex healthcare management system.</p>
+    
+    <p>I would like to acknowledge the healthcare professionals and hospital administrators who generously shared their time and insights during the requirements gathering and system analysis phases. Their real-world perspectives on hospital operations, patient management workflows, and billing processes ensured that this system addresses genuine needs in healthcare facility management.</p>
+    
+    <p>Special thanks to my colleagues and fellow students who participated in system testing, provided valuable feedback on user interface design, and offered suggestions for feature enhancements. Their diverse perspectives helped improve the system's usability and functionality.</p>
+    
+    <p>I am grateful to the open-source community, particularly the developers and contributors of PHP, Bootstrap, Chart.js, and other libraries utilized in this project. Their dedication to creating robust, well-documented frameworks significantly accelerated development and ensured code quality.</p>
+    
+    <p>I would also like to thank the authors of technical documentation, online tutorials, and research papers that provided guidance on healthcare system design patterns, security best practices, and database optimization techniques.</p>
+    
+    <p>Finally, I express my deepest appreciation to my family for their unwavering support, patience, and encouragement throughout this academic journey. Their belief in my abilities provided the motivation needed to overcome challenges and complete this project successfully.</p>
+    
+    <p>This project has been an enriching learning experience that combined theoretical knowledge with practical implementation, and I am thankful to everyone who contributed to making it a success.</p>
+    
+    <div class="signature-section">
+        <p style="text-align: right; margin-right: 50px;"><strong>Soumyajit M</strong></p>
+        <p style="text-align: right; margin-right: 50px;">B.Sc. Computer Science</p>
+        <p style="text-align: right; margin-right: 50px;">December 2025</p>
+    </div>
+    
+    <div class="page-number">i</div>
+</div>
+
+<!-- Declaration Page -->
+<div class="page formal-page">
+    <h1>DECLARATION</h1>
+    <br><br>
+    <p>I, <strong>Soumyajit M</strong>, hereby declare that the project report entitled <strong>"Hospital Management System - A Comprehensive Web-Based Healthcare Management Solution"</strong> submitted in partial fulfillment of the requirements for the award of the degree of <strong>Bachelor of Science in Computer Science</strong> is a record of original work carried out by me under the guidance and supervision of my project guide.</p>
+    
+    <p>I further declare that this project work has not been submitted previously to any other university or institution for the award of any degree, diploma, or other similar title. The work presented in this report is entirely my own, except where explicitly acknowledged and referenced.</p>
+    
+    <p>The system design, database architecture, and implementation presented herein are based on comprehensive system analysis, requirements gathering, and software engineering principles applied specifically to healthcare facility management. While I have utilized standard programming frameworks and libraries (duly credited in the bibliography), the core business logic, feature implementation, and system integration are original contributions.</p>
+    
+    <p>All sources of information, including books, research papers, online resources, and technical documentation, have been properly cited and acknowledged in the bibliography section. Any code snippets or algorithms adapted from external sources have been explicitly mentioned with appropriate attribution.</p>
+    
+    <p>I understand that any form of plagiarism, falsification of data, or misrepresentation discovered in this project work may lead to disciplinary action, including cancellation of the project and denial of degree certification.</p>
+    
+    <p>The Hospital Management System developed as part of this project represents authentic implementation work performed during the academic year 2024-2025, incorporating knowledge gained from coursework, independent research, and practical software development experience.</p>
+    
+    <div class="signature-section">
+        <table style="border: none; width: 100%;">
+            <tr style="border: none;">
+                <td style="border: none; width: 50%;"><strong>Place:</strong> __________________</td>
+                <td style="border: none; width: 50%;"><strong>Date:</strong> __________________</td>
+            </tr>
+        </table>
+        <br><br>
+        <p style="text-align: right; margin-right: 80px;">____________________________</p>
+        <p style="text-align: right; margin-right: 80px;"><strong>Signature of Student</strong></p>
+        <p style="text-align: right; margin-right: 80px;">Name: Soumyajit M</p>
+        <p style="text-align: right; margin-right: 80px;">Roll No: __________________</p>
+    </div>
+    
+    <div class="page-number">ii</div>
+</div>
+
+<!-- Certificate Page -->
+<div class="page formal-page">
+    <h1>CERTIFICATE</h1>
+    <br><br>
+    <p>This is to certify that the project report entitled <strong>"Hospital Management System - A Comprehensive Web-Based Healthcare Management Solution"</strong> submitted by <strong>Soumyajit M</strong>, Roll No. __________________, in partial fulfillment of the requirements for the award of the degree of <strong>Bachelor of Science in Computer Science</strong>, is a bonafide record of project work carried out under my guidance and supervision during the academic year 2024-2025.</p>
+    
+    <p>The project demonstrates comprehensive understanding and application of software engineering principles, database management systems, web application development, and healthcare information technology. The student has successfully conducted thorough system analysis, designed a robust database architecture, implemented core modules using PHP and SQLite, and created an intuitive user interface using modern web technologies.</p>
+    
+    <p>The Hospital Management System developed addresses real-world challenges in healthcare facility management, including patient record management, appointment scheduling, billing automation, inventory tracking, and comprehensive reporting capabilities. The implementation incorporates industry best practices for security, data validation, and user access control.</p>
+    
+    <p>The system analysis documentation, design diagrams, implementation details, and testing strategies presented in this report are based on authentic research and development work undertaken by the student. The project meets the academic standards and evaluation criteria established for final year projects in the Bachelor of Science in Computer Science program.</p>
+    
+    <p>To the best of my knowledge, this project work has not been submitted to any other university or institution for the award of any degree or diploma.</p>
+    
+    <div class="signature-section">
+        <table style="border: none; margin-top: 60px;">
+            <tr style="border: none;">
+                <td style="border: none; width: 50%; vertical-align: top;">
+                    <p><strong>Project Guide</strong></p>
+                    <br>
+                    <p>Name: ___________________________</p>
+                    <p>Designation: ___________________________</p>
+                    <p>Department: Computer Science</p>
+                    <br><br>
+                    <p>Signature: ___________________________</p>
+                    <p>Date: ___________________________</p>
+                </td>
+                <td style="border: none; width: 50%; vertical-align: top;">
+                    <p><strong>Head of Department</strong></p>
+                    <br>
+                    <p>Name: ___________________________</p>
+                    <p>Designation: Professor & HOD</p>
+                    <p>Department: Computer Science</p>
+                    <br><br>
+                    <p>Signature: ___________________________</p>
+                    <p>Date: ___________________________</p>
+                </td>
+            </tr>
+        </table>
+        <br><br>
+        <p style="text-align: center; margin-top: 40px; font-size: 11pt;"><em>(Place for College/Institution Seal)</em></p>
+    </div>
+    
+    <div class="page-number">iii</div>
+</div>
+
+<!-- Cover Page -->
+<div class="page">
+    <div class="cover-page">
+        <h1>HOSPITAL MANAGEMENT SYSTEM</h1>
+        <h2>A Comprehensive Web-Based Healthcare Management Solution</h2>
+        <br><br><br>
+        <p><strong>PROJECT REPORT</strong></p>
+        <br><br><br>
+        <p>Submitted in partial fulfillment of the requirements</p>
+        <p>for the degree of</p>
+        <p><strong>BACHELOR OF SCIENCE IN COMPUTER SCIENCE</strong></p>
+        <br><br><br>
+        <p>Submitted By:</p>
+        <p><strong>SOUMYAJIT M</strong></p>
+        <p>Roll No: __________________</p>
+        <br><br><br>
+        <p><strong>Academic Year 2024-2025</strong></p>
+        <br><br>
+        <p>________________________________</p>
+        <p><em>(Institution Name)</em></p>
+        <p><em>(City, State)</em></p>
+    </div>
+    <div class="page-number">iv</div>
+</div>
+
+<!-- Table of Contents -->
+<div class="page">
+    <h1>TABLE OF CONTENTS</h1>
+    <br>
+    <div class="toc">
+        <div class="toc-item"><span><strong>ACKNOWLEDGEMENT</strong></span><span>i</span></div>
+        <div class="toc-item"><span><strong>DECLARATION</strong></span><span>ii</span></div>
+        <div class="toc-item"><span><strong>CERTIFICATE</strong></span><span>iii</span></div>
+        <div class="toc-item"><span><strong>TABLE OF CONTENTS</strong></span><span>v</span></div>
+        <div class="toc-item"><span><strong>LIST OF FIGURES</strong></span><span>vii</span></div>
+        <div class="toc-item"><span><strong>LIST OF TABLES</strong></span><span>viii</span></div>
+        <br>
+        <div class="toc-item"><span><strong>1. INTRODUCTION</strong></span><span>1</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">1.1 Background</span><span>2</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">1.2 Problem Statement</span><span>2</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">1.3 Solution Overview</span><span>3</span></div>
+        <br>
+        <div class="toc-item"><span><strong>2. OBJECTIVE</strong></span><span>4</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">2.1 Primary Objectives</span><span>4</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">2.2 Secondary Objectives</span><span>5</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">2.3 Project Scope</span><span>6</span></div>
+        <br>
+        <div class="toc-item"><span><strong>3. SYSTEM ANALYSIS</strong></span><span>8</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">3.1 Identification of Need</span><span>8</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">3.2 Preliminary Investigation</span><span>11</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">3.3 Feasibility Study</span><span>13</span></div>
+        <div class="toc-item"><span style="margin-left: 40px;">3.3.1 Technical Feasibility</span><span>13</span></div>
+        <div class="toc-item"><span style="margin-left: 40px;">3.3.2 Operational Feasibility</span><span>15</span></div>
+        <div class="toc-item"><span style="margin-left: 40px;">3.3.3 Economic Feasibility</span><span>16</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">3.4 Project Planning</span><span>18</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">3.5 Project Scheduling</span><span>20</span></div>
+        <div class="toc-item"><span style="margin-left: 40px;">3.5.1 Gantt Chart</span><span>20</span></div>
+        <div class="toc-item"><span style="margin-left: 40px;">3.5.2 PERT Chart</span><span>22</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">3.6 Software Requirement Specification</span><span>24</span></div>
+        <div class="toc-item"><span style="margin-left: 40px;">3.6.1 Functional Requirements</span><span>24</span></div>
+        <div class="toc-item"><span style="margin-left: 40px;">3.6.2 Non-Functional Requirements</span><span>27</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">3.7 System Specification</span><span>29</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">3.8 Data Models</span><span>31</span></div>
+        <div class="toc-item"><span style="margin-left: 40px;">3.8.1 Class Diagram</span><span>31</span></div>
+        <div class="toc-item"><span style="margin-left: 40px;">3.8.2 Activity Diagram</span><span>33</span></div>
+        <div class="toc-item"><span style="margin-left: 40px;">3.8.3 Sequence Diagram</span><span>35</span></div>
+        <div class="toc-item"><span style="margin-left: 40px;">3.8.4 Entity Relationship Diagram</span><span>37</span></div>
+        <div class="toc-item"><span style="margin-left: 40px;">3.8.5 Use Case Diagram</span><span>39</span></div>
+        <br>
+        <div class="toc-item"><span><strong>4. SYSTEM DESIGN</strong></span><span>41</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">4.1 Modularization Details</span><span>41</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">4.2 Data Integrity and Constraints</span><span>44</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">4.3 User Interface Design</span><span>46</span></div>
+    </div>
+    <div class="page-number">v</div>
+</div>
+
+<!-- Table of Contents Continued -->
+<div class="page">
+    <h1>TABLE OF CONTENTS (Continued)</h1>
+    <br>
+    <div class="toc">
+        <div class="toc-item"><span><strong>5. TESTING</strong></span><span>48</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">5.1 Testing Strategy</span><span>48</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">5.2 Unit Testing</span><span>49</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">5.3 Integration Testing</span><span>50</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">5.4 System Testing</span><span>51</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">5.5 User Acceptance Testing</span><span>52</span></div>
+        <br>
+        <div class="toc-item"><span><strong>6. SYSTEM SECURITY MEASURES</strong></span><span>54</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">6.1 Authentication and Authorization</span><span>54</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">6.2 Data Security</span><span>56</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">6.3 Input Validation</span><span>57</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">6.4 Session Management</span><span>58</span></div>
+        <br>
+        <div class="toc-item"><span><strong>7. COST ESTIMATION</strong></span><span>60</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">7.1 Development Costs</span><span>60</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">7.2 Deployment Costs</span><span>61</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">7.3 Maintenance Costs</span><span>62</span></div>
+        <br>
+        <div class="toc-item"><span><strong>8. REPORT</strong></span><span>63</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">8.1 Implementation Summary</span><span>63</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">8.2 Challenges Faced</span><span>64</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">8.3 Solutions Implemented</span><span>65</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">8.4 Key Features Delivered</span><span>66</span></div>
+        <br>
+        <div class="toc-item"><span><strong>9. FUTURE SCOPE</strong></span><span>68</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">9.1 Mobile Application</span><span>68</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">9.2 AI and Machine Learning Integration</span><span>69</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">9.3 IoT Integration</span><span>70</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">9.4 Cloud Migration</span><span>71</span></div>
+        <br>
+        <div class="toc-item"><span><strong>10. APPENDICES</strong></span><span>72</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">10.1 Code Samples</span><span>72</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">10.2 Database Schema</span><span>78</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">10.3 Bibliography</span><span>80</span></div>
+        <div class="toc-item"><span style="margin-left: 20px;">10.4 Glossary</span><span>82</span></div>
+    </div>
+    <div class="page-number">vi</div>
+</div>
+
+<!-- List of Figures -->
+<div class="page">
+    <h1>LIST OF FIGURES</h1>
+    <br>
+    <div class="toc">
+        <div class="toc-item"><span>Figure 3.1: System Development Lifecycle</span><span>9</span></div>
+        <div class="toc-item"><span>Figure 3.2: Stakeholder Analysis Chart</span><span>12</span></div>
+        <div class="toc-item"><span>Figure 3.3: Technology Stack Architecture</span><span>14</span></div>
+        <div class="toc-item"><span>Figure 3.4: Gantt Chart - Project Timeline</span><span>21</span></div>
+        <div class="toc-item"><span>Figure 3.5: PERT Chart - Critical Path Analysis</span><span>23</span></div>
+        <div class="toc-item"><span>Figure 3.6: System Architecture Overview</span><span>30</span></div>
+        <div class="toc-item"><span>Figure 3.7: Class Diagram - Core Modules</span><span>32</span></div>
+        <div class="toc-item"><span>Figure 3.8: Activity Diagram - Patient Registration</span><span>34</span></div>
+        <div class="toc-item"><span>Figure 3.9: Sequence Diagram - Appointment Booking</span><span>36</span></div>
+        <div class="toc-item"><span>Figure 3.10: Entity Relationship Diagram</span><span>38</span></div>
+        <div class="toc-item"><span>Figure 3.11: Use Case Diagram - System Users</span><span>40</span></div>
+        <div class="toc-item"><span>Figure 4.1: Module Interaction Diagram</span><span>42</span></div>
+        <div class="toc-item"><span>Figure 4.2: Database Schema Diagram</span><span>45</span></div>
+        <div class="toc-item"><span>Figure 4.3: User Interface Wireframe - Dashboard</span><span>47</span></div>
+        <div class="toc-item"><span>Figure 5.1: Testing Pyramid</span><span>49</span></div>
+        <div class="toc-item"><span>Figure 6.1: Security Architecture</span><span>55</span></div>
+        <div class="toc-item"><span>Figure 6.2: Authentication Flow</span><span>56</span></div>
+    </div>
+    <div class="page-number">vii</div>
+</div>
+
+<!-- List of Tables -->
+<div class="page">
+    <h1>LIST OF TABLES</h1>
+    <br>
+    <div class="toc">
+        <div class="toc-item"><span>Table 3.1: Gap Analysis - Current vs Desired State</span><span>10</span></div>
+        <div class="toc-item"><span>Table 3.2: Hardware Requirements</span><span>13</span></div>
+        <div class="toc-item"><span>Table 3.3: Software Requirements</span><span>14</span></div>
+        <div class="toc-item"><span>Table 3.4: Operational Feasibility Factors</span><span>15</span></div>
+        <div class="toc-item"><span>Table 3.5: Cost-Benefit Analysis</span><span>17</span></div>
+        <div class="toc-item"><span>Table 3.6: Project Milestones and Deliverables</span><span>19</span></div>
+        <div class="toc-item"><span>Table 3.7: Functional Requirements Matrix</span><span>25</span></div>
+        <div class="toc-item"><span>Table 3.8: Non-Functional Requirements Specification</span><span>28</span></div>
+        <div class="toc-item"><span>Table 4.1: Module Specifications</span><span>43</span></div>
+        <div class="toc-item"><span>Table 4.2: Database Constraints and Validations</span><span>45</span></div>
+        <div class="toc-item"><span>Table 5.1: Test Case Summary</span><span>50</span></div>
+        <div class="toc-item"><span>Table 5.2: Integration Test Results</span><span>51</span></div>
+        <div class="toc-item"><span>Table 5.3: System Test Scenarios</span><span>52</span></div>
+        <div class="toc-item"><span>Table 5.4: UAT Feedback Summary</span><span>53</span></div>
+        <div class="toc-item"><span>Table 6.1: User Role Permissions</span><span>55</span></div>
+        <div class="toc-item"><span>Table 6.2: Security Measures Implemented</span><span>59</span></div>
+        <div class="toc-item"><span>Table 7.1: Development Cost Breakdown</span><span>61</span></div>
+        <div class="toc-item"><span>Table 7.2: Deployment and Infrastructure Costs</span><span>62</span></div>
+        <div class="toc-item"><span>Table 10.1: Project Statistics</span><span>79</span></div>
+        <div class="toc-item"><span>Table 10.2: Database Tables Overview</span><span>79</span></div>
+    </div>
+    <div class="page-number">viii</div>
+</div>
+
+</body>
+</html>

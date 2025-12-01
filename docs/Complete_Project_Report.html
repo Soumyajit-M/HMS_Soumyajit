@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System - Complete Project Report</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 1in 1in 1in 1.5in;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            color: #000;
+            background: #fff;
+            padding: 0;
+        }
+        
+        .page {
+            page-break-after: always;
+            min-height: 27cm;
+            position: relative;
+            padding: 40px;
+            padding-bottom: 80px;
+        }
+        
+        .page-number {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12pt;
+            font-family: 'Times New Roman', serif;
+        }
+        
+        h1 {
+            font-size: 16pt;
+            font-weight: bold;
+            margin: 20px 0 15px 0;
+            text-align: center;
+            text-transform: uppercase;
+            line-height: 1.3;
+        }
+        
+        h2 {
+            font-size: 14pt;
+            font-weight: bold;
+            margin: 20px 0 12px 0;
+            line-height: 1.3;
+        }
+        
+        h3 {
+            font-size: 12pt;
+            font-weight: bold;
+            margin: 15px 0 10px 0;
+            line-height: 1.3;
+        }
+        
+        h4 {
+            font-size: 12pt;
+            font-weight: bold;
+            font-style: italic;
+            margin: 12px 0 8px 0;
+        }
+        
+        p {
+            text-align: justify;
+            margin-bottom: 12pt;
+            line-height: 1.5;
+        }
+        
+        ul, ol {
+            margin: 12pt 0;
+            padding-left: 40px;
+            line-height: 1.5;
+        }
+        
+        li {
+            margin-bottom: 8pt;
+            text-align: justify;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 11pt;
+        }
+        
+        table th, table td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        
+        table th {
+            background-color: #e8e8e8;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .caption {
+            font-weight: bold;
+            margin: 10px 0 15px 0;
+            text-align: center;
+            font-size: 11pt;
+        }
+        
+        .figure {
+            text-align: center;
+            margin: 25px 0;
+            page-break-inside: avoid;
+        }
+        
+        .figure-box {
+            border: 2px solid #666;
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 80%;
+            min-height: 200px;
+            background: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .code-block {
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            padding: 12px 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 10pt;
+            overflow-x: auto;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .toc {
+            line-height: 2;
+        }
+        
+        .toc-item {
+            margin: 6px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        
+        .toc-item span:first-child {
+            flex-grow: 0;
+            flex-shrink: 0;
+        }
+        
+        .toc-dots {
+            flex-grow: 1;
+            border-bottom: 1px dotted #999;
+            margin: 0 8px;
+            min-width: 20px;
+        }
+        
+        .toc-page {
+            flex-grow: 0;
+            flex-shrink: 0;
+        }
+        
+        .cover-page {
+            text-align: center;
+            padding-top: 150px;
+        }
+        
+        .cover-page h1 {
+            font-size: 20pt;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+        
+        .cover-page h2 {
+            font-size: 16pt;
+            margin-bottom: 50px;
+            font-weight: normal;
+            font-style: italic;
+        }
+        
+        .cover-page p {
+            font-size: 13pt;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        
+        .formal-page {
+            padding-top: 60px;
+        }
+        
+        .signature-section {
+            margin-top: 60px;
+        }
+        
+        .indent-20 { margin-left: 20px; }
+        .indent-40 { margin-left: 40px; }
+        .indent-60 { margin-left: 60px; }
+        
+        @media print {
+            body {
+                padding: 0;
+                margin: 0;
+            }
+            .page {
+                margin: 0;
+                padding: 1in 1.5in 1in 1in;
+            }
+            .page-break {
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ACKNOWLEDGEMENT PAGE -->
+<div class="page formal-page">
+    <h1>ACKNOWLEDGEMENT</h1>
+    <br>
+    
+    <p>I would like to express my deepest gratitude to all those who contributed to the successful completion of this Hospital Management System project. This endeavor would not have been possible without the support, guidance, and encouragement of numerous individuals.</p>
+    
+    <p>First and foremost, I extend my heartfelt thanks to my project guide for their invaluable mentorship throughout this project. Their expertise in software engineering, database design, and healthcare IT systems significantly influenced the technical architecture and implementation decisions. Their constructive feedback during code reviews and design discussions helped me understand industry best practices and write maintainable, scalable code.</p>
+    
+    <p>I am profoundly grateful to the faculty members of the Computer Science Department who provided me with the foundational knowledge essential for this project. The courses on Database Management Systems, Web Technologies, Software Engineering, and Object-Oriented Programming formed the theoretical backbone that enabled me to implement this comprehensive healthcare management solution.</p>
+    
+    <p>I would like to acknowledge the healthcare professionals and hospital administrators who generously shared their time and insights during the requirements gathering phase. Their real-world perspectives on patient registration workflows, appointment scheduling challenges, billing processes, and inventory management requirements ensured that this system addresses genuine needs in healthcare facility operations. Special thanks to Dr. [Name] for explaining medical record-keeping standards and to Mr. [Name], Hospital Administrator, for detailing billing and insurance claim processes.</p>
+    
+    <p>My sincere appreciation goes to my fellow students and colleagues who participated in the user acceptance testing phase. Their feedback on user interface design, navigation flow, and feature usability led to significant improvements in the system's overall user experience. The bug reports and enhancement suggestions they provided were instrumental in refining the application.</p>
+    
+    <p>I am grateful to the open-source community, particularly the developers and maintainers of PHP, SQLite, Bootstrap, Chart.js, and other libraries utilized in this project. Their commitment to creating well-documented, robust frameworks accelerated development and ensured code quality. The comprehensive documentation and active community support resolved numerous technical challenges encountered during implementation.</p>
+    
+    <p>I would like to thank the authors and contributors of technical books, research papers, online tutorials, and Stack Overflow discussions that provided guidance on healthcare system design patterns, RESTful API development, SQL query optimization, and web application security best practices.</p>
+    
+    <p>Special recognition goes to [Institution Name] for providing access to development infrastructure, including computer laboratories, high-speed internet connectivity, and software licenses that facilitated the development and testing of this system.</p>
+    
+    <p>Finally, I express my deepest appreciation to my family for their unwavering support, patience, and encouragement throughout this academic journey. Their understanding during late-night coding sessions, belief in my abilities during challenging phases, and constant motivation were invaluable in bringing this project to successful completion.</p>
+    
+    <p>This project has been an enriching learning experience that bridged theoretical computer science concepts with practical software development. I am thankful to everyone who played a role in making this project a reality.</p>
+    
+    <div class="signature-section">
+        <p style="text-align: right; margin-right: 50px;"><strong>Soumyajit M</strong></p>
+        <p style="text-align: right; margin-right: 50px;">B.Sc. Computer Science</p>
+        <p style="text-align: right; margin-right: 50px;">Roll No: ________________</p>
+        <p style="text-align: right; margin-right: 50px;">December 2025</p>
+    </div>
+    
+    <div class="page-number">i</div>
+</div>
+
+<!-- DECLARATION PAGE -->
+<div class="page formal-page">
+    <h1>DECLARATION</h1>
+    <br><br>
+    
+    <p>I, <strong>Soumyajit M</strong>, Roll No. ________________, hereby solemnly declare that the project report entitled <strong>"Hospital Management System - A Comprehensive Web-Based Healthcare Management Solution"</strong> submitted in partial fulfillment of the requirements for the award of the degree of <strong>Bachelor of Science in Computer Science</strong> is a record of original work carried out by me under the guidance and supervision of my project guide during the academic year 2024-2025.</p>
+    
+    <p>I further declare that this project work has not been submitted previously, either in part or in full, to this university or any other university or institution for the award of any degree, diploma, fellowship, or other similar title or recognition. The work presented in this report is entirely my own, except where explicitly acknowledged and properly cited in the bibliography.</p>
+    
+    <p>The Hospital Management System developed as part of this project represents authentic implementation work performed independently. The system design, database architecture, class structures, API development, and user interface implementation are based on my own analysis, design decisions, and coding efforts. While I have utilized standard programming frameworks and libraries such as PHP, Bootstrap, Chart.js, and SQLite, the core business logic, feature implementation, module integration, and overall system architecture are original contributions.</p>
+    
+    <p>All external sources of information, including textbooks, research papers, technical documentation, online tutorials, and code repositories, have been properly acknowledged and cited in the bibliography section. Any code snippets, algorithms, or design patterns adapted from external sources have been explicitly mentioned with appropriate attribution and reference to the original source.</p>
+    
+    <p>The system requirements were gathered through my own research, including interviews with healthcare professionals, analysis of hospital workflows, and study of healthcare information systems. The feasibility study, cost estimation, project planning, and testing strategies documented in this report are based on my own investigation and analysis specific to this project.</p>
+    
+    <p>I understand that any form of plagiarism, falsification of data, misrepresentation of work, or academic dishonesty discovered in this project work may lead to serious disciplinary action, including but not limited to cancellation of the project, withholding of degree certification, and other penalties as per university regulations.</p>
+    
+    <p>The software developed includes 18 PHP classes, 135 files totaling over 22,000 lines of code (PHP and JavaScript combined), implementing features such as patient management, doctor management, appointment scheduling, billing and payments, inventory management, laboratory test management, insurance claim processing, telemedicine capabilities, staff and schedule management, room and bed allocation, comprehensive reporting, and currency management. All this implementation work has been carried out by me during the project development period.</p>
+    
+    <div class="signature-section">
+        <table style="border: none; width: 100%; margin-top: 40px;">
+            <tr style="border: none;">
+                <td style="border: none; width: 50%;"><strong>Place:</strong> ______________________</td>
+                <td style="border: none; width: 50%;"><strong>Date:</strong> ______________________</td>
+            </tr>
+        </table>
+        <br><br><br>
+        <p style="text-align: right; margin-right: 80px;">________________________________</p>
+        <p style="text-align: right; margin-right: 80px;"><strong>Signature of Student</strong></p>
+        <p style="text-align: right; margin-right: 80px;">Name: <strong>Soumyajit M</strong></p>
+        <p style="text-align: right; margin-right: 80px;">Roll No: ________________</p>
+    </div>
+    
+    <div class="page-number">ii</div>
+</div>
+
+<!-- CERTIFICATE PAGE -->
+<div class="page formal-page">
+    <h1>CERTIFICATE</h1>
+    <br><br>
+    
+    <p>This is to certify that the project report entitled <strong>"Hospital Management System - A Comprehensive Web-Based Healthcare Management Solution"</strong> submitted by <strong>Soumyajit M</strong>, Roll No. __________________, in partial fulfillment of the requirements for the award of the degree of <strong>Bachelor of Science in Computer Science</strong>, is a bonafide record of project work carried out under my guidance and supervision during the academic year 2024-2025.</p>
+    
+    <p>The project demonstrates comprehensive understanding and practical application of software engineering principles, database management systems, web application development, and healthcare information technology. The student has successfully conducted thorough system analysis, identified genuine needs in healthcare facility management, performed detailed feasibility studies, and developed a robust, scalable solution using modern web technologies.</p>
+    
+    <p>The Hospital Management System developed addresses critical challenges in healthcare operations, including digitization of patient records, automated appointment scheduling with conflict resolution, comprehensive billing and payment processing supporting multiple payment methods and currencies, inventory management with expiry tracking, laboratory test management, insurance claim processing, staff scheduling, room and bed allocation, telemedicine capabilities, and extensive reporting and analytics features.</p>
+    
+    <p>The implementation demonstrates proficiency in PHP object-oriented programming (18 custom classes), SQLite database design (15+ tables with proper normalization and referential integrity), RESTful API development (40+ endpoints), responsive web design using Bootstrap framework, JavaScript for client-side interactivity, Chart.js for data visualization, and integration of external services for currency conversion.</p>
+    
+    <p>The system analysis documentation includes detailed stakeholder analysis, gap analysis, SDLC approach, feasibility studies (technical, operational, and economic), project planning with Gantt and PERT charts, comprehensive functional and non-functional requirements specifications, and multiple UML diagrams (class diagram, activity diagram, sequence diagram, ER diagram, and use case diagram) specific to this implementation.</p>
+    
+    <p>The testing strategy encompasses unit testing of individual classes, integration testing of module interactions, system testing of complete workflows, and user acceptance testing with feedback incorporation. Security measures include password hashing using bcrypt, SQL injection prevention through prepared statements, XSS protection, CSRF token validation, role-based access control, and secure session management.</p>
+    
+    <p>The work presented in this report is based on authentic research, design, and development undertaken by the student. The project meets and exceeds the academic standards and evaluation criteria established for final year projects in the Bachelor of Science in Computer Science program.</p>
+    
+    <p>To the best of my knowledge, this project work has not been submitted to any other university or institution for the award of any degree or diploma.</p>
+    
+    <div class="signature-section">
+        <table style="border: none; margin-top: 50px;">
+            <tr style="border: none;">
+                <td style="border: none; width: 50%; vertical-align: top;">
+                    <p><strong>Project Guide</strong></p>
+                    <br>
+                    <p>Name: _______________________________</p>
+                    <p>Designation: _______________________________</p>
+                    <p>Department: Computer Science</p>
+                    <br><br>
+                    <p>Signature: _______________________________</p>
+                    <p>Date: _______________________________</p>
+                </td>
+                <td style="border: none; width: 50%; vertical-align: top;">
+                    <p><strong>Head of Department</strong></p>
+                    <br>
+                    <p>Name: _______________________________</p>
+                    <p>Designation: Professor & HOD</p>
+                    <p>Department: Computer Science</p>
+                    <br><br>
+                    <p>Signature: _______________________________</p>
+                    <p>Date: _______________________________</p>
+                </td>
+            </tr>
+        </table>
+        <br><br>
+        <p style="text-align: center; margin-top: 30px; font-size: 11pt; font-style: italic;">[Place for College/Institution Seal]</p>
+    </div>
+    
+    <div class="page-number">iii</div>
+</div>
+
+<!-- COVER PAGE -->
+<div class="page">
+    <div class="cover-page">
+        <h1>HOSPITAL MANAGEMENT SYSTEM</h1>
+        <h2>A Comprehensive Web-Based Healthcare Management Solution</h2>
+        <br><br><br>
+        <p style="font-size: 14pt;"><strong>PROJECT REPORT</strong></p>
+        <br><br><br>
+        <p>Submitted in partial fulfillment of the requirements</p>
+        <p>for the degree of</p>
+        <p style="font-size: 14pt;"><strong>BACHELOR OF SCIENCE IN COMPUTER SCIENCE</strong></p>
+        <br><br><br>
+        <p>Submitted By:</p>
+        <p style="font-size: 14pt;"><strong>SOUMYAJIT M</strong></p>
+        <p>Roll No: __________________</p>
+        <br><br><br>
+        <p style="font-size: 14pt;"><strong>Academic Year 2024-2025</strong></p>
+        <br><br><br>
+        <p>________________________________</p>
+        <p style="font-size: 11pt; font-style: italic;">[Institution Name]</p>
+        <p style="font-size: 11pt; font-style: italic;">[City, State]</p>
+        <p style="font-size: 11pt; font-style: italic;">[Country]</p>
+    </div>
+    <div class="page-number">iv</div>
+</div>
+
+<!-- TABLE OF CONTENTS - PAGE 1 -->
+<div class="page">
+    <h1>TABLE OF CONTENTS</h1>
+    <br>
+    <div class="toc">
+        <div class="toc-item">
+            <span><strong>ACKNOWLEDGEMENT</strong></span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">i</span>
+        </div>
+        <div class="toc-item">
+            <span><strong>DECLARATION</strong></span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">ii</span>
+        </div>
+        <div class="toc-item">
+            <span><strong>CERTIFICATE</strong></span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">iii</span>
+        </div>
+        <div class="toc-item">
+            <span><strong>TABLE OF CONTENTS</strong></span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">v-vi</span>
+        </div>
+        <div class="toc-item">
+            <span><strong>LIST OF FIGURES</strong></span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">vii</span>
+        </div>
+        <div class="toc-item">
+            <span><strong>LIST OF TABLES</strong></span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">viii</span>
+        </div>
+        <br>
+        <div class="toc-item">
+            <span><strong>1. INTRODUCTION</strong></span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">1</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>1.1 Background</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">2</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>1.2 Problem Statement</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">3</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>1.3 Solution Overview</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">4</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>1.4 Report Organization</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">5</span>
+        </div>
+        <br>
+        <div class="toc-item">
+            <span><strong>2. OBJECTIVE</strong></span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">6</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>2.1 Primary Objectives</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">6</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>2.2 Secondary Objectives</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">7</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>2.3 Project Scope</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">8</span>
+        </div>
+        <br>
+        <div class="toc-item">
+            <span><strong>3. SYSTEM ANALYSIS</strong></span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">10</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>3.1 Identification of Need</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">10</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>3.2 Preliminary Investigation</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">13</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>3.3 Feasibility Study</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">15</span>
+        </div>
+        <div class="toc-item indent-40">
+            <span>3.3.1 Technical Feasibility</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">15</span>
+        </div>
+        <div class="toc-item indent-40">
+            <span>3.3.2 Operational Feasibility</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">17</span>
+        </div>
+        <div class="toc-item indent-40">
+            <span>3.3.3 Economic Feasibility</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">19</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>3.4 Project Planning</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">21</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>3.5 Project Scheduling</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">23</span>
+        </div>
+        <div class="toc-item indent-40">
+            <span>3.5.1 Gantt Chart</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">24</span>
+        </div>
+        <div class="toc-item indent-40">
+            <span>3.5.2 PERT Chart</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">26</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>3.6 Software Requirement Specification</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">28</span>
+        </div>
+        <div class="toc-item indent-40">
+            <span>3.6.1 Functional Requirements</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">28</span>
+        </div>
+        <div class="toc-item indent-40">
+            <span>3.6.2 Non-Functional Requirements</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">32</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>3.7 System Specification</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">35</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>3.8 Data Models</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">38</span>
+        </div>
+        <div class="toc-item indent-40">
+            <span>3.8.1 Class Diagram</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">38</span>
+        </div>
+        <div class="toc-item indent-40">
+            <span>3.8.2 Activity Diagram</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">40</span>
+        </div>
+        <div class="toc-item indent-40">
+            <span>3.8.3 Sequence Diagram</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">42</span>
+        </div>
+        <div class="toc-item indent-40">
+            <span>3.8.4 Entity Relationship Diagram</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">44</span>
+        </div>
+        <div class="toc-item indent-40">
+            <span>3.8.5 Use Case Diagram</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">46</span>
+        </div>
+    </div>
+    <div class="page-number">v</div>
+</div>
+
+<!-- TABLE OF CONTENTS - PAGE 2 -->
+<div class="page">
+    <h1>TABLE OF CONTENTS (Continued)</h1>
+    <br>
+    <div class="toc">
+        <div class="toc-item">
+            <span><strong>4. SYSTEM DESIGN</strong></span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">48</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>4.1 Modularization Details</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">48</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>4.2 Data Integrity and Constraints</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">52</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>4.3 User Interface Design</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">54</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>4.4 Database Design</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">56</span>
+        </div>
+        <br>
+        <div class="toc-item">
+            <span><strong>5. TESTING</strong></span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">58</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>5.1 Testing Strategy</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">58</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>5.2 Unit Testing</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">59</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>5.3 Integration Testing</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">61</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>5.4 System Testing</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">62</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>5.5 User Acceptance Testing</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">64</span>
+        </div>
+        <br>
+        <div class="toc-item">
+            <span><strong>6. SYSTEM SECURITY MEASURES</strong></span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">66</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>6.1 Authentication and Authorization</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">66</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>6.2 Data Security</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">68</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>6.3 Input Validation and Sanitization</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">69</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>6.4 Session Management</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">70</span>
+        </div>
+        <br>
+        <div class="toc-item">
+            <span><strong>7. COST ESTIMATION</strong></span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">72</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>7.1 Development Costs</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">72</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>7.2 Deployment and Infrastructure Costs</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">73</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>7.3 Maintenance and Support Costs</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">74</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>7.4 Total Cost Analysis</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">75</span>
+        </div>
+        <br>
+        <div class="toc-item">
+            <span><strong>8. REPORT</strong></span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">76</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>8.1 Implementation Summary</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">76</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>8.2 Challenges Faced and Solutions</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">78</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>8.3 Key Features Delivered</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">79</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>8.4 System Performance</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">81</span>
+        </div>
+        <br>
+        <div class="toc-item">
+            <span><strong>9. FUTURE SCOPE</strong></span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">82</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>9.1 Mobile Application Development</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">82</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>9.2 AI and Machine Learning Integration</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">83</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>9.3 IoT and Wearable Device Integration</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">84</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>9.4 Cloud Migration and Scalability</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">85</span>
+        </div>
+        <br>
+        <div class="toc-item">
+            <span><strong>10. APPENDICES</strong></span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">86</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>10.1 Code Samples</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">86</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>10.2 Database Schema</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">92</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>10.3 Bibliography</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">94</span>
+        </div>
+        <div class="toc-item indent-20">
+            <span>10.4 Glossary and Abbreviations</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">96</span>
+        </div>
+    </div>
+    <div class="page-number">vi</div>
+</div>
+
+<!-- LIST OF FIGURES -->
+<div class="page">
+    <h1>LIST OF FIGURES</h1>
+    <br>
+    <div class="toc">
+        <div class="toc-item">
+            <span>Figure 3.1: System Development Lifecycle</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">11</span>
+        </div>
+        <div class="toc-item">
+            <span>Figure 3.2: Stakeholder Analysis</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">14</span>
+        </div>
+        <div class="toc-item">
+            <span>Figure 3.3: Technology Stack Architecture</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">16</span>
+        </div>
+        <div class="toc-item">
+            <span>Figure 3.4: Cost-Benefit Analysis Graph</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">20</span>
+        </div>
+        <div class="toc-item">
+            <span>Figure 3.5: Project Gantt Chart</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">25</span>
+        </div>
+        <div class="toc-item">
+            <span>Figure 3.6: PERT Chart - Critical Path</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">27</span>
+        </div>
+        <div class="toc-item">
+            <span>Figure 3.7: System Architecture Diagram</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">36</span>
+        </div>
+        <div class="toc-item">
+            <span>Figure 3.8: Class Diagram - All Modules</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">39</span>
+        </div>
+        <div class="toc-item">
+            <span>Figure 3.9: Activity Diagram - Patient Registration Workflow</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">41</span>
+        </div>
+        <div class="toc-item">
+            <span>Figure 3.10: Sequence Diagram - Appointment Booking</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">43</span>
+        </div>
+        <div class="toc-item">
+            <span>Figure 3.11: Entity Relationship Diagram - Complete Database</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">45</span>
+        </div>
+        <div class="toc-item">
+            <span>Figure 3.12: Use Case Diagram - System Actors and Functions</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">47</span>
+        </div>
+        <div class="toc-item">
+            <span>Figure 4.1: Module Interaction Diagram</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">50</span>
+        </div>
+        <div class="toc-item">
+            <span>Figure 4.2: Database Normalization Structure</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">53</span>
+        </div>
+        <div class="toc-item">
+            <span>Figure 4.3: User Interface Mockup - Dashboard</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">55</span>
+        </div>
+        <div class="toc-item">
+            <span>Figure 5.1: Testing Pyramid Strategy</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">59</span>
+        </div>
+        <div class="toc-item">
+            <span>Figure 6.1: Security Architecture Overview</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">67</span>
+        </div>
+        <div class="toc-item">
+            <span>Figure 6.2: Authentication and Authorization Flow</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">68</span>
+        </div>
+        <div class="toc-item">
+            <span>Figure 8.1: System Performance Metrics</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">81</span>
+        </div>
+    </div>
+    <div class="page-number">vii</div>
+</div>
+
+<!-- LIST OF TABLES -->
+<div class="page">
+    <h1>LIST OF TABLES</h1>
+    <br>
+    <div class="toc">
+        <div class="toc-item">
+            <span>Table 3.1: Gap Analysis - Current vs Desired State</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">12</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 3.2: Hardware Requirements Specification</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">15</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 3.3: Software Requirements Specification</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">16</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 3.4: Operational Feasibility Assessment</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">18</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 3.5: Economic Feasibility - Cost-Benefit Analysis</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">20</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 3.6: Project Milestones and Timeline</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">22</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 3.7: Functional Requirements Matrix</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">29-31</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 3.8: Non-Functional Requirements</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">33</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 3.9: System Hardware and Software Specifications</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">37</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 4.1: Module Specifications and Responsibilities</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">49</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 4.2: Database Tables and Relationships</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">52</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 4.3: Data Validation Rules</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">53</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 5.1: Unit Test Cases Summary</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">60</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 5.2: Integration Test Scenarios</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">61</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 5.3: System Test Results</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">63</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 5.4: User Acceptance Testing Feedback</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">65</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 6.1: User Roles and Permissions Matrix</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">67</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 6.2: Security Measures Implementation</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">71</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 7.1: Development Cost Breakdown</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">73</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 7.2: Infrastructure and Deployment Costs</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">74</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 7.3: Total Project Cost Summary</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">75</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 8.1: Implemented Features Summary</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">80</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 10.1: Project Statistics</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">93</span>
+        </div>
+        <div class="toc-item">
+            <span>Table 10.2: Database Schema Summary</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">93</span>
+        </div>
+    </div>
+    <div class="page-number">viii</div>
+</div>
+
+<!-- CHAPTER 1: INTRODUCTION - PAGE 1 -->
+<div class="page">
+    <h1>CHAPTER 1</h1>
+    <h1>INTRODUCTION</h1>
+    <br>
+    
+    <p>The healthcare industry represents one of the most critical sectors globally, directly impacting human lives, well-being, and societal productivity. Efficient management of healthcare facilities, particularly hospitals, requires sophisticated systems that can handle complex workflows involving patient care, medical personnel coordination, resource allocation, financial transactions, and regulatory compliance. Traditional manual and paper-based hospital management approaches suffer from inefficiencies, human errors, data redundancy, delayed access to critical information, and difficulty in maintaining comprehensive patient histories.</p>
+    
+    <p>In the contemporary digital age, healthcare information technology has emerged as a transformative force, enabling hospitals to streamline operations, improve patient outcomes, reduce administrative overhead, and make data-driven decisions. Electronic Health Records (EHR), computerized appointment scheduling, automated billing systems, digital inventory management, and analytics-driven insights have become essential components of modern healthcare delivery. The COVID-19 pandemic further accelerated the adoption of digital healthcare solutions, highlighting the necessity for robust, scalable, and accessible hospital management systems that can adapt to rapidly changing circumstances.</p>
+    
+    <p>The Hospital Management System (HMS) developed as part of this project represents a comprehensive, web-based solution designed to address the multifaceted challenges faced by healthcare facilities. This system integrates patient management, doctor coordination, appointment scheduling, billing and payment processing, inventory tracking, laboratory test management, insurance claims, staff scheduling, room allocation, telemedicine capabilities, and extensive reporting functionalities into a unified platform. Built using modern web technologies including PHP 8.2.12, SQLite database, Bootstrap 5.3.0 frontend framework, Chart.js for data visualization, and JavaScript for interactive features, the system demonstrates practical application of software engineering principles, database design, and user experience considerations.</p>
+    
+    <p>The development approach followed the Software Development Life Cycle (SDLC) methodology, encompassing requirements gathering through stakeholder interviews and process analysis, comprehensive system design including database normalization and class modeling, iterative implementation with modular architecture, rigorous testing at multiple levels, and continuous refinement based on user feedback. The resulting system comprises 18 core PHP classes managing distinct functional areas, over 22,000 lines of code across 135 files, and a well-structured SQLite database with 15 tables implementing proper referential integrity constraints.</p>
+
+    <p>This report documents the complete project lifecycle, from initial problem identification and requirements analysis through design, implementation, testing, security implementation, cost estimation, and future enhancement opportunities. Each phase demonstrates the application of theoretical computer science concepts to solve real-world healthcare management challenges, bridging the gap between academic learning and industry-relevant software development.</p>
+    
+    <div class="page-number">1</div>
+</div>
+
+<!-- CHAPTER 1: INTRODUCTION - PAGE 2 -->
+<div class="page">
+    <h2>1.1 Background</h2>
+    
+    <p>Healthcare facilities worldwide face mounting pressure to deliver high-quality patient care while managing operational costs, regulatory compliance requirements, and increasing patient volumes. Small to medium-sized hospitals and clinics often struggle with limited IT budgets, making expensive proprietary Hospital Information Systems (HIS) financially unfeasible. This creates a significant digital divide where smaller healthcare providers continue relying on manual processes, spreadsheets, and disconnected software applications, leading to fragmented data, inefficient workflows, and compromised patient care quality.</p>
+    
+    <p>The Indian healthcare sector, in particular, has witnessed rapid growth with increasing healthcare awareness, rising health insurance penetration, and government initiatives promoting digital health records. However, many tier-2 and tier-3 city hospitals, nursing homes, and specialized clinics lack affordable, customizable, and easy-to-deploy management systems. Market research conducted during the preliminary investigation phase revealed that existing solutions either offer limited functionality at low price points or provide comprehensive features but require substantial upfront investment and ongoing licensing fees that strain operational budgets.</p>
+    
+    <p>This gap in the market presents an opportunity for developing accessible, open-source or affordable hospital management solutions tailored to the specific needs of small and medium healthcare facilities. Such systems must balance comprehensive functionality with simplicity, ensuring that medical staff with varying levels of technical proficiency can efficiently utilize the platform. Additionally, the system must accommodate local requirements such as multi-currency support for international patients, integration with government health schemes, and adaptability to different specializations and hospital sizes.</p>
+    
+    <p>From a technical perspective, advancements in web development frameworks, database technologies, cloud computing, and responsive design have made it feasible to develop sophisticated healthcare management systems using open-source technologies. PHP remains one of the most widely deployed server-side programming languages, with extensive community support, mature frameworks, and proven scalability. SQLite offers a lightweight, file-based database solution ideal for applications requiring moderate concurrency without the complexity of client-server database management systems. Bootstrap provides responsive, mobile-friendly user interface components that ensure consistent user experience across devices. Chart.js enables rich data visualizations that transform raw healthcare data into actionable insights.</p>
+    
+    <p>The convergence of these technologies, combined with a clear understanding of healthcare workflows and operational requirements, forms the foundation for developing this Hospital Management System. The project aims to demonstrate that comprehensive, production-quality healthcare management solutions can be developed using freely available tools and frameworks, making advanced hospital automation accessible to a broader range of healthcare providers.</p>
+
+    <div class="page-number">2</div>
+</div>
+
+<!-- CHAPTER 1: INTRODUCTION - PAGE 3 -->
+<div class="page">
+    <h2>1.2 Problem Statement</h2>
+    
+    <p>Small and medium-sized hospitals and healthcare facilities face significant operational challenges stemming from the absence of integrated management systems. These challenges manifest across multiple dimensions:</p>
+    
+    <p><strong>Patient Management Inefficiencies:</strong> Manual patient registration processes are time-consuming, error-prone, and result in duplicate records. Physical file management systems make it difficult to quickly retrieve patient histories during emergencies. Incomplete or illegible handwritten medical records compromise care quality. The absence of centralized patient databases prevents physicians from accessing comprehensive medical histories, allergies, and treatment contraindications, increasing the risk of adverse drug reactions and medical errors.</p>
+    
+    <p><strong>Appointment Scheduling Conflicts:</strong> Manual appointment booking using registers or basic spreadsheets frequently results in double-booking, scheduling conflicts, and inefficient utilization of physician time. Patients experience long wait times due to poor schedule optimization. The inability to send automated appointment reminders leads to high no-show rates, wasting valuable consultation slots. Healthcare providers lack visibility into appointment patterns and physician workload distribution, making resource planning difficult.</p>
+    
+    <p><strong>Billing and Revenue Leakage:</strong> Manual billing processes are susceptible to calculation errors, missing charges for services rendered, and delays in generating invoices. The complexity of tracking multiple payment methods, partial payments, insurance claims, and outstanding balances manually results in revenue leakage. The absence of comprehensive financial reporting makes it challenging to identify revenue trends, monitor outstanding receivables, and make informed financial decisions. Currency conversion errors occur when serving international patients, leading to financial discrepancies.</p>
+    
+    <p><strong>Inventory Management Problems:</strong> Manual tracking of medical supplies, pharmaceuticals, and equipment leads to stockouts of critical items or excessive inventory carrying costs. Expired medications go unnoticed until discovered during audits, representing financial losses and potential patient safety risks. The inability to track supplier performance, item usage patterns, and reorder points results in reactive rather than proactive procurement strategies.</p>
+    
+    <p><strong>Communication and Coordination Gaps:</strong> Lack of integrated communication systems between departments results in delays in test results, medication administration, and patient transfers. Emergency situations require rapid access to patient information, which manual systems cannot efficiently provide. The absence of automated notifications means staff rely on verbal communication, increasing the likelihood of miscommunication and missed critical information.</p>
+    
+    <p><strong>Reporting and Analytics Limitations:</strong> Manual compilation of reports for regulatory compliance, performance analysis, and decision-making is labor-intensive and time-consuming. The inability to visualize trends in patient volumes, disease patterns, treatment outcomes, and financial metrics hampers strategic planning. Healthcare administrators lack data-driven insights for resource allocation, staff scheduling, and capacity planning.</p>
+    
+    <div class="page-number">3</div>
+</div>
+
+<!-- CHAPTER 1: INTRODUCTION - PAGE 4 -->
+<div class="page">
+    <h2>1.3 Solution Overview</h2>
+    
+    <p>The Hospital Management System developed in this project provides a comprehensive, integrated solution addressing the identified challenges through a modular, web-based platform. The system architecture follows a three-tier design pattern separating presentation layer (HTML/CSS/JavaScript), business logic layer (PHP classes), and data persistence layer (SQLite database), ensuring maintainability, scalability, and separation of concerns.</p>
+    
+    <p><strong>Core System Capabilities:</strong> The HMS implements 18 specialized PHP classes handling distinct functional areas: Patient management (Patient.php) for complete patient lifecycle management; Doctor management (Doctor.php) for physician profiles, specializations, and schedules; Authentication and authorization (Auth.php) with role-based access control supporting five user roles (admin, doctor, nurse, receptionist, pharmacist); Appointment scheduling (Appointment.php) with conflict detection and automated reminders; Billing and payments (Billing.php, AutoBilling.php) supporting multiple currencies and payment methods; Inventory management (Inventory.php) with expiry tracking and stock alerts; Laboratory test management (Laboratory.php); Insurance claim processing (Insurance.php); Staff management (Staff.php) and scheduling (Schedule.php); Room and bed allocation (Room.php); Telemedicine capabilities (Telemedicine.php); Comprehensive reporting (Report.php, PDFReport.php); Multi-currency support (Currency.php); Data validation (Validation.php); Dashboard analytics (Dashboard.php); and AI-powered assistance (AIAssistant.php).</p>
+    
+    <p><strong>Database Architecture:</strong> The system utilizes a normalized SQLite database with 15 tables ensuring data integrity through foreign key relationships: users table for authentication and role management; patients table storing comprehensive patient demographics and medical information; doctors table linking physicians to user accounts with specialization details; departments table for organizational structure; appointments table tracking all scheduled consultations; medical_records table documenting diagnoses, treatments, and prescriptions; billing and billing_items tables for itemized invoice management; payments table recording transaction history; inventory table for stock management; notifications table for system alerts; ai_assistant_logs for audit trails; system_settings for configuration; and supporting tables for schedules, rooms, insurance, and laboratory tests.</p>
+    
+    <p><strong>User Interface Design:</strong> The frontend leverages Bootstrap 5.3.0 for responsive design ensuring consistent user experience across desktop, tablet, and mobile devices. Custom JavaScript modules (dashboard.js, patients.js, doctors.js, appointments.js, billing.js, reports.js, settings.js) provide interactive features including real-time form validation, dynamic content loading via AJAX, Chart.js visualizations for analytics, and smooth user workflows. The interface prioritizes usability for medical staff with varying technical proficiency, featuring intuitive navigation, clear information hierarchy, and minimal clicks to accomplish common tasks.</p>
+
+    <p><strong>Technology Stack:</strong> PHP 8.2.12 provides the backend server-side processing with object-oriented programming principles; SQLite offers a lightweight, serverless database requiring minimal configuration; Bootstrap 5.3.0 delivers responsive CSS framework; Chart.js enables data visualization; JavaScript handles client-side interactivity; RESTful API architecture facilitates modular communication between frontend and backend; and session-based authentication ensures secure access control.</p>
+    
+    <div class="page-number">4</div>
+</div>
+
+<!-- CHAPTER 1: INTRODUCTION - PAGE 5 -->
+<div class="page">
+    <h2>1.4 Report Organization</h2>
+    
+    <p>This project report is organized into ten comprehensive chapters, each addressing specific aspects of the Hospital Management System development lifecycle. The structure follows standard academic project documentation guidelines while providing detailed technical insights into implementation decisions.</p>
+    
+    <p><strong>Chapter 1 - Introduction</strong> establishes the context for the project, explaining the background of healthcare IT challenges, articulating the specific problems addressed by the system, providing an overview of the solution architecture and capabilities, and outlining the report's organizational structure.</p>
+    
+    <p><strong>Chapter 2 - Objective</strong> defines the project goals, distinguishing between primary objectives (core functional requirements that must be achieved) and secondary objectives (desirable enhancements that add value), and clearly delineates the project scope, specifying what is included and excluded from the implementation.</p>
+    
+    <p><strong>Chapter 3 - System Analysis</strong> constitutes the most extensive chapter, documenting the requirements engineering process. It covers identification of need through stakeholder interviews and process observation, preliminary investigation of existing systems and technical alternatives, feasibility analysis across technical, operational, and economic dimensions, project planning and resource allocation, project scheduling using Gantt and PERT charts, comprehensive software requirements specification detailing functional and non-functional requirements, system specification including hardware and software requirements, and five essential data models (Class Diagram, Activity Diagram, Sequence Diagram, Entity Relationship Diagram, and Use Case Diagram) providing multiple perspectives on system architecture.</p>
+    
+    <p><strong>Chapter 4 - System Design</strong> explains the architectural decisions, modularization strategy for the 18 PHP classes, database design including normalization and constraint implementation, user interface design principles and mockups, and the overall system architecture ensuring maintainability and extensibility.</p>
+    
+    <p><strong>Chapter 5 - Testing</strong> describes the comprehensive testing strategy employed, including unit testing of individual classes and methods, integration testing of module interactions, system testing of complete workflows, and user acceptance testing with real stakeholders, along with test results and issue resolution.</p>
+    
+    <p><strong>Chapter 6 - System Security Measures</strong> details the security architecture, covering authentication and authorization mechanisms including password hashing and role-based access control, data security measures such as SQL injection prevention and XSS protection, input validation and sanitization strategies, and secure session management preventing hijacking and fixation attacks.</p>
+    
+    <p><strong>Chapter 7 - Cost Estimation</strong> provides a detailed economic analysis, breaking down development costs including labor, infrastructure, and tools; deployment and infrastructure costs for hosting and maintenance; ongoing support and maintenance costs; and total cost of ownership calculations.</p>
+    
+    <p><strong>Chapter 8 - Report</strong> summarizes the implementation journey, highlighting key features delivered, challenges encountered during development and their solutions, system performance metrics, and lessons learned throughout the project lifecycle.</p>
+    
+    <p><strong>Chapter 9 - Future Scope</strong> identifies opportunities for enhancement, including mobile application development for patient and physician access, artificial intelligence and machine learning integration for predictive analytics and clinical decision support, Internet of Things (IoT) integration for wearable device data, and cloud migration strategies for improved scalability and disaster recovery.</p>
+    
+    <p><strong>Chapter 10 - Appendices</strong> provides supplementary materials including code samples from key classes demonstrating implementation techniques, complete database schema with table definitions, bibliography referencing technical resources and research papers consulted, and a glossary of technical terms and abbreviations.</p>
+    
+    <div class="page-number">5</div>
+</div>
+
+<!-- CHAPTER 2: OBJECTIVE - PAGE 6 -->
+<div class="page">
+    <h1>CHAPTER 2</h1>
+    <h1>OBJECTIVE</h1>
+    <br>
+    
+    <p>The primary goal of this project is to develop a comprehensive, web-based Hospital Management System that streamlines healthcare facility operations, improves patient care quality, reduces administrative overhead, and provides data-driven insights for strategic decision-making. This chapter articulates the specific objectives that guided the system design and implementation, categorized into primary objectives (essential requirements) and secondary objectives (value-added enhancements), followed by a clear definition of project scope.</p>
+    
+    <h2>2.1 Primary Objectives</h2>
+    
+    <p>The primary objectives represent the core functional requirements that the Hospital Management System must fulfill to be considered successful. These objectives directly address the critical pain points identified in the problem statement and form the foundation of the system's value proposition.</p>
+    
+    <p><strong>1. Centralized Patient Information Management:</strong> Develop a comprehensive patient registration and management module that maintains complete patient demographics, medical histories, allergies, emergency contacts, insurance information, and treatment records in a unified database. The system must eliminate duplicate patient records through unique identifier assignment, provide rapid search and retrieval capabilities for emergency situations, maintain audit trails of all patient information modifications, and support attachment of medical documents and images. This objective is realized through the Patient.php class and the patients table in the database, implementing CRUD operations with data validation and integrity checks.</p>
+    
+    <p><strong>2. Intelligent Appointment Scheduling System:</strong> Implement an automated appointment booking system that prevents scheduling conflicts, optimizes physician time utilization, sends automated reminders to reduce no-show rates, and provides real-time visibility into appointment status. The system must enforce doctor availability constraints based on configured schedules, support multiple appointment types (consultation, follow-up, emergency), enable appointment rescheduling and cancellation with proper status tracking, and generate daily appointment reports for each physician. The Appointment.php class manages this functionality with conflict detection algorithms and status workflow management.</p>
+    
+    <p><strong>3. Comprehensive Billing and Payment Processing:</strong> Create a flexible billing module supporting itemized invoicing, multiple payment methods (cash, card, bank transfer, insurance), partial payment tracking, multi-currency support for international patients, automated calculation of balances and due dates, and generation of payment receipts and outstanding balance reports. The system must integrate billing with appointment and treatment records, support insurance claim generation, and provide detailed financial analytics. This is implemented through Billing.php, AutoBilling.php, and Currency.php classes working with billing, billing_items, and payments tables.</p>
+    
+    <p><strong>4. Efficient Inventory and Stock Management:</strong> Develop an inventory management module tracking medical supplies, pharmaceuticals, and equipment with features including stock level monitoring with low-stock alerts, expiry date tracking with automated notifications, supplier management and procurement history, item categorization and search capabilities, usage pattern analytics, and integration with billing for automatic inventory deduction upon supply dispensation. The Inventory.php class manages these operations with the inventory database table.</p>
+    
+    <div class="page-number">6</div>
+</div>
+
+<!-- CHAPTER 2: OBJECTIVE - PAGE 7 -->
+<div class="page">
+    <p><strong>5. Role-Based Access Control and Security:</strong> Implement a robust authentication and authorization system supporting multiple user roles (admin, doctor, nurse, receptionist, pharmacist) with granular permissions controlling access to features and data based on job responsibilities. The system must enforce secure password policies with hashing, implement session management preventing unauthorized access, provide audit trails for critical operations, and support user account management with enable/disable capabilities. The Auth.php class implements these security measures using bcrypt password hashing and session-based authentication.</p>
+    
+    <p><strong>6. Comprehensive Reporting and Analytics:</strong> Create a reporting module generating insights across patient demographics, appointment statistics, revenue and financial performance, inventory consumption patterns, doctor workload and productivity, and departmental performance metrics. Reports must be available in both on-screen and PDF formats, support date range filtering, and provide visual representations using charts and graphs. The Report.php, PDFReport.php, and Dashboard.php classes utilize Chart.js for data visualization.</p>
+    
+    <p><strong>7. Doctor and Staff Management:</strong> Develop modules for managing physician profiles including specializations, qualifications, consultation fees, availability schedules, and performance metrics. The system must support staff scheduling, workload distribution, and integration with appointment booking to display doctor availability in real-time. Doctor.php, Staff.php, and Schedule.php classes manage these requirements.</p>
+    
+    <p><strong>8. Data Integrity and Reliability:</strong> Ensure database design follows normalization principles to eliminate redundancy and maintain consistency, implement referential integrity constraints using foreign keys, provide transaction support for critical operations to maintain ACID properties, implement regular backup mechanisms, and include data validation at both frontend and backend layers. This is achieved through proper SQLite database schema design with CHECK constraints, FOREIGN KEY relationships, and the Validation.php class for business rule enforcement.</p>
+    
+    <h2>2.2 Secondary Objectives</h2>
+    
+    <p>Secondary objectives enhance the system's value proposition beyond core functional requirements, providing competitive advantages and improved user experience. While not absolutely essential for basic system operation, these objectives significantly increase system utility and adoption.</p>
+    
+    <p><strong>1. Multi-Currency Support:</strong> Implement comprehensive multi-currency functionality supporting nine major currencies (USD, EUR, GBP, INR, JPY, AUD, CAD, CHF, CNY) with configurable default currency, automatic currency symbol display throughout the application, and consistent formatting of monetary values. The Currency.php class provides this capability, enabling the hospital to serve international patients and maintain financial records in preferred currencies.</p>
+    
+    <p><strong>2. Telemedicine Capabilities:</strong> Develop telemedicine features enabling remote consultations, particularly valuable during pandemic situations or for follow-up appointments that don't require physical examination. This includes appointment types specifically for virtual consultations, integration points for video conferencing platforms, and digital prescription generation. The Telemedicine.php class lays the groundwork for these features.</p>
+    
+    <p><strong>3. Laboratory Test Management:</strong> Create a laboratory module for ordering tests, recording results, integrating test charges with billing, and generating test result reports. The Laboratory.php class manages test catalogs, patient test orders, result entry, and report generation, providing end-to-end laboratory workflow support.</p>
+    
+    <div class="page-number">7</div>
+</div>
+
+<!-- CHAPTER 2: OBJECTIVE - PAGE 8 -->
+<div class="page">
+    <p><strong>4. Insurance Claim Processing:</strong> Implement insurance management features for recording patient insurance information, generating insurance claims with proper documentation, tracking claim status (submitted, approved, rejected, partially approved), and reconciling insurance payments with patient bills. The Insurance.php class manages insurance provider relationships, coverage verification, and claim lifecycle management.</p>
+    
+    <p><strong>5. Room and Bed Allocation:</strong> Develop a module for managing hospital rooms and bed inventory, tracking occupancy status, assigning patients to rooms based on availability and requirements (general ward, private room, ICU), calculating room charges, and generating occupancy reports. The Room.php class implements room inventory, allocation logic, and billing integration.</p>
+    
+    <p><strong>6. AI-Powered Assistant:</strong> Integrate an AI assistant capability for answering common healthcare queries, providing staff with quick access to policy information, assisting with data entry through natural language processing, and maintaining conversation logs for quality improvement. The AIAssistant.php class and ai_assistant_logs table implement this functionality, demonstrating the potential for intelligent system augmentation.</p>
+    
+    <p><strong>7. Automated Notifications:</strong> Implement a comprehensive notification system for appointment reminders sent via email or SMS, inventory low-stock alerts, payment due date notifications, system announcements from administrators, and test result availability notifications. The notifications table and related logic ensure timely communication with patients and staff.</p>
+    
+    <p><strong>8. Responsive Design:</strong> Ensure the user interface adapts seamlessly to different screen sizes and devices (desktop, tablet, smartphone) using Bootstrap's responsive grid system and mobile-first design principles. This enables staff to access the system from various devices, improving flexibility and accessibility.</p>
+    
+    <h2>2.3 Project Scope</h2>
+    
+    <p>Clearly defining project scope is essential for managing expectations, allocating resources effectively, and ensuring project completion within constraints. The scope outlines what is included in the implementation and what is explicitly excluded or deferred to future enhancements.</p>
+    
+    <p><strong>Included in Scope:</strong> The Hospital Management System implementation includes the following modules and features:</p>
+    
+    <ul>
+        <li><strong>Patient Management Module:</strong> Complete patient registration, profile management, medical history tracking, search and filtering capabilities, and patient listing with pagination and sorting.</li>
+        <li><strong>Doctor Management Module:</strong> Doctor profile creation and management, specialization configuration, availability schedule definition, consultation fee settings, and doctor directory with search.</li>
+        <li><strong>Appointment Management Module:</strong> Appointment booking with date and time selection, doctor-patient association, status tracking (scheduled, confirmed, in-progress, completed, cancelled), conflict detection and prevention, and appointment listing with filtering.</li>
+        <li><strong>Billing and Payment Module:</strong> Itemized bill generation, multiple payment method support, currency selection and formatting, partial payment handling, outstanding balance tracking, payment history, and bill PDF generation.</li>
+        <li><strong>Inventory Management Module:</strong> Medical supply and medication tracking, stock level monitoring, expiry date management, low-stock alerts, supplier information, and inventory reports.</li>
+    </ul>
+    
+    <div class="page-number">8</div>
+</div>
+
+<!-- CHAPTER 2: OBJECTIVE - PAGE 9 -->
+<div class="page">
+    <ul>
+        <li><strong>Authentication and Authorization Module:</strong> User registration and login, password hashing with bcrypt, role-based access control (admin, doctor, nurse, receptionist, pharmacist), session management, and user profile management.</li>
+        <li><strong>Reporting Module:</strong> Dashboard with key performance indicators, patient statistics, appointment analytics, revenue reports, inventory summaries, doctor performance metrics, and PDF export capabilities.</li>
+        <li><strong>Laboratory Management Module:</strong> Test catalog management, test ordering, result entry, result viewing, and laboratory billing integration.</li>
+        <li><strong>Insurance Management Module:</strong> Insurance provider management, patient insurance information recording, claim generation, claim status tracking, and payment reconciliation.</li>
+        <li><strong>Staff and Schedule Management Module:</strong> Staff profile management, shift scheduling, workload distribution, and schedule conflict resolution.</li>
+        <li><strong>Room and Bed Management Module:</strong> Room inventory management, bed allocation, occupancy tracking, room charge calculation, and availability reporting.</li>
+        <li><strong>Telemedicine Module:</strong> Virtual consultation appointment types and integration points for video conferencing platforms.</li>
+        <li><strong>Settings Module:</strong> Hospital information configuration, currency selection, user preference management, and system parameter configuration.</li>
+    </ul>
+    
+    <p><strong>Excluded from Scope:</strong> The following features are identified as potential future enhancements but are not implemented in the current version:</p>
+    
+    <ul>
+        <li><strong>Mobile Native Applications:</strong> While the web interface is responsive and mobile-friendly, dedicated iOS and Android native applications are not developed in this phase.</li>
+        <li><strong>Integration with External Medical Devices:</strong> Direct integration with diagnostic equipment, vital sign monitors, and laboratory instruments is not implemented, though the system provides interfaces for manual data entry of test results and vital signs.</li>
+        <li><strong>Advanced AI and Machine Learning Features:</strong> While the AI assistant provides basic query handling, advanced features such as predictive analytics for patient outcomes, diagnosis assistance using machine learning, and automated treatment recommendations are beyond current scope.</li>
+        <li><strong>Picture Archiving and Communication System (PACS):</strong> Advanced medical imaging storage, viewing, and manipulation capabilities typically found in PACS are not implemented.</li>
+        <li><strong>Electronic Health Record (EHR) Interoperability:</strong> Standards-based integration with external EHR systems, health information exchanges, and government health portals using HL7, FHIR, or other healthcare interoperability standards is deferred.</li>
+        <li><strong>Advanced Telemedicine Features:</strong> Integrated video conferencing, screen sharing for medical image review, and real-time vital sign monitoring during virtual consultations are not fully implemented.</li>
+        <li><strong>Pharmacy Management:</strong> Complete pharmacy module with prescription fulfillment workflow, drug interaction checking, and pharmacy inventory separate from general hospital inventory is not included.</li>
+        <li><strong>Human Resources Management:</strong> Comprehensive HR features such as payroll processing, leave management, performance appraisals, and training management are outside the scope.</li>
+        <li><strong>Research and Clinical Trials Management:</strong> Features supporting clinical research, trial patient management, and research data collection are not implemented.</li>
+    </ul>
+    
+    <p>This scoping decision ensures the project remains achievable within academic constraints while delivering a comprehensive, functional system that demonstrates core hospital management capabilities and can be extended in future iterations.</p>
+    
+    <div class="page-number">9</div>
+</div>
+
+<!-- CHAPTER 3: SYSTEM ANALYSIS - PAGE 10 -->
+<div class="page">
+    <h1>CHAPTER 3</h1>
+    <h1>SYSTEM ANALYSIS</h1>
+    <br>
+    
+    <p>System analysis is a systematic approach to identifying problems, opportunities, and objectives, determining information requirements, and recommending a course of action to improve a system. This chapter provides a comprehensive analysis of the Hospital Management System project, documenting the journey from initial concept to detailed technical specification. It encompasses the identification of needs through stakeholder engagement, preliminary investigation of the problem domain, a thorough feasibility study, project planning and scheduling, and the formal specification of software and system requirements. This structured analysis ensures that the final system is well-aligned with user needs, technically viable, and provides a clear return on investment.</p>
+    
+    <h2>3.1 Identification of Need</h2>
+    
+    <p>The need for an integrated Hospital Management System was identified through a combination of direct observation, stakeholder interviews, and analysis of existing manual processes at several small to medium-sized healthcare facilities. The current state of operations in these facilities revealed significant inefficiencies and challenges that directly impact patient care quality, operational costs, and staff productivity.</p>
+    
+    <p><strong>Key Observations and Findings:</strong></p>
+    <ul>
+        <li><strong>Fragmented Data Silos:</strong> Patient information was scattered across multiple physical registers, including registration logs, appointment diaries, billing ledgers, and individual patient files. This fragmentation made it extremely difficult to get a holistic view of a patient's medical history, leading to redundant data entry and potential for errors.</li>
+        <li><strong>Manual Appointment Scheduling:</strong> Receptionists managed appointments using paper-based diaries. This process was prone to human error, such as double-booking, and offered no easy way to track doctor availability or send reminders to patients, resulting in high no-show rates and underutilized consultation slots.</li>
+        <li><strong>Error-Prone Billing Processes:</strong> Billing was conducted manually, with staff calculating charges for services, consultations, and medications by hand. This led to frequent calculation errors, missed charges for services rendered (revenue leakage), and significant delays in generating final invoices, causing patient dissatisfaction.</li>
+        <li><strong>Inefficient Inventory Management:</strong> Medical supplies and pharmaceuticals were tracked using basic stock registers or spreadsheets. This reactive approach provided no alerts for low stock levels or expiring items, leading to stockouts of critical supplies and financial losses from expired inventory.</li>
+        <li><strong>Lack of Data for Decision-Making:</strong> Hospital administrators lacked access to real-time data on key performance indicators such as patient volume, bed occupancy rates, revenue trends, and operational costs. All reports were compiled manually, a process that was both time-consuming and often produced outdated information.</li>
+    </ul>
+    
+    <p>These observations clearly indicated a pressing need for a centralized, automated system that could integrate these disparate functions into a single, cohesive platform. The proposed HMS aims to digitize these workflows, providing a single source of truth for all hospital data and automating routine administrative tasks to allow medical staff to focus more on patient care.</p>
+    
+    <div class="page-number">10</div>
+</div>
+
+<!-- CHAPTER 3: SYSTEM ANALYSIS - PAGE 11 -->
+<div class="page">
+    <div class="figure">
+        <div class="figure-box">
+            Placeholder for System Development Life Cycle (SDLC) Diagram.
+            <br><br>
+            (e.g., A diagram showing the phases: Planning, Analysis, Design, Implementation, Testing, Deployment, Maintenance)
+        </div>
+        <p class="caption">Figure 3.1: System Development Lifecycle</p>
+    </div>
+    
+    <p>The development of the Hospital Management System followed a structured System Development Life Cycle (SDLC), as depicted in Figure 3.1. An iterative waterfall model was adopted, allowing for a sequential progression through the phases of analysis, design, implementation, and testing, with feedback loops between phases to accommodate refinements. This approach provided the structure of the traditional waterfall model while allowing for the flexibility to revisit and improve upon earlier stages as the project evolved.</p>
+    
+    <p><strong>Gap Analysis:</strong> A formal gap analysis was conducted to quantify the difference between the current state of manual operations and the desired future state with the implemented HMS. The analysis highlighted critical gaps in efficiency, data accuracy, patient experience, and financial management. Table 3.1 summarizes the key findings of this analysis, providing a clear justification for the development of the proposed system. The features of the HMS were designed specifically to bridge these identified gaps.</p>
+    
+    <div class="page-number">11</div>
+</div>
+
+<!-- CHAPTER 3: SYSTEM ANALYSIS - PAGE 12 -->
+<div class="page">
+    <table>
+        <caption>Table 3.1: Gap Analysis - Current vs Desired State</caption>
+        <thead>
+            <tr>
+                <th>Functional Area</th>
+                <th>Current State (Manual System)</th>
+                <th>Desired State (With HMS)</th>
+                <th>Identified Gap</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Patient Registration</strong></td>
+                <td>Paper-based forms, physical files, high risk of data duplication and loss. Slow retrieval.</td>
+                <td>Digital registration, unique patient IDs, centralized database, instant search and retrieval.</td>
+                <td>Lack of data integrity, accessibility, and efficiency.</td>
+            </tr>
+            <tr>
+                <td><strong>Appointment Scheduling</strong></td>
+                <td>Manual diary, prone to double-booking, no automated reminders, difficult to track doctor availability.</td>
+                <td>Automated, real-time calendar with conflict detection, automated reminders, clear view of doctor schedules.</td>
+                <td>High no-show rates, inefficient use of doctor time, poor patient experience.</td>
+            </tr>
+            <tr>
+                <td><strong>Billing & Payments</strong></td>
+                <td>Manual calculation, handwritten bills, risk of errors and missed charges, difficult to track partial payments.</td>
+                <td>Automated bill generation from services rendered, support for multiple payment methods, real-time balance tracking.</td>
+                <td>Revenue leakage, financial inaccuracies, and slow checkout process.</td>
+            </tr>
+            <tr>
+                <td><strong>Medical Records</strong></td>
+                <td>Handwritten notes, physical files, risk of illegibility, difficult to share between departments.</td>
+                <td>Electronic Health Records (EHR), standardized templates, secure access for authorized staff.</td>
+                <td>Compromised care quality due to incomplete or inaccessible patient history.</td>
+            </tr>
+            <tr>
+                <td><strong>Inventory Management</strong></td>
+                <td>Manual stock register, no real-time data, no alerts for expiry or low stock.</td>
+                <td>Real-time inventory tracking, automated low-stock and expiry alerts, usage analytics.</td>
+                <td>Stockouts of critical items, financial loss from expired stock, inefficient procurement.</td>
+            </tr>
+            <tr>
+                <td><strong>Reporting</strong></td>
+                <td>Manual, time-consuming report generation, data is often outdated and lacks depth.</td>
+                <td>Automated, real-time generation of comprehensive reports with data visualizations (charts, graphs).</td>
+                <td>Inability to make timely, data-driven strategic decisions.</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="page-number">12</div>
+</div>
+
+<!-- CHAPTER 3: SYSTEM ANALYSIS - PAGE 13 -->
+<div class="page">
+    <h2>3.2 Preliminary Investigation</h2>
+    
+    <p>Following the identification of need, a preliminary investigation was conducted to understand the problem domain in greater depth, define the project's boundaries, and assess the initial feasibility. This phase involved gathering information from various sources to build a strong business case for the project.</p>
+    
+    <p><strong>Information Gathering Techniques:</strong></p>
+    <ul>
+        <li><strong>Stakeholder Interviews:</strong> Conducted structured interviews with key stakeholders, including hospital administrators, doctors, nurses, receptionists, and pharmacists. These interviews helped in understanding their day-to-day tasks, challenges, and expectations from a new system. For example, doctors emphasized the need for quick access to patient history, while receptionists highlighted the difficulties in managing appointment schedules.</li>
+        <li><strong>Observation:</strong> Directly observed the workflow in different departments of a local clinic. This provided firsthand insight into the real-world processes, bottlenecks, and workarounds currently in place. Observing the patient journey from registration to checkout was particularly insightful for mapping the required system workflow.</li>
+        <li><strong>Review of Existing Documentation:</strong> Analyzed existing paper forms, registers, and reports used in the hospital. This helped in defining the data requirements for the new system, such as the fields needed for patient registration, billing, and medical records.</li>
+        <li><strong>Market Research:</strong> Investigated existing Hospital Management Systems available on the market. This analysis of competing products helped in identifying standard features, potential gaps in the market for small-scale hospitals, and establishing a baseline for the proposed system's functionality.</li>
+    </ul>
+    
+    <p><strong>Stakeholder Analysis:</strong> A crucial part of the investigation was identifying and analyzing the stakeholders who would be affected by the system. Understanding their roles, interests, and influence was vital for gathering comprehensive requirements and ensuring user adoption. Figure 3.2 illustrates the primary stakeholders and their key interests in the HMS project. This analysis confirmed that the system needed to cater to a diverse set of users with different responsibilities and technical skills.</p>
+    
+    <p>The preliminary investigation concluded that a web-based system built with open-source technologies would be the most effective solution. It would offer centralized access, lower deployment costs compared to proprietary systems, and could be customized to meet the specific needs of small to medium-sized hospitals. The findings from this phase provided the necessary inputs for the detailed feasibility study that followed.</p>
+    
+    <div class="page-number">13</div>
+</div>
+
+<!-- CHAPTER 3: SYSTEM ANALYSIS - PAGE 14 -->
+<div class="page">
+    <div class="figure">
+        <div class="figure-box">
+            Placeholder for Stakeholder Analysis Diagram.
+            <br><br>
+            (e.g., A mind map or chart showing stakeholders like Patients, Doctors, Nurses, Admins, Receptionists, Pharmacists and their key interests/requirements from the system.)
+        </div>
+        <p class="caption">Figure 3.2: Stakeholder Analysis</p>
+    </div>
+    
+    <p>The stakeholder analysis, summarized in Figure 3.2, was instrumental in shaping the system's requirements. It revealed the diverse needs and priorities of different user groups:</p>
+    <ul>
+        <li><strong>Patients:</strong> Primarily interested in easy appointment booking, reduced waiting times, clear and accurate bills, and secure access to their medical records.</li>
+        <li><strong>Doctors & Nurses:</strong> Require quick and reliable access to patient histories, streamlined documentation of diagnoses and treatments, and efficient management of their schedules.</li>
+        <li><strong>Receptionists:</strong> Need a user-friendly interface for managing patient registration and appointments, handling inquiries, and processing payments efficiently.</li>
+        <li><strong>Pharmacists:</strong> Need an integrated system to manage medication inventory, view prescriptions, and track dispensation.</li>
+        <li><strong>Hospital Administrators:</strong> Focused on operational efficiency, financial performance, resource optimization, and access to comprehensive reports for strategic planning and regulatory compliance.</li>
+    </ul>
+    
+    <p>Balancing these varied interests was a key challenge addressed during the system design phase. The goal was to create a unified system that provides value to all stakeholders, thereby ensuring its successful adoption and integration into the hospital's daily operations.</p>
+    
+    <div class="page-number">14</div>
+</div>
+
+<!-- CHAPTER 3: SYSTEM ANALYSIS - PAGE 15 -->
+<div class="page">
+    <h2>3.3 Feasibility Study</h2>
+    
+    <p>A feasibility study is a critical analysis that evaluates the viability of a proposed project. It assesses whether the project is technically possible, operationally practical, and economically justifiable. For the Hospital Management System, the feasibility was examined from three key perspectives: technical, operational, and economic.</p>
+    
+    <h3>3.3.1 Technical Feasibility</h3>
+    
+    <p>Technical feasibility assesses the availability of the required technology, tools, and technical expertise to develop the system. The evaluation focused on whether the proposed technology stack was adequate and if the development team possessed the necessary skills to complete the project successfully.</p>
+    
+    <p><strong>Technology and Tools Assessment:</strong> The project proposed using a stack of mature, widely-used, and well-documented open-source technologies. This choice significantly mitigated technical risks.</p>
+    <ul>
+        <li><strong>PHP 8.2.12:</strong> A modern, robust server-side scripting language with strong object-oriented capabilities, a vast ecosystem of libraries, and extensive community support. Its suitability for web application development is well-established.</li>
+        <li><strong>SQLite 3:</strong> A lightweight, serverless, self-contained, transactional SQL database engine. It is ideal for small to medium-scale applications, requires zero configuration, and is highly reliable. Its file-based nature simplifies deployment and backup procedures.</li>
+        <li><strong>Bootstrap 5.3.0:</strong> A leading front-end framework for developing responsive, mobile-first websites. It provides a comprehensive library of pre-styled components, a powerful grid system, and JavaScript plugins, accelerating UI development.</li>
+        <li><strong>JavaScript (ES6+):</strong> The standard language for client-side interactivity. Used for form validation, asynchronous communication with the server (AJAX), and dynamic content updates.</li>
+        <li><strong>Chart.js:</strong> A simple yet flexible JavaScript library for creating animated and interactive charts and graphs, perfect for the reporting and dashboard module.</li>
+    </ul>
+    
+    <p>The chosen technologies are all stable, well-documented, and do not require any special licensing or hardware, making them a low-risk choice. The hardware requirements for both the development and deployment environments are modest and easily met by standard modern computers and web servers, as detailed in Table 3.2.</p>
+    
+    <table>
+        <caption>Table 3.2: Hardware Requirements Specification</caption>
+        <thead>
+            <tr>
+                <th>Component</th>
+                <th>Development Environment (Minimum)</th>
+                <th>Deployment Server (Recommended)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Processor</strong></td>
+                <td>Intel Core i3 or equivalent</td>
+                <td>2-Core CPU (e.g., Intel Xeon)</td>
+            </tr>
+            <tr>
+                <td><strong>RAM</strong></td>
+                <td>8 GB</td>
+                <td>4 GB</td>
+            </tr>
+            <tr>
+                <td><strong>Storage</strong></td>
+                <td>256 GB SSD</td>
+                <td>50 GB SSD</td>
+            </tr>
+            <tr>
+                <td><strong>Operating System</strong></td>
+                <td>Windows 10/11, macOS, or Linux</td>
+                <td>Linux (e.g., Ubuntu, CentOS)</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="page-number">15</div>
+</div>
+
+<!-- CHAPTER 3: SYSTEM ANALYSIS - PAGE 16 -->
+<div class="page">
+    <p><strong>Skill Set Assessment:</strong> The development of this project required skills in PHP, SQL, HTML, CSS, and JavaScript. My academic coursework in Web Technologies, Database Management Systems, and Software Engineering provided the foundational knowledge. This project served as a practical application to solidify these skills. The availability of extensive online documentation, tutorials, and community forums for the chosen technologies ensured that any skill gaps could be quickly addressed through self-learning.</p>
+    
+    <p><strong>Conclusion on Technical Feasibility:</strong> The project was deemed technically feasible. The technology stack is mature and appropriate for the project's scale, the hardware requirements are minimal, and the required technical skills were available. The software requirements, listed in Table 3.3, consist entirely of freely available, open-source tools, further supporting the technical viability.</p>
+    
+    <table>
+        <caption>Table 3.3: Software Requirements Specification</caption>
+        <thead>
+            <tr>
+                <th>Software</th>
+                <th>Purpose</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Operating System</strong></td>
+                <td>Development and hosting platform</td>
+                <td>Windows, macOS, or Linux</td>
+            </tr>
+            <tr>
+                <td><strong>Web Server</strong></td>
+                <td>To serve PHP pages</td>
+                <td>Apache or Nginx (or PHP's built-in server)</td>
+            </tr>
+            <tr>
+                <td><strong>Programming Language</strong></td>
+                <td>Backend logic</td>
+                <td>PHP 8.2+</td>
+            </tr>
+            <tr>
+                <td><strong>Database</strong></td>
+                <td>Data storage</td>
+                <td>SQLite 3+</td>
+            </tr>
+            <tr>
+                <td><strong>Web Browser</strong></td>
+                <td>Client-side access</td>
+                <td>Google Chrome, Firefox, Edge (latest versions)</td>
+            </tr>
+            <tr>
+                <td><strong>Code Editor</strong></td>
+                <td>Development IDE</td>
+                <td>Visual Studio Code</td>
+            </tr>
+            <tr>
+                <td><strong>Version Control</strong></td>
+                <td>Source code management</td>
+                <td>Git</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="figure">
+        <div class="figure-box">
+            Placeholder for Technology Stack Architecture Diagram.
+            <br><br>
+            (e.g., A layered diagram showing Browser -> Web Server -> PHP -> SQLite)
+        </div>
+        <p class="caption">Figure 3.3: Technology Stack Architecture</p>
+    </div>
+    
+    <div class="page-number">16</div>
+</div>
+
+<!-- CHAPTER 3: SYSTEM ANALYSIS - PAGE 17 -->
+<div class="page">
+    <h3>3.3.2 Operational Feasibility</h3>
+    
+    <p>Operational feasibility assesses how well the proposed system will be accepted and used by the end-users and how it fits into the existing organizational structure and workflows. It is concerned with the human and organizational aspects of the project.</p>
+    
+    <p><strong>User Acceptance:</strong> The success of the HMS heavily depends on its acceptance by the hospital staff. The preliminary investigation revealed that while the staff was frustrated with the manual system, there was also some apprehension about adopting a new, complex technology. To address this, the following strategies were incorporated into the project plan:</p>
+    <ul>
+        <li><strong>User-Centric Design:</strong> The user interface was designed to be intuitive, clean, and easy to navigate. The goal was to minimize the learning curve and ensure that users with basic computer skills could perform their tasks with minimal training.</li>
+        <li><strong>Stakeholder Involvement:</strong> Key users (a doctor, a nurse, and a receptionist) were involved during the design and testing phases. Their feedback was actively sought and incorporated to ensure the system met their practical needs and fit into their daily routines.</li>
+        <li><strong>Training and Documentation:</strong> A plan for providing user training and clear, concise user documentation was considered. Although full implementation of a training program is outside the academic scope, the system was designed with this requirement in mind, featuring helpful tooltips and clear labeling.</li>
+    </ul>
+    
+    <p><strong>Workflow Integration:</strong> The system was designed to mirror and improve upon existing workflows rather than completely overhauling them. For example, the digital patient registration form captures the same information as the old paper form but adds automated validation and data storage. This approach helps in a smoother transition and reduces resistance to change.</p>
+    
+    <p><strong>Organizational Impact:</strong> The introduction of the HMS is expected to have a positive impact on the organization. It will automate many repetitive administrative tasks, freeing up staff to focus on more value-added activities, such as patient care. It will improve inter-departmental communication by providing a shared data platform. While some job roles might evolve (e.g., from manual record-keeping to data entry and system monitoring), the system is intended to augment staff capabilities, not replace them. Table 3.4 provides an assessment of the operational impact on different user roles.</p>
+    
+    <p><strong>Conclusion on Operational Feasibility:</strong> The project was deemed operationally feasible. By focusing on user-centric design, involving stakeholders, and planning for a smooth integration with existing workflows, the risks of user resistance and operational disruption were minimized. The system is expected to be well-received as it directly addresses the daily frustrations of the staff and offers clear benefits in terms of efficiency and job satisfaction.</p>
+    
+    <div class="page-number">17</div>
+</div>
+
+<!-- CHAPTER 3: SYSTEM ANALYSIS - PAGE 18 -->
+<div class="page">
+    <table>
+        <caption>Table 3.4: Operational Feasibility Assessment</caption>
+        <thead>
+            <tr>
+                <th>User Role</th>
+                <th>Current Challenges</th>
+                <th>HMS Solution & Operational Impact</th>
+                <th>Expected Level of Acceptance</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Receptionist</strong></td>
+                <td>Managing appointment diary, handling phone calls, manual billing, patient queues.</td>
+                <td>Automated appointment calendar, streamlined patient registration, faster checkout. Frees up time for better patient service.</td>
+                <td>High (Reduces manual workload and stress)</td>
+            </tr>
+            <tr>
+                <td><strong>Doctor/Nurse</strong></td>
+                <td>Searching for physical patient files, illegible handwriting, delays in getting test results.</td>
+                <td>Instant access to digital patient records, clear and complete history, alerts for new results. Improves clinical efficiency and decision-making.</td>
+                <td>High (Directly aids in patient care)</td>
+            </tr>
+            <tr>
+                <td><strong>Pharmacist</strong></td>
+                <td>Manual inventory tracking, risk of dispensing errors from unclear prescriptions.</td>
+                <td>Real-time inventory levels, digital prescription viewing, automated stock alerts. Reduces errors and improves stock management.</td>
+                <td>High (Improves accuracy and efficiency)</td>
+            </tr>
+            <tr>
+                <td><strong>Administrator</strong></td>
+                <td>Lack of real-time data for decision-making, time-consuming manual report generation.</td>
+                <td>Dashboard with live KPIs, automated generation of financial and operational reports. Enables data-driven management.</td>
+                <td>Very High (Provides critical business intelligence)</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p>The analysis in Table 3.4 indicates that the HMS provides tangible benefits to all key user roles, which is a strong predictor of high operational feasibility. The system is not just a technical upgrade but a tool that empowers each user group to perform their duties more effectively and with greater satisfaction.</p>
+    
+    <div class="page-number">18</div>
+</div>
+
+<!-- CHAPTER 3: SYSTEM ANALYSIS - PAGE 19 -->
+<div class="page">
+    <h3>3.3.3 Economic Feasibility</h3>
+    
+    <p>Economic feasibility, also known as a cost-benefit analysis, determines if the financial benefits of the project outweigh the costs. For this academic project, the analysis is illustrative, based on estimated costs and benefits for a small clinic adopting such a system.</p>
+    
+    <p><strong>Cost Analysis:</strong> The costs associated with the project can be categorized into one-time development costs and recurring operational costs.</p>
+    <ul>
+        <li><strong>Development Costs:</strong> Since this is an academic project developed by a student, the primary cost is the time and effort invested. However, in a commercial scenario, this would include salaries for developers, project managers, and testers. For this analysis, we can estimate the development effort.
+            <ul>
+                <li>Estimated Effort: 480 hours (e.g., 20 hours/week for 6 months).</li>
+                <li>Illustrative Cost: At a hypothetical student/intern rate of $20/hour, the development cost would be <strong>$9,600</strong>.</li>
+            </ul>
+        </li>
+        <li><strong>Infrastructure & Deployment Costs:</strong> These are the costs to host and run the application.
+            <ul>
+                <li>Hardware: The system can run on a basic cloud server. Estimated annual cost: <strong>$120</strong> (e.g., $10/month for a basic VPS).</li>
+                <li>Software: All software used (PHP, SQLite, Apache) is open-source and free, so software licensing cost is <strong>$0</strong>.</li>
+            </ul>
+        </li>
+        <li><strong>Maintenance Costs:</strong> This includes ongoing support, bug fixes, and minor updates.
+            <ul>
+                <li>Estimated annual effort: 40 hours. At $20/hour, this is <strong>$800</strong> per year.</li>
+            </ul>
+        </li>
+    </ul>
+    
+    <p><strong>Benefit Analysis:</strong> The benefits can be tangible (quantifiable in monetary terms) and intangible (difficult to quantify but still valuable).</p>
+    <ul>
+        <li><strong>Tangible Benefits:</strong>
+            <ul>
+                <li><strong>Reduced Revenue Leakage:</strong> Automating billing could prevent missed charges, potentially increasing revenue by 2-3%. For a clinic with $200,000 annual revenue, this is <strong>$4,000 - $6,000</strong> per year.</li>
+                <li><strong>Increased Efficiency:</strong> Automating administrative tasks could save staff time. If the system saves 10 hours of administrative work per week at an average staff cost of $15/hour, the annual saving is 10 * 52 * $15 = <strong>$7,800</strong>.</li>
+                <li><strong>Reduced No-Show Rate:</strong> Automated reminders can reduce appointment no-shows. If this recovers just 2 appointments per week at an average consultation fee of $50, the annual revenue gain is 2 * 52 * $50 = <strong>$5,200</strong>.</li>
+            </ul>
+        </li>
+        <li><strong>Intangible Benefits:</strong>
+            <ul>
+                <li>Improved patient care and safety due to better access to information.</li>
+                <li>Enhanced patient satisfaction and loyalty.</li>
+                <li>Improved staff morale and job satisfaction.</li>
+                <li>Better data for strategic decision-making and compliance.</li>
+                <li>Enhanced professional image of the hospital.</li>
+            </ul>
+        </li>
+    </ul>
+    
+    <div class="page-number">19</div>
+</div>
+
+<!-- CHAPTER 3: SYSTEM ANALYSIS - PAGE 20 -->
+<div class="page">
+    <p><strong>Cost-Benefit Analysis Summary:</strong></p>
+    <p>Table 3.5 provides a summary of the estimated costs and benefits over a three-year period.</p>
+    
+    <table>
+        <caption>Table 3.5: Economic Feasibility - Cost-Benefit Analysis</caption>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Year 1</th>
+                <th>Year 2</th>
+                <th>Year 3</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="4"><strong>Costs</strong></td>
+            </tr>
+            <tr>
+                <td>Development Cost (One-time)</td>
+                <td>$9,600</td>
+                <td>$0</td>
+                <td>$0</td>
+            </tr>
+            <tr>
+                <td>Infrastructure Cost</td>
+                <td>$120</td>
+                <td>$120</td>
+                <td>$120</td>
+            </tr>
+            <tr>
+                <td>Maintenance Cost</td>
+                <td>$800</td>
+                <td>$800</td>
+                <td>$800</td>
+            </tr>
+            <tr>
+                <td><strong>Total Costs</strong></td>
+                <td><strong>$10,520</strong></td>
+                <td><strong>$920</strong></td>
+                <td><strong>$920</strong></td>
+            </tr>
+            <tr>
+                <td colspan="4"><strong>Benefits (Tangible)</strong></td>
+            </tr>
+            <tr>
+                <td>Reduced Revenue Leakage (avg)</td>
+                <td>$5,000</td>
+                <td>$5,000</td>
+                <td>$5,000</td>
+            </tr>
+            <tr>
+                <td>Increased Efficiency</td>
+                <td>$7,800</td>
+                <td>$7,800</td>
+                <td>$7,800</td>
+            </tr>
+            <tr>
+                <td>Reduced No-Shows</td>
+                <td>$5,200</td>
+                <td>$5,200</td>
+                <td>$5,200</td>
+            </tr>
+            <tr>
+                <td><strong>Total Tangible Benefits</strong></td>
+                <td><strong>$18,000</strong></td>
+                <td><strong>$18,000</strong></td>
+                <td><strong>$18,000</strong></td>
+            </tr>
+            <tr>
+                <td colspan="4"><strong>Financial Summary</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Net Benefit (Benefits - Costs)</strong></td>
+                <td><strong>$7,480</strong></td>
+                <td><strong>$17,080</strong></td>
+                <td><strong>$17,080</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Cumulative Net Benefit</strong></td>
+                <td><strong>$7,480</strong></td>
+                <td><strong>$24,560</strong></td>
+                <td><strong>$41,640</strong></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p><strong>Conclusion on Economic Feasibility:</strong> The analysis shows a positive net benefit starting from the first year. The Return on Investment (ROI) is significant, and the break-even point is reached within the first year of operation. When the substantial intangible benefits are also considered, the project is clearly economically feasible and represents a sound investment for a small to medium-sized healthcare facility.</p>
+    
+    <div class="figure">
+        <div class="figure-box">
+            Placeholder for Cost-Benefit Analysis Graph.
+            <br><br>
+            (e.g., A line chart showing Total Costs and Total Benefits over 3 years, with the lines crossing to show the break-even point.)
+        </div>
+        <p class="caption">Figure 3.4: Cost-Benefit Analysis Graph</p>
+    </div>
+    
+    <div class="page-number">20</div>
+</div>
+
+</body>
+</html>
