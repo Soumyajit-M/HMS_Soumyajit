@@ -1,0 +1,46 @@
+From c4c084eab5f75632409debefcb3fee2141bf39ab Mon Sep 17 00:00:00 2001
+From: AI Assistant <assistant@example.com>
+Date: Sat, 29 Nov 2025 23:31:25 +0530
+Subject: [PATCH 1/3] Billing: add getBillById() wrapper and
+ deleteBill(id|bill_number) to support API
+
+---
+ classes/Billing.php | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+diff --git a/classes/Billing.php b/classes/Billing.php
+index 727b884..7aaf76d 100644
+--- a/classes/Billing.php
++++ b/classes/Billing.php
+@@ -315,5 +315,28 @@ class Billing {
+             return 0;
+         }
+     }
++
++    // Backwards-compatible wrapper expected by API
+++    public function getBillById($id) {
+++        return $this->getBill($id);
+++    }
+++
+++    // Delete a bill by numeric id or bill_number (string). Returns boolean.
+++    public function deleteBill($id) {
+++        if (empty($id)) {
+++            return false;
+++        }
+++
+++        try {
+++            $query = "DELETE FROM billing WHERE id = :id OR bill_number = :bill_number";
+++            $stmt = $this->conn->prepare($query);
+++            $stmt->bindParam(':id', $id);
+++            $stmt->bindParam(':bill_number', $id);
+++            return $stmt->execute();
+++        } catch (PDOException $e) {
+++            return false;
+++        }
+++    }
+++
+ }
+ ?>
+-- 
+2.51.1.windows.1
+

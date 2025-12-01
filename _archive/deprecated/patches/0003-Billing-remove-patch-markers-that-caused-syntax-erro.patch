@@ -1,0 +1,58 @@
+From b461795b60423a133a0cecdd8fa286fb62bba29b Mon Sep 17 00:00:00 2001
+From: AI Assistant <assistant@example.com>
+Date: Sat, 29 Nov 2025 23:33:33 +0530
+Subject: [PATCH 3/3] Billing: remove patch markers that caused syntax errors
+
+---
+ classes/Billing.php | 36 ++++++++++++++++++------------------
+ 1 file changed, 18 insertions(+), 18 deletions(-)
+
+diff --git a/classes/Billing.php b/classes/Billing.php
+index 6c82bd8..f8c25dd 100644
+--- a/classes/Billing.php
++++ b/classes/Billing.php
+@@ -342,23 +342,23 @@ class Billing {
+     public function getBillById($id) {
+         return $this->getBill($id);
+     }
+-+
+-+    // Delete a bill by numeric id or bill_number (string). Returns boolean.
+-+    public function deleteBill($id) {
+-+        if (empty($id)) {
+-+            return false;
+-+        }
+-+
+-+        try {
+-+            $query = "DELETE FROM billing WHERE id = :id OR bill_number = :bill_number";
+-+            $stmt = $this->conn->prepare($query);
+-+            $stmt->bindParam(':id', $id);
+-+            $stmt->bindParam(':bill_number', $id);
+-+            return $stmt->execute();
+-+        } catch (PDOException $e) {
+-+            return false;
+-+        }
+-+    }
+-+
++
++    // Delete a bill by numeric id or bill_number (string). Returns boolean.
++    public function deleteBill($id) {
++        if (empty($id)) {
++            return false;
++        }
++
++        try {
++            $query = "DELETE FROM billing WHERE id = :id OR bill_number = :bill_number";
++            $stmt = $this->conn->prepare($query);
++            $stmt->bindParam(':id', $id);
++            $stmt->bindParam(':bill_number', $id);
++            return $stmt->execute();
++        } catch (PDOException $e) {
++            return false;
++        }
++    }
++
+ }
+ ?>
+-- 
+2.51.1.windows.1
+

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Export Report to PDF</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .instructions {
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .button {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        .button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Export Hospital Management System Report to PDF</h1>
+    
+    <div class="instructions">
+        <h2>Instructions:</h2>
+        <ol>
+            <li><strong>Using Browser Print (Recommended):</strong>
+                <ul>
+                    <li>Open <code>Project_Report.html</code> in your web browser</li>
+                    <li>Press <code>Ctrl+P</code> (Windows) or <code>Cmd+P</code> (Mac)</li>
+                    <li>Select "Save as PDF" as the destination</li>
+                    <li>In print settings, ensure:
+                        <ul>
+                            <li>Paper size: A4</li>
+                            <li>Margins: Top/Bottom/Right 1", Left 1.5"</li>
+                            <li>Scale: 100%</li>
+                            <li>Background graphics: Enabled</li>
+                        </ul>
+                    </li>
+                    <li>Click "Save"</li>
+                </ul>
+            </li>
+            <li><strong>Using Online Tools:</strong>
+                <ul>
+                    <li>Upload <code>Project_Report.html</code> to HTML to PDF converters like:
+                        <ul>
+                            <li>html2pdf.com</li>
+                            <li>pdf24.org</li>
+                            <li>ilovepdf.com</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><strong>Using Command Line (Advanced):</strong>
+                <ul>
+                    <li>Install wkhtmltopdf or Puppeteer</li>
+                    <li>Use command: <code>wkhtmltopdf Project_Report.html Project_Report.pdf</code></li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+    
+    <button class="button" onclick="window.open('Project_Report.html', '_blank')">Open Report in Browser</button>
+    
+    <h2>Note:</h2>
+    <p>The report is formatted for A4 paper with proper margins and page breaks. When exporting to PDF, ensure all formatting options are preserved.</p>
+</body>
+</html>

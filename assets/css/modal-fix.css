@@ -1,0 +1,18 @@
+/* Fix for Bootstrap modals not appearing */
+.modal {
+    z-index: 1055 !important;
+}
+
+.modal-backdrop {
+    z-index: 1050 !important;
+}
+
+.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* Ensure modals appear on top */
+.modal-dialog {
+    z-index: 1056 !important;
+}

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HMS 2.0 – BCA V Project Report</title>
+<style>
+  @page { size: A4; margin: 1in 1in 1in 1.5in; }
+  body { font-family: "Times New Roman", serif; font-size: 12pt; line-height: 1.5; color: #000; margin: 0; }
+  .page { page-break-after: always; min-height: 29.7cm; position: relative; }
+  h1 { font-size: 16pt; font-weight: bold; margin: 16pt 0 12pt; text-align: center; }
+  h2 { font-size: 14pt; font-weight: bold; margin: 14pt 0 10pt; }
+  h3 { font-size: 14pt; font-weight: bold; margin: 12pt 0 8pt; }
+  h4 { font-size: 12pt; font-weight: bold; margin: 10pt 0 6pt; }
+  p { margin: 0 0 10pt; text-align: justify; }
+  ul, ol { margin: 0 0 10pt 24pt; }
+  table { width: 100%; border-collapse: collapse; margin: 12pt 0; font-size: 12pt; }
+  th, td { border: 1px solid #000; padding: 6pt 8pt; text-align: left; }
+  th { background: #f0f0f0; }
+  .page-number { position: absolute; bottom: 12pt; left: 50%; transform: translateX(-50%); }
+  .center { text-align: center; }
+  .right { text-align: right; }
+  .spacer { height: 12pt; }
+  .caption { font-weight: bold; margin-top: 6pt; }
+  .signature { margin-top: 40pt; display: flex; justify-content: space-between; }
+  .signature div { width: 45%; text-align: center; }
+  .small { font-size: 11pt; }
+</style>
+</head>
+<body>
+
+<!-- Cover Page -->
+<div class="page">
+  <h1>HOSPITAL MANAGEMENT SYSTEM (HMS) 2.0</h1>
+  <h2>A Comprehensive Web-Based Healthcare Management Solution</h2>
+  <div class="spacer"></div>
+  <p class="center"><strong>PROJECT REPORT</strong></p>
+  <div class="spacer"></div>
+  <p class="center">Submitted in partial fulfillment of the requirements for the degree of</p>
+  <p class="center"><strong>Bachelor of Computer Applications (BCA)</strong></p>
+  <div class="spacer"></div>
+  <p class="center">Academic Year 2024–2025</p>
+  <div class="spacer"></div>
+  <p class="center"><strong>Institution:</strong> __________________________</p>
+  <p class="center"><strong>Department:</strong> __________________________</p>
+  <div class="spacer"></div>
+  <p class="center"><strong>Submitted by:</strong> __________________________</p>
+  <p class="center"><strong>Roll No:</strong> __________________________</p>
+  <div class="spacer"></div>
+  <p class="center"><strong>Under the guidance of:</strong> __________________________</p>
+  <div class="page-number">1</div>
+</div>
+
+<!-- ACKNOWLEDGEMENT -->
+<div class="page">
+  <h1>ACKNOWLEDGEMENT</h1>
+  <p>We express our sincere gratitude to our guide __________________ for their valuable guidance, motivation, and continuous support throughout the development of the Hospital Management System (HMS) 2.0. We also thank the department faculty and our peers for their constructive feedback. Finally, we are grateful to our families for their encouragement and support.</p>
+  <div class="signature">
+    <div>Signature of Candidate(s)</div>
+    <div>Date: ____________</div>
+  </div>
+  <div class="page-number">2</div>
+</div>
+
+<!-- DECLARATION -->
+<div class="page">
+  <h1>DECLARATION</h1>
+  <p>I/We hereby declare that the project entitled <strong>"Hospital Management System (HMS) 2.0"</strong> submitted in partial fulfillment of the requirements for the BCA degree is an authentic record of our own work carried out under the supervision of __________________. This work has not been submitted elsewhere for any degree or diploma.</p>
+  <div class="signature">
+    <div>Signature of Candidate(s)</div>
+    <div>Place: ____________<br/>Date: ____________</div>
+  </div>
+  <div class="page-number">3</div>
+</div>
+
+<!-- CERTIFICATE -->
+<div class="page">
+  <h1>CERTIFICATE</h1>
+  <p>This is to certify that the project entitled <strong>"Hospital Management System (HMS) 2.0"</strong> submitted by __________________ (Roll No. ________) is a bona fide record of the work carried out under my/our supervision and guidance during the academic year 2024–2025, in partial fulfillment of the requirements for the BCA degree.</p>
+  <div class="spacer"></div>
+  <p class="center">College/Institute Seal (if applicable)</p>
+  <div class="signature">
+    <div>Project Guide<br/><br/>____________________</div>
+    <div>Head of Department<br/><br/>____________________</div>
+  </div>
+  <div class="page-number">4</div>
+</div>
+
+<!-- TABLE OF CONTENTS (auto/manual fill as needed) -->
+<div class="page">
+  <h1>TABLE OF CONTENTS</h1>
+  <p class="small">This section can be auto-generated if exporting via a word processor; otherwise, maintain manually.</p>
+  <ol>
+    <li>INTRODUCTION</li>
+    <li>OBJECTIVE</li>
+    <li>SYSTEM ANALYSIS
+      <ol>
+        <li>IDENTIFICATION OF NEED</li>
+        <li>PRELIMINARY INVESTIGATION</li>
+        <li>FEASIBILITY STUDY (TECHNICAL, OPERATIONAL, ECONOMIC)</li>
+        <li>PROJECT PLANNING</li>
+        <li>PROJECT SCHEDULING (GANTT & PERT)</li>
+        <li>SOFTWARE REQUIREMENT SPECIFICATION (SRS)</li>
+        <li>SYSTEM SPECIFICATION</li>
+        <li>DATA MODELS (CLASS, ACTIVITY, SEQUENCE, ER, USE CASE)</li>
+      </ol>
+    </li>
+    <li>SYSTEM DESIGN
+      <ol>
+        <li>MODULARIZATION DETAILS</li>
+        <li>DATA INTEGRITY AND CONSTRAINTS</li>
+      </ol>
+    </li>
+    <li>TESTING</li>
+    <li>SYSTEM SECURITY MEASURES</li>
+    <li>COST ESTIMATION</li>
+    <li>REPORT</li>
+    <li>FUTURE SCOPE</li>
+    <li>APPENDICES (CODING, BIBLIOGRAPHY)</li>
+  </ol>
+  <div class="page-number">5</div>
+</div>
+
+<!-- 1. INTRODUCTION -->
+<div class="page">
+  <h1>1. INTRODUCTION</h1>
+  <p>The Hospital Management System (HMS) 2.0 is a web-based solution built with PHP 8 and SQLite, designed to streamline core hospital operations: patient registration, appointments, doctor management, billing, reporting, and system settings. It includes currency formatting with optional live conversion, printable and CSV exports with date/doctor/department filters, and CI-backed quality checks. The system emphasizes secure authentication, clean UI, and deployment readiness on Windows desktop (PHPDesktop) or as a web app.</p>
+  <p>The documentation adheres to the BCA V project format guidelines: Times New Roman (12 pt body, 14 pt headings, 16 pt titles), A4 page size with 1.5" left and 1" other margins, 1.5 line spacing, bottom-center page numbers, and figures/tables with captions.</p>
+  <div class="page-number">6</div>
+</div>
+
+<!-- 2. OBJECTIVE -->
+<div class="page">
+  <h1>2. OBJECTIVE</h1>
+  <ul>
+    <li>Digitize and centralize hospital data (patients, doctors, appointments, billing).</li>
+    <li>Provide fast, accurate billing with currency formatting and optional live conversion.</li>
+    <li>Enable filterable reporting (date, doctor, department) with printable and CSV exports.</li>
+    <li>Maintain data integrity via validation, foreign keys, and role-based access.</li>
+    <li>Ensure deployment simplicity using a portable SQLite database and scripts.</li>
+  </ul>
+  <div class="page-number">7</div>
+</div>
+
+<!-- 3. SYSTEM ANALYSIS -->
+<div class="page">
+  <h1>3. SYSTEM ANALYSIS</h1>
+  <h2>3.1 IDENTIFICATION OF NEED</h2>
+  <p>Hospitals require integrated systems to reduce manual errors, accelerate patient throughput, and generate compliant reports. HMS addresses disparate records, delayed billing, and poor visibility by unifying operations under a single interface.</p>
+
+  <h2>3.2 PRELIMINARY INVESTIGATION</h2>
+  <p>Stakeholders: Admin, Doctors, Receptionists, Accountants. Pain points: duplicate entries, delayed appointment confirmations, inconsistent currency handling, manual reporting. Proposed solution: a modular HMS with validations, consistent currency formatting, and automated reports.</p>
+
+  <h2>3.3 FEASIBILITY STUDY</h2>
+  <h3>3.3.1 TECHNICAL FEASIBILITY</h3>
+  <p>Built on PHP 8 and SQLite—widely supported and easy to deploy. Frontend uses Bootstrap 5 and standard JS. No external servers required for database; works offline in desktop packaging.</p>
+  <h3>3.3.2 OPERATIONAL FEASIBILITY</h3>
+  <p>Clear UI, role-based access, and validation reduce training time. Printable/CSV reports meet audit needs. Currency defaults and live conversion align with international contexts.</p>
+  <h3>3.3.3 ECONOMIC FEASIBILITY</h3>
+  <p>Open-source stack lowers costs. SQLite avoids database licensing. Minimal hardware required; scales from single desktop to LAN deployment.</p>
+
+  <h2>3.4 PROJECT PLANNING</h2>
+  <p>Phased delivery: schema + server setup → auth + core CRUD → billing + currency → reporting (CSV/PDF) → deployment/CI.</p>
+
+  <h2>3.5 PROJECT SCHEDULING</h2>
+  <h3>3.5.1 GANTT CHART</h3>
+  <table>
+    <thead><tr><th>Phase</th><th>Weeks</th><th>Milestones</th></tr></thead>
+    <tbody>
+      <tr><td>Setup & Schema</td><td>1–2</td><td>DB, Auth</td></tr>
+      <tr><td>Core Modules</td><td>3–5</td><td>Patients, Doctors, Appointments</td></tr>
+      <tr><td>Billing & Currency</td><td>6–7</td><td>Billing UI, Printables</td></tr>
+      <tr><td>Reporting</td><td>8–9</td><td>CSV/PDF + Filters</td></tr>
+      <tr><td>Testing & CI</td><td>10</td><td>Smoke, HTTP checks</td></tr>
+      <tr><td>Deployment</td><td>11</td><td>Windows/Web</td></tr>
+    </tbody>
+  </table>
+  <div class="caption">Figure 3.1: Gantt Chart – Project Timeline</div>
+
+  <h3>3.5.2 PERT CHART</h3>
+  <p>The critical path flows through schema → core modules → billing → reporting → testing. Parallel tasks: UI polish and documentation. Slack exists in reporting polish and export formatting.</p>
+  <div class="caption">Figure 3.2: PERT Chart – Activity Network (conceptual)</div>
+
+  <h2>3.6 SOFTWARE REQUIREMENT SPECIFICATION (SRS)</h2>
+  <h3>3.6.1 FUNCTIONAL REQUIREMENTS</h3>
+  <ul>
+    <li>Manage patients, doctors, appointments, billing, payments.</li>
+    <li>Currency formatting with default + optional live conversion.</li>
+    <li>Reports: CSV and printable PDF with date/doctor/department filters.</li>
+    <li>Authentication with roles (admin, doctor, receptionist).</li>
+    <li>System settings persisted in <code>system_settings</code> (e.g., currency_default, live_conversion).</li>
+    <li>Auto-billing hook on completed appointment (consultation fee tracking).</li>
+  </ul>
+  <h3>3.6.2 NON-FUNCTIONAL REQUIREMENTS</h3>
+  <ul>
+    <li>Usability: Bootstrap UI, responsive tables.</li>
+    <li>Reliability: SQLite ACID, prepared statements, CI checks.</li>
+    <li>Performance: Lightweight stack, minimal dependencies.</li>
+    <li>Security: Session handling, no WWW-Authenticate popups, role checks.</li>
+    <li>Portability: Single-file SQLite DB for easy backup and migration.</li>
+    <li>Maintainability: Modular PHP classes and API endpoints per feature.</li>
+  </ul>
+
+  <h2>3.7 SYSTEM SPECIFICATION</h2>
+  <ul>
+    <li>Software: PHP 8.2+, SQLite3, Bootstrap 5, Font Awesome.</li>
+    <li>Hardware: Standard Windows 10/11 PC; 2–4 GB RAM; 1 GB disk.</li>
+    <li>Browser: Chrome/Edge latest recommended for printing.</li>
+    <li>CI: GitHub Actions (lint, DB init, server boot, HTTP checks).</li>
+  </ul>
+
+  <h2>3.8 DATA MODELS</h2>
+  <h3>3.8.1 CLASS DIAGRAM</h3>
+  <p>Core classes: Auth, Patient, Doctor, Appointment, Billing, Payment, Dashboard, Currency.</p>
+  <p class="caption">Figure 3.3: Class Diagram – Core Modules (placeholder)</p>
+  <h3>3.8.2 ACTIVITY DIAGRAM</h3>
+  <p>Appointment booking → validation → availability → confirm/cancel → auto-billing on completion.</p>
+  <p class="caption">Figure 3.4: Activity Diagram – Appointment Flow (placeholder)</p>
+  <h3>3.8.3 SEQUENCE DIAGRAM</h3>
+  <p>UI → API endpoint → Auth → DB → Return JSON → UI renders; for printables: PHP renders HTML.</p>
+  <p class="caption">Figure 3.5: Sequence Diagram – Export Generation (placeholder)</p>
+  <h3>3.8.4 ENTITY RELATIONSHIP DIAGRAM (ER)</h3>
+  <p>Key tables and relations: patients(1)–(n)appointments, doctors(1)–(n)appointments, appointments(1)–(0..1)billing, billing(1)–(n)billing_items, billing(1)–(n)payments, departments(1)–(n)appointments.</p>
+  <p class="caption">Figure 3.6: ER Diagram – HMS Database (placeholder)</p>
+  <h3>3.8.5 USE CASE DIAGRAM</h3>
+  <p>Actors: Admin, Doctor, Receptionist. Use cases: manage records, schedule appointments, generate bills, export reports, change settings.</p>
+  <p class="caption">Figure 3.7: Use Case Diagram – System Functionality (placeholder)</p>
+  <div class="page-number">8</div>
+</div>
+
+<!-- 4. SYSTEM DESIGN -->
+<div class="page">
+  <h1>4. SYSTEM DESIGN</h1>
+  <h2>4.1 MODULARIZATION DETAILS</h2>
+  <p>Modules: Patients, Doctors, Appointments, Billing, Reports, Settings. Each module has corresponding API endpoints in <code>/api</code>, class logic in <code>/classes</code>, and UI/js in <code>/assets/js</code>.</p>
+  <h2>4.2 DATA INTEGRITY AND CONSTRAINTS</h2>
+  <ul>
+    <li>Foreign keys: appointments.patient_id → patients.id; appointments.doctor_id → doctors.id; billing.appointment_id → appointments.id.</li>
+    <li>Constraints: NOT NULL, UNIQUE (e.g., users.username, billing.bill_number), CHECKs for enums.</li>
+    <li>Validation: server-side (PHP) + client-side (JS) where applicable.</li>
+  </ul>
+  <div class="page-number">9</div>
+</div>
+
+<!-- 5. TESTING -->
+<div class="page">
+  <h1>5. TESTING</h1>
+  <p>Testing includes endpoint smoke tests, CSV export validation, and printable report checks. CI lints PHP, initializes SQLite, boots the dev server, and makes HTTP requests to key endpoints. Manual acceptance testing verifies UI flows for patients, appointments, billing, and reports.</p>
+  <table>
+    <thead><tr><th>Test ID</th><th>Scenario</th><th>Steps</th><th>Expected Result</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>T-01</td><td>Create patient</td><td>Fill form → Save</td><td>Patient appears in list</td><td>Pass</td></tr>
+      <tr><td>T-02</td><td>Schedule appointment</td><td>Select patient/doctor/date</td><td>Appointment visible, slot reserved</td><td>Pass</td></tr>
+      <tr><td>T-03</td><td>Complete appointment</td><td>Mark completed</td><td>Auto-billing tracked</td><td>Pass</td></tr>
+      <tr><td>T-04</td><td>Export billing CSV</td><td>Pick date range → Export</td><td>CSV downloads with totals</td><td>Pass</td></tr>
+      <tr><td>T-05</td><td>Print appointments</td><td>Open printable link</td><td>PDF-ready page with filters</td><td>Pass</td></tr>
+    </tbody>
+  </table>
+  <p class="caption">Table 5.1: Representative Test Scenarios</p>
+  <div class="page-number">10</div>
+</div>
+
+<!-- 6. SECURITY -->
+<div class="page">
+  <h1>6. SYSTEM SECURITY MEASURES</h1>
+  <ul>
+    <li>Session-based auth with role checks; JSON errors (no browser auth prompts).</li>
+    <li>Prepared statements for SQL; headers prevent caching of sensitive data.</li>
+    <li>Settings persisted in <code>system_settings</code>; currency defaults controlled centrally.</li>
+    <li>CI-only auth bypass via env var; never enabled in production.</li>
+    <li>Password hashing (bcrypt); role-based checks for sensitive operations.</li>
+    <li>Log files for diagnostics; avoid exposing stack traces to end users.</li>
+  </ul>
+  <div class="page-number">11</div>
+</div>
+
+<!-- 7. COST ESTIMATION -->
+<div class="page">
+  <h1>7. COST ESTIMATION</h1>
+  <table>
+    <thead><tr><th>Item</th><th>Cost</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Development (Open Source Stack)</td><td>$0</td><td>PHP, SQLite, Bootstrap</td></tr>
+      <tr><td>Deployment (Windows Desktop)</td><td>$0</td><td>PHPDesktop</td></tr>
+      <tr><td>Optional Web Hosting</td><td>Varies</td><td>Shared/VPS if used</td></tr>
+      <tr><td>Optional SSL Certificate</td><td>$0–$50</td><td>Let's Encrypt or paid</td></tr>
+    </tbody>
+  </table>
+  <div class="page-number">12</div>
+</div>
+
+<!-- 8. REPORT -->
+<div class="page">
+  <h1>8. REPORT</h1>
+  <p>The Reports module provides CSV and printable HTML (PDF-ready) outputs for Billing, Appointments, and Patients. Filters: date range, doctor, department. Endpoints: <code>/api/export.php</code>, <code>/api/reports-print.php</code>. Currency formatting per system settings; optional live conversion via exchangerate.host.</p>
+  <ul>
+    <li>Sample CSV: Billing (Nov 2025), Appointments (by doctor), Patients (year range)</li>
+    <li>Sample Printables: Billing summary with totals; Appointments filtered by department</li>
+  </ul>
+  <div class="page-number">13</div>
+</div>
+
+<!-- 9. FUTURE SCOPE -->
+<div class="page">
+  <h1>9. FUTURE SCOPE</h1>
+  <ul>
+    <li>Doctor/department analytics in dashboard filters.</li>
+    <li>Notifications and messaging.</li>
+    <li>Mobile PWA enhancements.</li>
+    <li>Role-based granular permissions and audit logs.</li>
+    <li>Bed management and lab billing auto-hooks.</li>
+  </ul>
+  <div class="page-number">14</div>
+</div>
+
+<!-- 10. APPENDICES -->
+<div class="page">
+  <h1>10. APPENDICES</h1>
+  <h2>10.1 CODING</h2>
+  <p>Source code organized under <code>/api</code>, <code>/classes</code>, <code>/assets/js</code>, and <code>/database</code>. See repository for complete implementation and comments.</p>
+  <h2>10.2 BIBLIOGRAPHY</h2>
+  <ul>
+    <li>Bootstrap 5 Docs</li>
+    <li>PHP Manual</li>
+    <li>SQLite Docs</li>
+    <li>Font Awesome</li>
+    <li>exchangerate.host API</li>
+    <li>GitHub Actions Documentation</li>
+  </ul>
+  <div class="page-number">15</div>
+</div>
+
+</body>
+</html>

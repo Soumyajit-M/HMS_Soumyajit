@@ -1,0 +1,71 @@
+# Hospital Management System - Git Ignore
+
+# Development & Testing Files
+*.err
+*.out
+*_test.php
+*_debug.php
+test_*.php
+test_*.html
+debug_*.php
+check_*.php
+
+# IDE & Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+logs/*.log
+logs/*.txt
+*.log
+
+# Database Files (exclude development databases)
+*.sqlite
+*.db
+hms_database.sqlite
+
+# Temporary Files
+tmp/
+temp/
+*.tmp
+*.cache
+
+# Archive (keep structure but ignore content changes)
+_archive/temp_files/*
+_archive/testing/*
+!_archive/testing/.gitkeep
+!_archive/temp_files/.gitkeep
+
+# Node Modules (if using npm)
+node_modules/
+
+# Vendor (if using composer)
+vendor/
+
+# OS Files
+Thumbs.db
+desktop.ini
+
+# Backup Files
+*.bak
+*.backup
+*~
+
+# Environment Files (sensitive data)
+.env
+.env.local
+
+# Build Files
+dist/
+build/
+
+# PHP Specific
+composer.lock
+.phpunit.result.cache
+
+# Git Bundles
+*.bundle

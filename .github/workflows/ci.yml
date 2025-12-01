@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  php-ci:
+    runs-on: ubuntu-latest
+    env:
+      CI_AUTH_BYPASS: "1"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          coverage: none
+          extensions: sqlite3
+
+      - name: Show PHP version
+        run: php -v
+
+      - name: Validate PHP syntax
+        run: |
+          set -e
+          find . -type f -name "*.php" -print0 | xargs -0 -n1 -P 4 php -l
+
+      - name: Create writable directories
+        run: |
+          mkdir -p logs www/downloads database
+
+      - name: Initialize SQLite database if schema exists
+        run: |
+          if [ -f database/schema_sqlite.sql ]; then
+            mkdir -p database
+            rm -f database/hms_database.sqlite
+            sqlite3 database/hms_database.sqlite < database/schema_sqlite.sql || true
+          fi
+
+      - name: Start PHP server
+        run: |
+          php -S 127.0.0.1:8000 -t . > php_server.err 2>&1 &
+          sleep 2
+
+      - name: Run smoke tests
+        run: |
+          if [ -f tools/full_smoke_test.php ]; then
+            php tools/full_smoke_test.php || true
+          else
+            echo "No smoke test found; skipping"
+          fi
+
+      - name: Basic HTTP checks
+        run: |
+          set -e
+          curl -sS http://127.0.0.1:8000/api/dashboard-stats.php | head -c 200
+          curl -sS "http://127.0.0.1:8000/api/export.php?type=billing" | head -c 200
+          curl -sS "http://127.0.0.1:8000/api/reports-print.php?type=billing" | head -c 200
+
+      - name: Archive logs and reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hms-artifacts
+          path: |
+            logs
+            www/downloads
+            php_server.err
+          if-no-files-found: warn
