@@ -102,7 +102,21 @@ try {
     $conn->exec($sql);
     echo "✓ lab_test_catalog table created\n\n";
     
-    // Add consultation_fee to doctors table if doesn't exist
+    // Ensure doctors table exists (minimal) then add consultation_fee
+    $hasDoctors = $conn->query("SELECT name FROM sqlite_master WHERE type='table' AND name='doctors'")->fetch(PDO::FETCH_ASSOC);
+    if (!$hasDoctors) {
+        echo "Creating base doctors table (minimal) ...\n";
+        $conn->exec("CREATE TABLE IF NOT EXISTS doctors (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            first_name TEXT,
+            last_name TEXT,
+            specialization TEXT,
+            email TEXT,
+            phone TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )");
+        echo "✓ Base doctors table created\n\n";
+    }
     echo "Adding consultation_fee column to doctors table...\n";
     try {
         $sql = "ALTER TABLE doctors ADD COLUMN consultation_fee DECIMAL(10,2) DEFAULT 500.00";
@@ -116,7 +130,19 @@ try {
         }
     }
     
-    // Add charge_per_day to rooms table if doesn't exist
+    // Ensure rooms table exists (minimal) then add charge_per_day
+    $hasRooms = $conn->query("SELECT name FROM sqlite_master WHERE type='table' AND name='rooms'")->fetch(PDO::FETCH_ASSOC);
+    if (!$hasRooms) {
+        echo "Creating base rooms table (minimal) ...\n";
+        $conn->exec("CREATE TABLE IF NOT EXISTS rooms (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            room_number TEXT,
+            bed_count INTEGER DEFAULT 1,
+            status TEXT DEFAULT 'available',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )");
+        echo "✓ Base rooms table created\n\n";
+    }
     echo "Adding charge_per_day column to rooms table...\n";
     try {
         $sql = "ALTER TABLE rooms ADD COLUMN charge_per_day DECIMAL(10,2) DEFAULT 1000.00";
@@ -130,7 +156,19 @@ try {
         }
     }
     
-    // Add unit_price to inventory_items table if doesn't exist
+    // Ensure inventory_items table exists (minimal) then add unit_price
+    $hasInventory = $conn->query("SELECT name FROM sqlite_master WHERE type='table' AND name='inventory_items'")->fetch(PDO::FETCH_ASSOC);
+    if (!$hasInventory) {
+        echo "Creating base inventory_items table (minimal) ...\n";
+        $conn->exec("CREATE TABLE IF NOT EXISTS inventory_items (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            item_name TEXT,
+            sku TEXT,
+            quantity INTEGER DEFAULT 0,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )");
+        echo "✓ Base inventory_items table created\n\n";
+    }
     echo "Adding unit_price column to inventory_items table...\n";
     try {
         $sql = "ALTER TABLE inventory_items ADD COLUMN unit_price DECIMAL(10,2) DEFAULT 0.00";
