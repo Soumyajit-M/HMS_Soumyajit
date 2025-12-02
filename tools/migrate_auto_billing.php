@@ -12,6 +12,21 @@ try {
     $conn = $database->getConnection();
     
     echo "=== Auto-Billing System Migration ===\n\n";
+    // Ensure base billing table exists (minimal schema) for FK references
+    $hasBilling = $conn->query("SELECT name FROM sqlite_master WHERE type='table' AND name='billing'")->fetch(PDO::FETCH_ASSOC);
+    if (!$hasBilling) {
+        echo "Creating base billing table (minimal) ...\n";
+        $conn->exec("CREATE TABLE IF NOT EXISTS billing (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            patient_id INTEGER,
+            total_amount DECIMAL(10,2) DEFAULT 0,
+            paid_amount DECIMAL(10,2) DEFAULT 0,
+            balance_amount DECIMAL(10,2) DEFAULT 0,
+            payment_status VARCHAR(20) DEFAULT 'pending',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )");
+        echo "✓ Base billing table created\n\n";
+    }
     
     // Create billing_items table
     echo "Creating billing_items table...\n";
@@ -64,7 +79,7 @@ try {
     // Create indexes
     echo "Creating indexes...\n";
     try {
-        $conn->exec("CREATE INDEX IF NOT EXISTS idx_billing_items_bill ON billing_items(billing_id)");
+        $conn->exec("CREATE INDEX IF NOT EXISTS idx_billing_items_bill ON billing_items(bill_id)");
         $conn->exec("CREATE INDEX IF NOT EXISTS idx_billing_tracking_bill ON billing_item_tracking(bill_id)");
         $conn->exec("CREATE INDEX IF NOT EXISTS idx_billing_tracking_type ON billing_item_tracking(item_type, reference_id)");
         echo "✓ Indexes created\n\n";
