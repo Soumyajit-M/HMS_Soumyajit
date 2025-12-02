@@ -44,8 +44,24 @@ try {
     include __DIR__ . '/migrate_auto_billing.php';
     echo "\n";
     
-    // 2. Add default admin user if not exists
+    // 2. Ensure users table exists, then add default admin user if not exists
     echo "Step 2: Checking for admin user...\n";
+    $hasUsers = $conn->query("SELECT name FROM sqlite_master WHERE type='table' AND name='users'")->fetch(PDO::FETCH_ASSOC);
+    if (!$hasUsers) {
+        echo "Creating base users table (minimal) ...\n";
+        $conn->exec("CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL,
+            email TEXT,
+            role TEXT DEFAULT 'user',
+            status TEXT DEFAULT 'active',
+            first_name TEXT,
+            last_name TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )");
+        echo "✓ Base users table created\n\n";
+    }
     $adminCheck = $conn->query("SELECT COUNT(*) as count FROM users WHERE role = 'admin'")->fetch(PDO::FETCH_ASSOC);
     
     if ($adminCheck['count'] == 0) {
