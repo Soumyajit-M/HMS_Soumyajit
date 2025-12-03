@@ -1,0 +1,96 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - text:                
+  - main [ref=e4]:
+    - generic [ref=e5]:
+      - heading "Reports & Analytics" [level=1] [ref=e6]
+      - generic [ref=e7]:
+        - button " Export PDF" [ref=e8] [cursor=pointer]:
+          - generic [ref=e9]: 
+          - text: Export PDF
+        - button " Export Excel" [ref=e10] [cursor=pointer]:
+          - generic [ref=e11]: 
+          - text: Export Excel
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e14]: Start Date
+        - textbox "Start Date" [ref=e15]: 2025-11-30
+      - generic [ref=e16]:
+        - generic [ref=e17]: End Date
+        - textbox "End Date" [ref=e18]: 2025-12-30
+      - generic [ref=e19]:
+        - generic [ref=e20]: Report Type
+        - combobox "Report Type" [ref=e21]:
+          - option "Overview" [selected]
+          - option "Patients"
+          - option "Appointments"
+          - option "Billing"
+          - option "Doctors"
+      - generic [ref=e22]:
+        - generic [ref=e23]: Doctor
+        - combobox "Doctor" [ref=e24]:
+          - option "All Doctors" [selected]
+          - option "K Ghosh"
+          - option "moni mala mondal"
+          - option "K Ghosh"
+          - option "H hasan"
+          - option "J Gupta"
+          - option "Soumyajit Mondal"
+          - option "Int Test"
+          - option "Int Test"
+          - option "Int Test"
+      - generic [ref=e25]:
+        - generic [ref=e26]: Department
+        - combobox "Department" [ref=e27]:
+          - option "All Departments" [selected]
+          - option "Cardiology"
+          - option "Emergency"
+          - option "General Medicine"
+          - option "Neurology"
+          - option "Orthopedics"
+          - option "Pediatrics"
+      - button " Generate Report" [ref=e30] [cursor=pointer]:
+        - generic [ref=e31]: 
+        - text: Generate Report
+    - generic [ref=e32]:
+      - generic [ref=e36]:
+        - generic [ref=e37]:
+          - generic [ref=e38]: Total Patients
+          - generic [ref=e39]: "--"
+        - generic [ref=e41]: 
+      - generic [ref=e45]:
+        - generic [ref=e46]:
+          - generic [ref=e47]: Total Appointments
+          - generic [ref=e48]: "--"
+        - generic [ref=e50]: 
+      - generic [ref=e54]:
+        - generic [ref=e55]:
+          - generic [ref=e56]: Total Revenue
+          - generic [ref=e57]: "--"
+        - generic [ref=e59]: $
+      - generic [ref=e63]:
+        - generic [ref=e64]:
+          - generic [ref=e65]: Active Doctors
+          - generic [ref=e66]: "--"
+        - generic [ref=e68]: 
+    - generic [ref=e69]:
+      - heading "Appointments Trend" [level=6] [ref=e73]
+      - heading "Patient Demographics" [level=6] [ref=e80]
+    - generic [ref=e84]:
+      - heading "Revenue Analysis" [level=6] [ref=e88]
+      - heading "Payment Status" [level=6] [ref=e95]
+    - generic [ref=e99]:
+      - heading "Detailed Report" [level=6] [ref=e101]
+      - table [ref=e104]:
+        - rowgroup [ref=e105]:
+          - row "Date Patients Appointments Revenue New Patients Completed" [ref=e106]:
+            - columnheader "Date" [ref=e107]
+            - columnheader "Patients" [ref=e108]
+            - columnheader "Appointments" [ref=e109]
+            - columnheader "Revenue" [ref=e110]
+            - columnheader "New Patients" [ref=e111]
+            - columnheader "Completed" [ref=e112]
+        - rowgroup
+```

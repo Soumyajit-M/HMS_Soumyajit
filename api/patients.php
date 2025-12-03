@@ -14,15 +14,10 @@ header_remove('WWW-Authenticate');
 require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../classes/Auth.php';
+require_once __DIR__ . '/auth_helper.php';
 require_once __DIR__ . '/../classes/Patient.php';
 
-$auth = new Auth();
-
-// Check if user is logged in via session - NO HTTP status codes
-if (!$auth->isLoggedIn()) {
-    echo json_encode(['success' => false, 'message' => 'Session expired. Please refresh and log in again.']);
-    exit();
-}
+$auth = api_require_login();
 
 $patient = new Patient();
 

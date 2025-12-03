@@ -213,20 +213,17 @@ class Report {
 
     public function getRevenueReport($startDate = null, $endDate = null) {
         $sql = "SELECT 
-                DATE(billing_date) as date,
+                DATE(created_at) as date,
                 COUNT(*) as bill_count,
                 SUM(total_amount) as total_revenue,
-                SUM(amount_paid) as amount_collected,
-                SUM(total_amount - amount_paid) as outstanding
+                SUM(COALESCE(paid_amount, 0)) as amount_collected,
+                SUM(total_amount - COALESCE(paid_amount, 0)) as outstanding
                 FROM billing";
-        
         if ($startDate && $endDate) {
-            $sql .= " WHERE billing_date BETWEEN :start_date AND :end_date";
+            $sql .= " WHERE DATE(created_at) BETWEEN :start_date AND :end_date";
         }
-        
-        $sql .= " GROUP BY DATE(billing_date)
-                  ORDER BY DATE(billing_date) DESC";
-        
+        $sql .= " GROUP BY DATE(created_at)
+                  ORDER BY DATE(created_at) DESC";
         $stmt = $this->conn->prepare($sql);
         if ($startDate && $endDate) {
             $stmt->bindParam(':start_date', $startDate);

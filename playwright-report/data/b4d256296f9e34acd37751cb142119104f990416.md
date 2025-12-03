@@ -1,0 +1,544 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - navigation [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - generic [ref=e7]: 
+          - heading "Hospital Management System" [level=5] [ref=e8]
+        - list [ref=e9]:
+          - listitem [ref=e10]:
+            - link " Dashboard" [ref=e11] [cursor=pointer]:
+              - /url: dashboard.php
+              - generic [ref=e12]: 
+              - text: Dashboard
+          - listitem [ref=e13]:
+            - link " Patients" [ref=e14] [cursor=pointer]:
+              - /url: patients.php
+              - generic [ref=e15]: 
+              - text: Patients
+          - listitem [ref=e16]:
+            - link " Doctors" [ref=e17] [cursor=pointer]:
+              - /url: doctors.php
+              - generic [ref=e18]: 
+              - text: Doctors
+          - listitem [ref=e19]:
+            - link " Staff" [ref=e20] [cursor=pointer]:
+              - /url: staff.php
+              - generic [ref=e21]: 
+              - text: Staff
+          - listitem [ref=e22]:
+            - link " Schedules" [ref=e23] [cursor=pointer]:
+              - /url: schedules.php
+              - generic [ref=e24]: 
+              - text: Schedules
+          - listitem [ref=e25]:
+            - link " Rooms & Beds" [ref=e26] [cursor=pointer]:
+              - /url: rooms.php
+              - generic [ref=e27]: 
+              - text: Rooms & Beds
+          - listitem [ref=e28]:
+            - link " Laboratory" [ref=e29] [cursor=pointer]:
+              - /url: laboratory.php
+              - generic [ref=e30]: 
+              - text: Laboratory
+          - listitem [ref=e31]:
+            - link " Inventory" [ref=e32] [cursor=pointer]:
+              - /url: inventory.php
+              - generic [ref=e33]: 
+              - text: Inventory
+          - listitem [ref=e34]:
+            - link " Appointments" [ref=e35] [cursor=pointer]:
+              - /url: appointments.php
+              - generic [ref=e36]: 
+              - text: Appointments
+          - listitem [ref=e37]:
+            - link " Billing" [ref=e38] [cursor=pointer]:
+              - /url: billing.php
+              - generic [ref=e39]: 
+              - text: Billing
+          - listitem [ref=e40]:
+            - link " Insurance" [ref=e41] [cursor=pointer]:
+              - /url: insurance.php
+              - generic [ref=e42]: 
+              - text: Insurance
+          - listitem [ref=e43]:
+            - link " Telemedicine" [ref=e44] [cursor=pointer]:
+              - /url: telemedicine.php
+              - generic [ref=e45]: 
+              - text: Telemedicine
+          - listitem [ref=e46]:
+            - link " Reports" [ref=e47] [cursor=pointer]:
+              - /url: reports.php
+              - generic [ref=e48]: 
+              - text: Reports
+          - listitem [ref=e49]:
+            - link " Settings" [ref=e50] [cursor=pointer]:
+              - /url: settings.php
+              - generic [ref=e51]: 
+              - text: Settings
+        - separator [ref=e52]
+        - list [ref=e53]:
+          - listitem [ref=e54]:
+            - link " Logout" [ref=e55] [cursor=pointer]:
+              - /url: logout.php
+              - generic [ref=e56]: 
+              - text: Logout
+    - main [ref=e57]:
+      - generic [ref=e58]:
+        - heading "Billing Management" [level=1] [ref=e59]
+        - button "+ Create New Bill" [ref=e61] [cursor=pointer]:
+          - generic [ref=e62]: +
+          - text: Create New Bill
+      - generic [ref=e63]:
+        - generic [ref=e67]:
+          - generic [ref=e68]:
+            - generic [ref=e69]: Total Revenue
+            - generic [ref=e70]: ₹2,325.00
+          - generic [ref=e72]: $
+        - generic [ref=e76]:
+          - generic [ref=e77]:
+            - generic [ref=e78]: Pending Bills
+            - generic [ref=e79]: "0"
+          - generic [ref=e81]: 
+        - generic [ref=e85]:
+          - generic [ref=e86]:
+            - generic [ref=e87]: Overdue Bills
+            - generic [ref=e88]: "0"
+          - generic [ref=e90]: 
+        - generic [ref=e94]:
+          - generic [ref=e95]:
+            - generic [ref=e96]: Outstanding Amount
+            - generic [ref=e97]: ₹0.00
+          - generic [ref=e99]: 
+      - tablist [ref=e100]:
+        - tab "All Bills" [selected] [ref=e101] [cursor=pointer]
+        - tab "Pending" [ref=e102] [cursor=pointer]
+        - tab "Paid" [ref=e103] [cursor=pointer]
+        - tab "Overdue" [ref=e104] [cursor=pointer]
+      - generic [ref=e105]:
+        - generic [ref=e107]:
+          - generic [ref=e109]: 
+          - textbox "Search bills..." [ref=e110]
+        - textbox [ref=e112]:
+          - /placeholder: Filter by date
+        - combobox [ref=e114]:
+          - option "All Status" [selected]
+          - option "Pending"
+          - option "Partial"
+          - option "Paid"
+          - option "Overdue"
+        - button " Clear" [ref=e116] [cursor=pointer]:
+          - generic [ref=e117]: 
+          - text: Clear
+      - generic [ref=e118]:
+        - heading "Bills List" [level=6] [ref=e120]
+        - table [ref=e123]:
+          - rowgroup [ref=e124]:
+            - row "Bill Number Patient Appointment Total Amount Paid Amount Balance Status Due Date Actions" [ref=e125]:
+              - columnheader "Bill Number" [ref=e126]
+              - columnheader "Patient" [ref=e127]
+              - columnheader "Appointment" [ref=e128]
+              - columnheader "Total Amount" [ref=e129]
+              - columnheader "Paid Amount" [ref=e130]
+              - columnheader "Balance" [ref=e131]
+              - columnheader "Status" [ref=e132]
+              - columnheader "Due Date" [ref=e133]
+              - columnheader "Actions" [ref=e134]
+          - rowgroup [ref=e135]:
+            - row "BILL69308c0d1a204 Patient Smoke Test 1234567890 APT20251203717 12/4/2025 ₹100.00 ₹100.00 ₹0.00 Paid 12/10/2025" [ref=e136]:
+              - cell "BILL69308c0d1a204" [ref=e137]
+              - cell "Patient Smoke Test 1234567890" [ref=e138]:
+                - generic [ref=e139]:
+                  - img "Patient" [ref=e140]
+                  - generic [ref=e141]:
+                    - generic [ref=e142]: Smoke Test
+                    - text: "1234567890"
+              - cell "APT20251203717 12/4/2025" [ref=e143]:
+                - generic [ref=e144]:
+                  - generic [ref=e145]: APT20251203717
+                  - text: 12/4/2025
+              - cell "₹100.00" [ref=e146]
+              - cell "₹100.00" [ref=e147]
+              - cell "₹0.00" [ref=e148]
+              - cell "Paid" [ref=e149]:
+                - generic [ref=e150]: Paid
+              - cell "12/10/2025" [ref=e151]
+              - cell [ref=e152]:
+                - group [ref=e153]:
+                  - button "" [ref=e154] [cursor=pointer]:
+                    - generic [ref=e155]: 
+                  - button "" [ref=e156] [cursor=pointer]:
+                    - generic [ref=e157]: 
+                  - button "" [ref=e158] [cursor=pointer]:
+                    - generic [ref=e159]: 
+                  - button "" [ref=e160] [cursor=pointer]:
+                    - generic [ref=e161]: 
+            - row "BILL69308c0aa98b1 Patient Int Pat 1234567890 APT20251203194 12/4/2025 ₹50.00 ₹50.00 ₹0.00 Paid 12/10/2025" [ref=e162]:
+              - cell "BILL69308c0aa98b1" [ref=e163]
+              - cell "Patient Int Pat 1234567890" [ref=e164]:
+                - generic [ref=e165]:
+                  - img "Patient" [ref=e166]
+                  - generic [ref=e167]:
+                    - generic [ref=e168]: Int Pat
+                    - text: "1234567890"
+              - cell "APT20251203194 12/4/2025" [ref=e169]:
+                - generic [ref=e170]:
+                  - generic [ref=e171]: APT20251203194
+                  - text: 12/4/2025
+              - cell "₹50.00" [ref=e172]
+              - cell "₹50.00" [ref=e173]
+              - cell "₹0.00" [ref=e174]
+              - cell "Paid" [ref=e175]:
+                - generic [ref=e176]: Paid
+              - cell "12/10/2025" [ref=e177]
+              - cell [ref=e178]:
+                - group [ref=e179]:
+                  - button "" [ref=e180] [cursor=pointer]:
+                    - generic [ref=e181]: 
+                  - button "" [ref=e182] [cursor=pointer]:
+                    - generic [ref=e183]: 
+                  - button "" [ref=e184] [cursor=pointer]:
+                    - generic [ref=e185]: 
+                  - button "" [ref=e186] [cursor=pointer]:
+                    - generic [ref=e187]: 
+            - row "BILL69308b8a2b393 Patient Smoke Test 1234567890 APT20251203734 12/4/2025 100.00 100.00 0.00 Paid 12/10/2025" [ref=e188]:
+              - cell "BILL69308b8a2b393" [ref=e189]
+              - cell "Patient Smoke Test 1234567890" [ref=e190]:
+                - generic [ref=e191]:
+                  - img "Patient" [ref=e192]
+                  - generic [ref=e193]:
+                    - generic [ref=e194]: Smoke Test
+                    - text: "1234567890"
+              - cell "APT20251203734 12/4/2025" [ref=e195]:
+                - generic [ref=e196]:
+                  - generic [ref=e197]: APT20251203734
+                  - text: 12/4/2025
+              - cell "100.00" [ref=e198]
+              - cell "100.00" [ref=e199]
+              - cell "0.00" [ref=e200]
+              - cell "Paid" [ref=e201]:
+                - generic [ref=e202]: Paid
+              - cell "12/10/2025" [ref=e203]
+              - cell [ref=e204]:
+                - group [ref=e205]:
+                  - button "" [ref=e206] [cursor=pointer]:
+                    - generic [ref=e207]: 
+                  - button "" [ref=e208] [cursor=pointer]:
+                    - generic [ref=e209]: 
+                  - button "" [ref=e210] [cursor=pointer]:
+                    - generic [ref=e211]: 
+                  - button "" [ref=e212] [cursor=pointer]:
+                    - generic [ref=e213]: 
+            - row "BILL69308b87a1713 Patient Int Pat 1234567890 APT20251203950 12/4/2025 50.00 50.00 0.00 Paid 12/10/2025" [ref=e214]:
+              - cell "BILL69308b87a1713" [ref=e215]
+              - cell "Patient Int Pat 1234567890" [ref=e216]:
+                - generic [ref=e217]:
+                  - img "Patient" [ref=e218]
+                  - generic [ref=e219]:
+                    - generic [ref=e220]: Int Pat
+                    - text: "1234567890"
+              - cell "APT20251203950 12/4/2025" [ref=e221]:
+                - generic [ref=e222]:
+                  - generic [ref=e223]: APT20251203950
+                  - text: 12/4/2025
+              - cell "50.00" [ref=e224]
+              - cell "50.00" [ref=e225]
+              - cell "0.00" [ref=e226]
+              - cell "Paid" [ref=e227]:
+                - generic [ref=e228]: Paid
+              - cell "12/10/2025" [ref=e229]
+              - cell [ref=e230]:
+                - group [ref=e231]:
+                  - button "" [ref=e232] [cursor=pointer]:
+                    - generic [ref=e233]: 
+                  - button "" [ref=e234] [cursor=pointer]:
+                    - generic [ref=e235]: 
+                  - button "" [ref=e236] [cursor=pointer]:
+                    - generic [ref=e237]: 
+                  - button "" [ref=e238] [cursor=pointer]:
+                    - generic [ref=e239]: 
+            - row "BILL69308a25ef0c0 Patient Smoke Test 1234567890 APT20251203449 12/4/2025 100.00 100.00 0.00 Paid 12/10/2025" [ref=e240]:
+              - cell "BILL69308a25ef0c0" [ref=e241]
+              - cell "Patient Smoke Test 1234567890" [ref=e242]:
+                - generic [ref=e243]:
+                  - img "Patient" [ref=e244]
+                  - generic [ref=e245]:
+                    - generic [ref=e246]: Smoke Test
+                    - text: "1234567890"
+              - cell "APT20251203449 12/4/2025" [ref=e247]:
+                - generic [ref=e248]:
+                  - generic [ref=e249]: APT20251203449
+                  - text: 12/4/2025
+              - cell "100.00" [ref=e250]
+              - cell "100.00" [ref=e251]
+              - cell "0.00" [ref=e252]
+              - cell "Paid" [ref=e253]:
+                - generic [ref=e254]: Paid
+              - cell "12/10/2025" [ref=e255]
+              - cell [ref=e256]:
+                - group [ref=e257]:
+                  - button "" [ref=e258] [cursor=pointer]:
+                    - generic [ref=e259]: 
+                  - button "" [ref=e260] [cursor=pointer]:
+                    - generic [ref=e261]: 
+                  - button "" [ref=e262] [cursor=pointer]:
+                    - generic [ref=e263]: 
+                  - button "" [ref=e264] [cursor=pointer]:
+                    - generic [ref=e265]: 
+            - row "BILL69308a23d03e7 Patient Int Pat 1234567890 APT20251203971 12/4/2025 50.00 50.00 0.00 Paid 12/10/2025" [ref=e266]:
+              - cell "BILL69308a23d03e7" [ref=e267]
+              - cell "Patient Int Pat 1234567890" [ref=e268]:
+                - generic [ref=e269]:
+                  - img "Patient" [ref=e270]
+                  - generic [ref=e271]:
+                    - generic [ref=e272]: Int Pat
+                    - text: "1234567890"
+              - cell "APT20251203971 12/4/2025" [ref=e273]:
+                - generic [ref=e274]:
+                  - generic [ref=e275]: APT20251203971
+                  - text: 12/4/2025
+              - cell "50.00" [ref=e276]
+              - cell "50.00" [ref=e277]
+              - cell "0.00" [ref=e278]
+              - cell "Paid" [ref=e279]:
+                - generic [ref=e280]: Paid
+              - cell "12/10/2025" [ref=e281]
+              - cell [ref=e282]:
+                - group [ref=e283]:
+                  - button "" [ref=e284] [cursor=pointer]:
+                    - generic [ref=e285]: 
+                  - button "" [ref=e286] [cursor=pointer]:
+                    - generic [ref=e287]: 
+                  - button "" [ref=e288] [cursor=pointer]:
+                    - generic [ref=e289]: 
+                  - button "" [ref=e290] [cursor=pointer]:
+                    - generic [ref=e291]: 
+            - row "BILL69308a07554a6 Patient Smoke Test 1234567890 APT20251203210 12/4/2025 100.00 100.00 0.00 Paid 12/10/2025" [ref=e292]:
+              - cell "BILL69308a07554a6" [ref=e293]
+              - cell "Patient Smoke Test 1234567890" [ref=e294]:
+                - generic [ref=e295]:
+                  - img "Patient" [ref=e296]
+                  - generic [ref=e297]:
+                    - generic [ref=e298]: Smoke Test
+                    - text: "1234567890"
+              - cell "APT20251203210 12/4/2025" [ref=e299]:
+                - generic [ref=e300]:
+                  - generic [ref=e301]: APT20251203210
+                  - text: 12/4/2025
+              - cell "100.00" [ref=e302]
+              - cell "100.00" [ref=e303]
+              - cell "0.00" [ref=e304]
+              - cell "Paid" [ref=e305]:
+                - generic [ref=e306]: Paid
+              - cell "12/10/2025" [ref=e307]
+              - cell [ref=e308]:
+                - group [ref=e309]:
+                  - button "" [ref=e310] [cursor=pointer]:
+                    - generic [ref=e311]: 
+                  - button "" [ref=e312] [cursor=pointer]:
+                    - generic [ref=e313]: 
+                  - button "" [ref=e314] [cursor=pointer]:
+                    - generic [ref=e315]: 
+                  - button "" [ref=e316] [cursor=pointer]:
+                    - generic [ref=e317]: 
+            - row "BILL693089c23bcf6 Patient Smoke Test 1234567890 APT20251203138 12/4/2025 100.00 100.00 0.00 Paid 12/10/2025" [ref=e318]:
+              - cell "BILL693089c23bcf6" [ref=e319]
+              - cell "Patient Smoke Test 1234567890" [ref=e320]:
+                - generic [ref=e321]:
+                  - img "Patient" [ref=e322]
+                  - generic [ref=e323]:
+                    - generic [ref=e324]: Smoke Test
+                    - text: "1234567890"
+              - cell "APT20251203138 12/4/2025" [ref=e325]:
+                - generic [ref=e326]:
+                  - generic [ref=e327]: APT20251203138
+                  - text: 12/4/2025
+              - cell "100.00" [ref=e328]
+              - cell "100.00" [ref=e329]
+              - cell "0.00" [ref=e330]
+              - cell "Paid" [ref=e331]:
+                - generic [ref=e332]: Paid
+              - cell "12/10/2025" [ref=e333]
+              - cell [ref=e334]:
+                - group [ref=e335]:
+                  - button "" [ref=e336] [cursor=pointer]:
+                    - generic [ref=e337]: 
+                  - button "" [ref=e338] [cursor=pointer]:
+                    - generic [ref=e339]: 
+                  - button "" [ref=e340] [cursor=pointer]:
+                    - generic [ref=e341]: 
+                  - button "" [ref=e342] [cursor=pointer]:
+                    - generic [ref=e343]: 
+            - row "BILL202512018804 Patient Smoke Test 1234567890 APT20251201223 12/2/2025 100.00 100.00 0.00 Paid 12/8/2025" [ref=e344]:
+              - cell "BILL202512018804" [ref=e345]
+              - cell "Patient Smoke Test 1234567890" [ref=e346]:
+                - generic [ref=e347]:
+                  - img "Patient" [ref=e348]
+                  - generic [ref=e349]:
+                    - generic [ref=e350]: Smoke Test
+                    - text: "1234567890"
+              - cell "APT20251201223 12/2/2025" [ref=e351]:
+                - generic [ref=e352]:
+                  - generic [ref=e353]: APT20251201223
+                  - text: 12/2/2025
+              - cell "100.00" [ref=e354]
+              - cell "100.00" [ref=e355]
+              - cell "0.00" [ref=e356]
+              - cell "Paid" [ref=e357]:
+                - generic [ref=e358]: Paid
+              - cell "12/8/2025" [ref=e359]
+              - cell [ref=e360]:
+                - group [ref=e361]:
+                  - button "" [ref=e362] [cursor=pointer]:
+                    - generic [ref=e363]: 
+                  - button "" [ref=e364] [cursor=pointer]:
+                    - generic [ref=e365]: 
+                  - button "" [ref=e366] [cursor=pointer]:
+                    - generic [ref=e367]: 
+                  - button "" [ref=e368] [cursor=pointer]:
+                    - generic [ref=e369]: 
+            - row "BILL202512017216 Patient Smoke Test 1234567890 APT20251201574 12/2/2025 100.00 100.00 0.00 Paid 12/8/2025" [ref=e370]:
+              - cell "BILL202512017216" [ref=e371]
+              - cell "Patient Smoke Test 1234567890" [ref=e372]:
+                - generic [ref=e373]:
+                  - img "Patient" [ref=e374]
+                  - generic [ref=e375]:
+                    - generic [ref=e376]: Smoke Test
+                    - text: "1234567890"
+              - cell "APT20251201574 12/2/2025" [ref=e377]:
+                - generic [ref=e378]:
+                  - generic [ref=e379]: APT20251201574
+                  - text: 12/2/2025
+              - cell "100.00" [ref=e380]
+              - cell "100.00" [ref=e381]
+              - cell "0.00" [ref=e382]
+              - cell "Paid" [ref=e383]:
+                - generic [ref=e384]: Paid
+              - cell "12/8/2025" [ref=e385]
+              - cell [ref=e386]:
+                - group [ref=e387]:
+                  - button "" [ref=e388] [cursor=pointer]:
+                    - generic [ref=e389]: 
+                  - button "" [ref=e390] [cursor=pointer]:
+                    - generic [ref=e391]: 
+                  - button "" [ref=e392] [cursor=pointer]:
+                    - generic [ref=e393]: 
+                  - button "" [ref=e394] [cursor=pointer]:
+                    - generic [ref=e395]: 
+            - row "BILL202512010831 Patient Smoke Test 1234567890 APT20251201751 12/2/2025 100.00 100.00 0.00 Paid 12/8/2025" [ref=e396]:
+              - cell "BILL202512010831" [ref=e397]
+              - cell "Patient Smoke Test 1234567890" [ref=e398]:
+                - generic [ref=e399]:
+                  - img "Patient" [ref=e400]
+                  - generic [ref=e401]:
+                    - generic [ref=e402]: Smoke Test
+                    - text: "1234567890"
+              - cell "APT20251201751 12/2/2025" [ref=e403]:
+                - generic [ref=e404]:
+                  - generic [ref=e405]: APT20251201751
+                  - text: 12/2/2025
+              - cell "100.00" [ref=e406]
+              - cell "100.00" [ref=e407]
+              - cell "0.00" [ref=e408]
+              - cell "Paid" [ref=e409]:
+                - generic [ref=e410]: Paid
+              - cell "12/8/2025" [ref=e411]
+              - cell [ref=e412]:
+                - group [ref=e413]:
+                  - button "" [ref=e414] [cursor=pointer]:
+                    - generic [ref=e415]: 
+                  - button "" [ref=e416] [cursor=pointer]:
+                    - generic [ref=e417]: 
+                  - button "" [ref=e418] [cursor=pointer]:
+                    - generic [ref=e419]: 
+                  - button "" [ref=e420] [cursor=pointer]:
+                    - generic [ref=e421]: 
+            - row "BILL202512011948 Patient Smoke Test 1234567890 APT20251201765 12/2/2025 100.00 100.00 0.00 Paid 12/8/2025" [ref=e422]:
+              - cell "BILL202512011948" [ref=e423]
+              - cell "Patient Smoke Test 1234567890" [ref=e424]:
+                - generic [ref=e425]:
+                  - img "Patient" [ref=e426]
+                  - generic [ref=e427]:
+                    - generic [ref=e428]: Smoke Test
+                    - text: "1234567890"
+              - cell "APT20251201765 12/2/2025" [ref=e429]:
+                - generic [ref=e430]:
+                  - generic [ref=e431]: APT20251201765
+                  - text: 12/2/2025
+              - cell "100.00" [ref=e432]
+              - cell "100.00" [ref=e433]
+              - cell "0.00" [ref=e434]
+              - cell "Paid" [ref=e435]:
+                - generic [ref=e436]: Paid
+              - cell "12/8/2025" [ref=e437]
+              - cell [ref=e438]:
+                - group [ref=e439]:
+                  - button "" [ref=e440] [cursor=pointer]:
+                    - generic [ref=e441]: 
+                  - button "" [ref=e442] [cursor=pointer]:
+                    - generic [ref=e443]: 
+                  - button "" [ref=e444] [cursor=pointer]:
+                    - generic [ref=e445]: 
+                  - button "" [ref=e446] [cursor=pointer]:
+                    - generic [ref=e447]: 
+            - row "BILL202511290425 Patient 15 N/A N/A N/A 1000.00 1000.00 0.00 Paid 11/27/2025" [ref=e448]:
+              - cell "BILL202511290425" [ref=e449]
+              - cell "Patient 15 N/A" [ref=e450]:
+                - generic [ref=e451]:
+                  - img "Patient" [ref=e452]
+                  - generic [ref=e453]:
+                    - generic [ref=e454]: "15"
+                    - text: N/A
+              - cell "N/A N/A" [ref=e455]:
+                - generic [ref=e456]:
+                  - generic [ref=e457]: N/A
+                  - text: N/A
+              - cell "1000.00" [ref=e458]
+              - cell "1000.00" [ref=e459]
+              - cell "0.00" [ref=e460]
+              - cell "Paid" [ref=e461]:
+                - generic [ref=e462]: Paid
+              - cell "11/27/2025" [ref=e463]
+              - cell [ref=e464]:
+                - group [ref=e465]:
+                  - button "" [ref=e466] [cursor=pointer]:
+                    - generic [ref=e467]: 
+                  - button "" [ref=e468] [cursor=pointer]:
+                    - generic [ref=e469]: 
+                  - button "" [ref=e470] [cursor=pointer]:
+                    - generic [ref=e471]: 
+                  - button "" [ref=e472] [cursor=pointer]:
+                    - generic [ref=e473]: 
+            - row "BILL202511298995 Patient 15 N/A APT20251129140 11/29/2025 275.00 275.00 0.00 Paid N/A" [ref=e474]:
+              - cell "BILL202511298995" [ref=e475]
+              - cell "Patient 15 N/A" [ref=e476]:
+                - generic [ref=e477]:
+                  - img "Patient" [ref=e478]
+                  - generic [ref=e479]:
+                    - generic [ref=e480]: "15"
+                    - text: N/A
+              - cell "APT20251129140 11/29/2025" [ref=e481]:
+                - generic [ref=e482]:
+                  - generic [ref=e483]: APT20251129140
+                  - text: 11/29/2025
+              - cell "275.00" [ref=e484]
+              - cell "275.00" [ref=e485]
+              - cell "0.00" [ref=e486]
+              - cell "Paid" [ref=e487]:
+                - generic [ref=e488]: Paid
+              - cell "N/A" [ref=e489]
+              - cell [ref=e490]:
+                - group [ref=e491]:
+                  - button "" [ref=e492] [cursor=pointer]:
+                    - generic [ref=e493]: 
+                  - button "" [ref=e494] [cursor=pointer]:
+                    - generic [ref=e495]: 
+                  - button "" [ref=e496] [cursor=pointer]:
+                    - generic [ref=e497]: 
+                  - button "" [ref=e498] [cursor=pointer]:
+                    - generic [ref=e499]: 
+  - text:  +
+```

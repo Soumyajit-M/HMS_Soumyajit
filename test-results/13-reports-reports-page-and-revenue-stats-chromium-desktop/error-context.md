@@ -1,0 +1,178 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]: 
+        - heading "Hospital Management System" [level=5] [ref=e8]
+      - list [ref=e9]:
+        - listitem [ref=e10]:
+          - link " Dashboard" [ref=e11] [cursor=pointer]:
+            - /url: dashboard.php
+            - generic [ref=e12]: 
+            - text: Dashboard
+        - listitem [ref=e13]:
+          - link " Patients" [ref=e14] [cursor=pointer]:
+            - /url: patients.php
+            - generic [ref=e15]: 
+            - text: Patients
+        - listitem [ref=e16]:
+          - link " Doctors" [ref=e17] [cursor=pointer]:
+            - /url: doctors.php
+            - generic [ref=e18]: 
+            - text: Doctors
+        - listitem [ref=e19]:
+          - link " Staff" [ref=e20] [cursor=pointer]:
+            - /url: staff.php
+            - generic [ref=e21]: 
+            - text: Staff
+        - listitem [ref=e22]:
+          - link " Schedules" [ref=e23] [cursor=pointer]:
+            - /url: schedules.php
+            - generic [ref=e24]: 
+            - text: Schedules
+        - listitem [ref=e25]:
+          - link " Rooms & Beds" [ref=e26] [cursor=pointer]:
+            - /url: rooms.php
+            - generic [ref=e27]: 
+            - text: Rooms & Beds
+        - listitem [ref=e28]:
+          - link " Laboratory" [ref=e29] [cursor=pointer]:
+            - /url: laboratory.php
+            - generic [ref=e30]: 
+            - text: Laboratory
+        - listitem [ref=e31]:
+          - link " Inventory" [ref=e32] [cursor=pointer]:
+            - /url: inventory.php
+            - generic [ref=e33]: 
+            - text: Inventory
+        - listitem [ref=e34]:
+          - link " Appointments" [ref=e35] [cursor=pointer]:
+            - /url: appointments.php
+            - generic [ref=e36]: 
+            - text: Appointments
+        - listitem [ref=e37]:
+          - link " Billing" [ref=e38] [cursor=pointer]:
+            - /url: billing.php
+            - generic [ref=e39]: 
+            - text: Billing
+        - listitem [ref=e40]:
+          - link " Insurance" [ref=e41] [cursor=pointer]:
+            - /url: insurance.php
+            - generic [ref=e42]: 
+            - text: Insurance
+        - listitem [ref=e43]:
+          - link " Telemedicine" [ref=e44] [cursor=pointer]:
+            - /url: telemedicine.php
+            - generic [ref=e45]: 
+            - text: Telemedicine
+        - listitem [ref=e46]:
+          - link " Reports" [ref=e47] [cursor=pointer]:
+            - /url: reports.php
+            - generic [ref=e48]: 
+            - text: Reports
+        - listitem [ref=e49]:
+          - link " Settings" [ref=e50] [cursor=pointer]:
+            - /url: settings.php
+            - generic [ref=e51]: 
+            - text: Settings
+      - separator [ref=e52]
+      - list [ref=e53]:
+        - listitem [ref=e54]:
+          - link " Logout" [ref=e55] [cursor=pointer]:
+            - /url: logout.php
+            - generic [ref=e56]: 
+            - text: Logout
+  - main [ref=e57]:
+    - generic [ref=e58]:
+      - heading "Reports & Analytics" [level=1] [ref=e59]
+      - generic [ref=e60]:
+        - button " Export PDF" [ref=e61] [cursor=pointer]:
+          - generic [ref=e62]: 
+          - text: Export PDF
+        - button " Export Excel" [ref=e63] [cursor=pointer]:
+          - generic [ref=e64]: 
+          - text: Export Excel
+    - generic [ref=e65]:
+      - generic [ref=e66]:
+        - generic [ref=e67]: Start Date
+        - textbox "Start Date" [ref=e68]: 2025-11-30
+      - generic [ref=e69]:
+        - generic [ref=e70]: End Date
+        - textbox "End Date" [ref=e71]: 2025-12-30
+      - generic [ref=e72]:
+        - generic [ref=e73]: Report Type
+        - combobox "Report Type" [ref=e74]:
+          - option "Overview" [selected]
+          - option "Patients"
+          - option "Appointments"
+          - option "Billing"
+          - option "Doctors"
+      - generic [ref=e75]:
+        - generic [ref=e76]: Doctor
+        - combobox "Doctor" [ref=e77]:
+          - option "All Doctors" [selected]
+          - option "K Ghosh"
+          - option "moni mala mondal"
+          - option "K Ghosh"
+          - option "H hasan"
+          - option "J Gupta"
+          - option "Soumyajit Mondal"
+          - option "Int Test"
+          - option "Int Test"
+          - option "Int Test"
+      - generic [ref=e78]:
+        - generic [ref=e79]: Department
+        - combobox "Department" [ref=e80]:
+          - option "All Departments" [selected]
+          - option "Cardiology"
+          - option "Emergency"
+          - option "General Medicine"
+          - option "Neurology"
+          - option "Orthopedics"
+          - option "Pediatrics"
+      - button " Generate Report" [ref=e83] [cursor=pointer]:
+        - generic [ref=e84]: 
+        - text: Generate Report
+    - generic [ref=e85]:
+      - generic [ref=e89]:
+        - generic [ref=e90]:
+          - generic [ref=e91]: Total Patients
+          - generic [ref=e92]: "--"
+        - generic [ref=e94]: 
+      - generic [ref=e98]:
+        - generic [ref=e99]:
+          - generic [ref=e100]: Total Appointments
+          - generic [ref=e101]: "--"
+        - generic [ref=e103]: 
+      - generic [ref=e107]:
+        - generic [ref=e108]:
+          - generic [ref=e109]: Total Revenue
+          - generic [ref=e110]: "--"
+        - generic [ref=e112]: $
+      - generic [ref=e116]:
+        - generic [ref=e117]:
+          - generic [ref=e118]: Active Doctors
+          - generic [ref=e119]: "--"
+        - generic [ref=e121]: 
+    - generic [ref=e122]:
+      - heading "Appointments Trend" [level=6] [ref=e126]
+      - heading "Patient Demographics" [level=6] [ref=e133]
+    - generic [ref=e137]:
+      - heading "Revenue Analysis" [level=6] [ref=e141]
+      - heading "Payment Status" [level=6] [ref=e148]
+    - generic [ref=e152]:
+      - heading "Detailed Report" [level=6] [ref=e154]
+      - table [ref=e157]:
+        - rowgroup [ref=e158]:
+          - row "Date Patients Appointments Revenue New Patients Completed" [ref=e159]:
+            - columnheader "Date" [ref=e160]
+            - columnheader "Patients" [ref=e161]
+            - columnheader "Appointments" [ref=e162]
+            - columnheader "Revenue" [ref=e163]
+            - columnheader "New Patients" [ref=e164]
+            - columnheader "Completed" [ref=e165]
+        - rowgroup
+```

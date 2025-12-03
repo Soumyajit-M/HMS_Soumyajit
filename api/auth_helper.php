@@ -23,7 +23,13 @@ function api_require_login($roles = null) {
     }
 
     // CI bypass for automated checks (only when explicitly enabled)
-    if (getenv('CI_AUTH_BYPASS') === '1') {
+    $ciBypass = getenv('CI_AUTH_BYPASS');
+    if (
+        $ciBypass === '1' ||
+        (isset($_ENV['CI_AUTH_BYPASS']) && $_ENV['CI_AUTH_BYPASS'] === '1') ||
+        (isset($_SERVER['CI_AUTH_BYPASS']) && $_SERVER['CI_AUTH_BYPASS'] === '1') ||
+        (defined('CI_AUTH_BYPASS') && CI_AUTH_BYPASS === true)
+    ) {
         return $authInstance;
     }
 
