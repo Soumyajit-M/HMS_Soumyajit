@@ -194,6 +194,7 @@ CREATE TABLE system_settings (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     setting_key TEXT UNIQUE NOT NULL,
     setting_value TEXT,
+    setting_type TEXT DEFAULT 'string',
     description TEXT,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );

@@ -1,4 +1,12 @@
 // Patients Management JavaScript
+
+// Sanitize HTML to prevent XSS
+function sanitizeHTML(str) {
+    const temp = document.createElement('div');
+    temp.textContent = str;
+    return temp.innerHTML;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize patients table
     initializePatientsTable();
@@ -121,25 +129,25 @@ function createPatientRow(patient) {
     const age = calculateAge(patient.date_of_birth);
     
     row.innerHTML = `
-        <td>${patient.patient_id}</td>
+        <td>${sanitizeHTML(patient.patient_id)}</td>
         <td>
             <div class="d-flex align-items-center">
-                <img src="${patient.profile_image || 'assets/images/default-avatar.png'}" 
+                <img src="${sanitizeHTML(patient.profile_image) || 'assets/images/default-avatar.png'}"
                      class="rounded-circle me-2" width="32" height="32" alt="Avatar">
                 <div>
-                    <div class="fw-bold">${patient.first_name} ${patient.last_name}</div>
-                    <small class="text-muted">${patient.email}</small>
+                    <div class="fw-bold">${sanitizeHTML(patient.first_name)} ${sanitizeHTML(patient.last_name)}</div>
+                    <small class="text-muted">${sanitizeHTML(patient.email)}</small>
                 </div>
             </div>
         </td>
-        <td>${patient.phone}</td>
+        <td>${sanitizeHTML(patient.phone)}</td>
         <td>${age}</td>
         <td>
             <span class="badge bg-${getGenderBadgeColor(patient.gender)}">
-                ${patient.gender.charAt(0).toUpperCase() + patient.gender.slice(1)}
+                ${sanitizeHTML(patient.gender).charAt(0).toUpperCase() + sanitizeHTML(patient.gender).slice(1)}
             </span>
         </td>
-        <td>${patient.blood_type || 'N/A'}</td>
+        <td>${sanitizeHTML(patient.blood_type) || 'N/A'}</td>
         <td>
             <div class="btn-group" role="group">
                 <button type="button" class="btn btn-sm btn-outline-primary" 
@@ -375,16 +383,16 @@ function showPatientModal(patient, mode) {
                     <hr>
                 </div>
                 <div class="col-md-6">
-                    <p><strong>Name:</strong> ${patient.name || 'N/A'}</p>
-                    <p><strong>Email:</strong> ${patient.email || 'N/A'}</p>
-                    <p><strong>Phone:</strong> ${patient.phone || 'N/A'}</p>
-                    <p><strong>Date of Birth:</strong> ${patient.date_of_birth || 'N/A'}</p>
+                    <p><strong>Name:</strong> ${sanitizeHTML(patient.name) || 'N/A'}</p>
+                    <p><strong>Email:</strong> ${sanitizeHTML(patient.email) || 'N/A'}</p>
+                    <p><strong>Phone:</strong> ${sanitizeHTML(patient.phone) || 'N/A'}</p>
+                    <p><strong>Date of Birth:</strong> ${sanitizeHTML(patient.date_of_birth) || 'N/A'}</p>
                     <p><strong>Age:</strong> ${age} years</p>
                 </div>
                 <div class="col-md-6">
-                    <p><strong>Gender:</strong> ${patient.gender ? patient.gender.charAt(0).toUpperCase() + patient.gender.slice(1) : 'N/A'}</p>
-                    <p><strong>Blood Type:</strong> ${patient.blood_type || 'N/A'}</p>
-                    <p><strong>Address:</strong> ${patient.address || 'N/A'}</p>
+                    <p><strong>Gender:</strong> ${patient.gender ? sanitizeHTML(patient.gender).charAt(0).toUpperCase() + sanitizeHTML(patient.gender).slice(1) : 'N/A'}</p>
+                    <p><strong>Blood Type:</strong> ${sanitizeHTML(patient.blood_type) || 'N/A'}</p>
+                    <p><strong>Address:</strong> ${sanitizeHTML(patient.address) || 'N/A'}</p>
                 </div>
                 
                 <div class="col-md-12 mt-3 mb-3">
@@ -392,9 +400,9 @@ function showPatientModal(patient, mode) {
                     <hr>
                 </div>
                 <div class="col-md-6">
-                    <p><strong>Contact Name:</strong> ${patient.emergency_contact_name || 'N/A'}</p>
-                    <p><strong>Contact Phone:</strong> ${patient.emergency_contact_phone || 'N/A'}</p>
-                    <p><strong>Contact Email:</strong> ${patient.emergency_contact_email || 'N/A'}</p>
+                    <p><strong>Contact Name:</strong> ${sanitizeHTML(patient.emergency_contact_name) || 'N/A'}</p>
+                    <p><strong>Contact Phone:</strong> ${sanitizeHTML(patient.emergency_contact_phone) || 'N/A'}</p>
+                    <p><strong>Contact Email:</strong> ${sanitizeHTML(patient.emergency_contact_email) || 'N/A'}</p>
                 </div>
                 
                 <div class="col-md-12 mt-3 mb-3">
@@ -402,8 +410,8 @@ function showPatientModal(patient, mode) {
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <p><strong>Allergies:</strong><br>${patient.allergies || 'None reported'}</p>
-                    <p><strong>Medical History:</strong><br>${patient.medical_history || 'No history available'}</p>
+                    <p><strong>Allergies:</strong><br>${sanitizeHTML(patient.allergies) || 'None reported'}</p>
+                    <p><strong>Medical History:</strong><br>${sanitizeHTML(patient.medical_history) || 'No history available'}</p>
                 </div>
                 
                 <div class="col-md-12 mt-3 mb-3">
@@ -411,8 +419,8 @@ function showPatientModal(patient, mode) {
                     <hr>
                 </div>
                 <div class="col-md-6">
-                    <p><strong>Provider:</strong> ${patient.insurance_provider || 'N/A'}</p>
-                    <p><strong>Insurance Number:</strong> ${patient.insurance_number || 'N/A'}</p>
+                    <p><strong>Provider:</strong> ${sanitizeHTML(patient.insurance_provider) || 'N/A'}</p>
+                    <p><strong>Insurance Number:</strong> ${sanitizeHTML(patient.insurance_number) || 'N/A'}</p>
                 </div>
             </div>
         `;
