@@ -1,4 +1,12 @@
 // Rooms & Bed Management JavaScript
+
+// Sanitize HTML to prevent XSS
+function sanitizeHTML(str) {
+    const temp = document.createElement('div');
+    temp.textContent = str;
+    return temp.innerHTML;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Data is loaded server-side via PHP, no need to call loadWards/loadRooms
     
@@ -306,10 +314,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         : ((assignment.patient_first_name || '') + ' ' + (assignment.patient_last_name || '')).trim();
                     const row = `
                         <tr>
-                            <td>${assignment.room_number || ''}</td>
-                            <td>${assignment.bed_number || ''}</td>
-                            <td>${patientName || 'N/A'}</td>
-                            <td>${assignment.admission_date || 'N/A'}</td>
+                            <td>${sanitizeHTML(assignment.room_number) || ''}</td>
+                            <td>${sanitizeHTML(assignment.bed_number) || ''}</td>
+                            <td>${sanitizeHTML(patientName) || 'N/A'}</td>
+                            <td>${sanitizeHTML(assignment.admission_date) || 'N/A'}</td>
                             <td>
                                 ${(() => {
                                     const status = (assignment.status || '').toLowerCase();

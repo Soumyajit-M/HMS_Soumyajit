@@ -1,4 +1,12 @@
 // Billing Management JavaScript
+
+// Sanitize HTML to prevent XSS
+function sanitizeHTML(str) {
+    const temp = document.createElement('div');
+    temp.textContent = str;
+    return temp.innerHTML;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize billing table
     initializeBillingTable();
@@ -154,20 +162,20 @@ function createBillRow(bill) {
     const statusLabel = safeBill.payment_status.charAt(0).toUpperCase() + safeBill.payment_status.slice(1);
 
     row.innerHTML = `
-        <td>${safeBill.bill_number}</td>
+        <td>${sanitizeHTML(safeBill.bill_number)}</td>
         <td>
             <div class="d-flex align-items-center">
-                <img src="${safeBill.patient_image}" 
+                <img src="${sanitizeHTML(safeBill.patient_image)}"
                      class="rounded-circle me-2" width="32" height="32" alt="Patient">
                 <div>
-                    <div class="fw-bold">${safeBill.patient_name}</div>
-                    <small class="text-muted">${safeBill.patient_phone}</small>
+                    <div class="fw-bold">${sanitizeHTML(safeBill.patient_name)}</div>
+                    <small class="text-muted">${sanitizeHTML(safeBill.patient_phone)}</small>
                 </div>
             </div>
         </td>
         <td>
             <div>
-                <div class="fw-bold">${safeBill.appointment_id}</div>
+                <div class="fw-bold">${sanitizeHTML(safeBill.appointment_id)}</div>
                 <small class="text-muted">${safeBill.appointment_date ? new Date(safeBill.appointment_date).toLocaleDateString() : 'N/A'}</small>
             </div>
         </td>
@@ -176,7 +184,7 @@ function createBillRow(bill) {
         <td class="fw-bold" data-amount="${safeBill.balance_amount}" data-currency="${safeBill.currency}">${safeBill.balance_amount.toFixed(2)}</td>
         <td>
             <span class="badge bg-${getStatusBadgeColor(safeBill.payment_status)}">
-                ${statusLabel}
+                ${sanitizeHTML(statusLabel)}
             </span>
         </td>
         <td>
@@ -496,17 +504,17 @@ function showBillModal(bill, mode) {
             <td class='text-end' data-amount='${parseFloat(i.total_price)||0}' data-currency='${(window.getDefaultCurrency && window.getDefaultCurrency())||'INR'}'>${parseFloat(i.total_price).toFixed(2)}</td>
         </tr>`).join('');
         content.innerHTML = `
-            <div class='mb-2'><strong>Bill #</strong> ${bill.bill_number}</div>
-            <div class='mb-2'><strong>Patient:</strong> ${bill.patient_name} ${bill.patient_phone? '('+bill.patient_phone+')':''}</div>
+            <div class='mb-2'><strong>Bill #</strong> ${sanitizeHTML(bill.bill_number)}</div>
+            <div class='mb-2'><strong>Patient:</strong> ${sanitizeHTML(bill.patient_name)} ${bill.patient_phone? '('+sanitizeHTML(bill.patient_phone)+')':''}</div>
             <div class='row g-2 mb-2'>
                 <div class='col-6'><strong>Total:</strong> <span data-amount='${parseFloat(bill.total_amount)||0}' data-currency='${(window.getDefaultCurrency && window.getDefaultCurrency())||'INR'}'>${parseFloat(bill.total_amount).toFixed(2)}</span></div>
                 <div class='col-6'><strong>Paid:</strong> <span data-amount='${parseFloat(bill.paid_amount)||0}' data-currency='${(window.getDefaultCurrency && window.getDefaultCurrency())||'INR'}'>${parseFloat(bill.paid_amount).toFixed(2)}</span></div>
                 <div class='col-6'><strong>Balance:</strong> <span data-amount='${parseFloat(bill.balance_amount)||0}' data-currency='${(window.getDefaultCurrency && window.getDefaultCurrency())||'INR'}'>${parseFloat(bill.balance_amount).toFixed(2)}</span></div>
-                <div class='col-6'><strong>Status:</strong> <span class='badge bg-${getStatusBadgeColor(bill.payment_status)}'>${bill.payment_status}</span></div>
+                <div class='col-6'><strong>Status:</strong> <span class='badge bg-${getStatusBadgeColor(bill.payment_status)}'>${sanitizeHTML(bill.payment_status)}</span></div>
             </div>
-            <div class='mb-2'><strong>Appointment:</strong> ${bill.appointment_id||'N/A'} on ${bill.appointment_date||'N/A'}</div>
+            <div class='mb-2'><strong>Appointment:</strong> ${sanitizeHTML(bill.appointment_id)||'N/A'} on ${sanitizeHTML(bill.appointment_date)||'N/A'}</div>
             <div class='mb-2'><strong>Due Date:</strong> ${bill.due_date? new Date(bill.due_date).toLocaleDateString(): 'N/A'}</div>
-            <div class='mb-2'><strong>Notes:</strong><br>${(bill.notes||'').replace(/\n/g,'<br>')}</div>
+            <div class='mb-2'><strong>Notes:</strong><br>${(sanitizeHTML(bill.notes)||'').replace(/\n/g,'<br>')}</div>
             <div class='mt-3'>
                 <strong>Items:</strong>
                 <table class='table table-sm'>

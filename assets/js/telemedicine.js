@@ -1,4 +1,12 @@
 // Telemedicine Management JavaScript
+
+// Sanitize HTML to prevent XSS
+function sanitizeHTML(str) {
+    const temp = document.createElement('div');
+    temp.textContent = str;
+    return temp.innerHTML;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Schedule Session
     document.getElementById('saveSessionBtn').addEventListener('click', function() {

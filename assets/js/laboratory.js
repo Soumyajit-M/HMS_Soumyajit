@@ -1,4 +1,12 @@
 // Laboratory Management JavaScript
+
+// Sanitize HTML to prevent XSS
+function sanitizeHTML(str) {
+    const temp = document.createElement('div');
+    temp.textContent = str;
+    return temp.innerHTML;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Load initial data
     loadOrders();
@@ -181,13 +189,13 @@ function updateOrdersTable(orders) {
         else if (order.priority == 'High') priorityClass = 'warning';
         
         const row = `
-            <tr data-status="${order.status}">
-                <td>${order.id}</td>
-                <td>${order.patient_name}</td>
-                <td>${order.doctor_name}</td>
-                <td>${order.order_date}</td>
-                <td><span class="badge bg-${statusClass}">${order.status}</span></td>
-                <td><span class="badge bg-${priorityClass}">${order.priority}</span></td>
+            <tr data-status="${sanitizeHTML(order.status)}">
+                <td>${sanitizeHTML(order.id)}</td>
+                <td>${sanitizeHTML(order.patient_name)}</td>
+                <td>${sanitizeHTML(order.doctor_name)}</td>
+                <td>${sanitizeHTML(order.order_date)}</td>
+                <td><span class="badge bg-${statusClass}">${sanitizeHTML(order.status)}</span></td>
+                <td><span class="badge bg-${priorityClass}">${sanitizeHTML(order.priority)}</span></td>
                 <td>
                     <button class="btn btn-sm btn-info view-tests" data-id="${order.id}">
                         <i class="fas fa-eye"></i>
@@ -266,10 +274,10 @@ function loadOrderTests(orderId) {
             result.tests.forEach(test => {
                 const row = `
                     <tr>
-                        <td>${test.test_name}</td>
-                        <td>${test.test_code}</td>
-                        <td>${test.category}</td>
-                        <td>$${test.price}</td>
+                        <td>${sanitizeHTML(test.test_name)}</td>
+                        <td>${sanitizeHTML(test.test_code)}</td>
+                        <td>${sanitizeHTML(test.category)}</td>
+                        <td>$${sanitizeHTML(test.price)}</td>
                     </tr>
                 `;
                 tbody.innerHTML += row;

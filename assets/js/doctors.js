@@ -1,4 +1,12 @@
 // Doctors Management JavaScript
+
+// Sanitize HTML to prevent XSS
+function sanitizeHTML(str) {
+    const temp = document.createElement('div');
+    temp.textContent = str;
+    return temp.innerHTML;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize doctors table
     initializeDoctorsTable();
@@ -147,21 +155,21 @@ function createDoctorRow(doctor) {
     const row = document.createElement('tr');
     
     row.innerHTML = `
-        <td>${doctor.doctor_id}</td>
+        <td>${sanitizeHTML(doctor.doctor_id)}</td>
         <td>
             <div class="d-flex align-items-center">
-                <img src="${doctor.profile_image || 'assets/images/default-avatar.png'}" 
+                <img src="${sanitizeHTML(doctor.profile_image) || 'assets/images/default-avatar.png'}"
                      class="rounded-circle me-2" width="32" height="32" alt="Doctor">
                 <div>
-                    <div class="fw-bold">Dr. ${doctor.first_name} ${doctor.last_name}</div>
-                    <small class="text-muted">${doctor.email}</small>
+                    <div class="fw-bold">Dr. ${sanitizeHTML(doctor.first_name)} ${sanitizeHTML(doctor.last_name)}</div>
+                    <small class="text-muted">${sanitizeHTML(doctor.email)}</small>
                 </div>
             </div>
         </td>
         <td>
-            <span class="badge bg-primary">${doctor.specialization}</span>
+            <span class="badge bg-primary">${sanitizeHTML(doctor.specialization)}</span>
         </td>
-        <td>${doctor.experience_years} years</td>
+        <td>${sanitizeHTML(doctor.experience_years)} years</td>
         <td>$${parseFloat(doctor.consultation_fee).toFixed(2)}</td>
         <td>
             <span class="badge bg-${doctor.is_active ? 'success' : 'danger'}">
@@ -181,6 +189,10 @@ function createDoctorRow(doctor) {
                 <button type="button" class="btn btn-sm btn-outline-success" 
                         onclick="viewSchedule(${doctor.id})">
                     <i class="fas fa-calendar"></i>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-danger"
+                        onclick="deleteDoctor(${doctor.id})">
+                    <i class="fas fa-trash"></i>
                 </button>
             </div>
         </td>
@@ -382,16 +394,16 @@ function showDoctorModal(doctor, mode) {
                     <hr>
                 </div>
                 <div class="col-md-6">
-                    <p><strong>Name:</strong> Dr. ${doctor.first_name} ${doctor.last_name}</p>
-                    <p><strong>Doctor ID:</strong> ${doctor.doctor_id}</p>
-                    <p><strong>Email:</strong> ${doctor.email}</p>
-                    <p><strong>Phone:</strong> ${doctor.phone || 'N/A'}</p>
+                    <p><strong>Name:</strong> Dr. ${sanitizeHTML(doctor.first_name)} ${sanitizeHTML(doctor.last_name)}</p>
+                    <p><strong>Doctor ID:</strong> ${sanitizeHTML(doctor.doctor_id)}</p>
+                    <p><strong>Email:</strong> ${sanitizeHTML(doctor.email)}</p>
+                    <p><strong>Phone:</strong> ${sanitizeHTML(doctor.phone) || 'N/A'}</p>
                 </div>
                 <div class="col-md-6">
-                    <p><strong>Specialization:</strong> ${doctor.specialization}</p>
-                    <p><strong>Qualification:</strong> ${doctor.qualification || 'N/A'}</p>
-                    <p><strong>Experience:</strong> ${doctor.experience_years} years</p>
-                    <p><strong>License Number:</strong> ${doctor.license_number || 'N/A'}</p>
+                    <p><strong>Specialization:</strong> ${sanitizeHTML(doctor.specialization)}</p>
+                    <p><strong>Qualification:</strong> ${sanitizeHTML(doctor.qualification) || 'N/A'}</p>
+                    <p><strong>Experience:</strong> ${sanitizeHTML(doctor.experience_years)} years</p>
+                    <p><strong>License Number:</strong> ${sanitizeHTML(doctor.license_number) || 'N/A'}</p>
                 </div>
                 
                 <div class="col-md-12 mt-3 mb-3">
@@ -404,7 +416,7 @@ function showDoctorModal(doctor, mode) {
                 </div>
                 <div class="col-md-6">
                     <p><strong>Status:</strong> <span class="badge bg-${doctor.is_active ? 'success' : 'danger'}">${doctor.is_active ? 'Active' : 'Inactive'}</span></p>
-                    <p><strong>Department:</strong> ${doctor.department_name || 'N/A'}</p>
+                    <p><strong>Department:</strong> ${sanitizeHTML(doctor.department_name) || 'N/A'}</p>
                 </div>
             </div>
         `;

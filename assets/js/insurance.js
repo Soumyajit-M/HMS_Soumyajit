@@ -1,4 +1,12 @@
 // Insurance Management JavaScript
+
+// Sanitize HTML to prevent XSS
+function sanitizeHTML(str) {
+    const temp = document.createElement('div');
+    temp.textContent = str;
+    return temp.innerHTML;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Add Provider
     document.getElementById('saveProviderBtn').addEventListener('click', function() {
