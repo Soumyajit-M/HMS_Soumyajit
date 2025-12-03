@@ -72,7 +72,7 @@ class Patient {
             }
 
             // Generate unique patient ID
-            $patientId = 'PAT' . date('Y') . str_pad(rand(1, 9999), 4, '0', STR_PAD_LEFT);
+            $patientId = 'PAT' . uniqid();
 
             $query = "INSERT INTO patients (patient_id, first_name, last_name, email, phone,
                      date_of_birth, gender, address, emergency_contact_name, emergency_contact_phone,

@@ -1,4 +1,12 @@
 // Schedules Management JavaScript
+
+// Sanitize HTML to prevent XSS
+function sanitizeHTML(str) {
+    const temp = document.createElement('div');
+    temp.textContent = str;
+    return temp.innerHTML;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Load initial data
     loadSchedules();
@@ -79,11 +87,11 @@ function updateSchedulesTable(schedules) {
     schedules.forEach(s => {
         const row = `
             <tr>
-                <td>${s.first_name} ${s.last_name}</td>
-                <td>${s.specialization}</td>
-                <td>${s.day_of_week}</td>
-                <td>${s.start_time} - ${s.end_time}</td>
-                <td>${s.room_number || 'N/A'}</td>
+                <td>${sanitizeHTML(s.first_name)} ${sanitizeHTML(s.last_name)}</td>
+                <td>${sanitizeHTML(s.specialization)}</td>
+                <td>${sanitizeHTML(s.day_of_week)}</td>
+                <td>${sanitizeHTML(s.start_time)} - ${sanitizeHTML(s.end_time)}</td>
+                <td>${sanitizeHTML(s.room_number) || 'N/A'}</td>
                 <td>${s.is_available ? '<span class="badge bg-success">Available</span>' : '<span class="badge bg-secondary">Not Available</span>'}</td>
                 <td>
                     <button class="btn btn-sm btn-info edit-schedule" data-id="${s.id}"><i class="fas fa-edit"></i></button>
@@ -119,10 +127,10 @@ function updateLeavesTable(leaves) {
     leaves.forEach(leave => {
         const row = `
             <tr>
-                <td>${leave.first_name} ${leave.last_name}</td>
-                <td>${leave.leave_date}</td>
-                <td><span class="badge bg-info">${leave.leave_type}</span></td>
-                <td>${leave.reason || 'N/A'}</td>
+                <td>${sanitizeHTML(leave.first_name)} ${sanitizeHTML(leave.last_name)}</td>
+                <td>${sanitizeHTML(leave.leave_date)}</td>
+                <td><span class="badge bg-info">${sanitizeHTML(leave.leave_type)}</span></td>
+                <td>${sanitizeHTML(leave.reason) || 'N/A'}</td>
                 <td>${leave.is_approved ? '<span class="badge bg-success">Approved</span>' : '<span class="badge bg-warning">Pending</span>'}</td>
                 <td>
                     ${!leave.is_approved ? '<button class="btn btn-sm btn-success approve-leave" data-id="' + leave.id + '"><i class="fas fa-check"></i></button>' : ''}

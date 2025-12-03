@@ -140,12 +140,10 @@ switch ($method) {
         }
 
         $result = $patient->deletePatient($id);
-        if (is_array($result)) {
-            echo json_encode($result);
-        } else if ($result) {
+        if ($result['success']) {
             echo json_encode(['success' => true, 'message' => 'Patient deleted successfully']);
         } else {
-            echo json_encode(['success' => false, 'message' => 'Error deleting patient']);
+            echo json_encode(['success' => false, 'message' => $result['message']]);
         }
         break;
         

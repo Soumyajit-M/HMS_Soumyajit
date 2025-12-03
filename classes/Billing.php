@@ -12,7 +12,7 @@ class Billing {
     public function createBill($data) {
         try {
             // Generate unique bill number
-            $billNumber = 'BILL' . date('Ymd') . str_pad(rand(1, 9999), 4, '0', STR_PAD_LEFT);
+            $billNumber = 'BILL' . uniqid();
             
             $query = "INSERT INTO billing (bill_number, patient_id, appointment_id, total_amount, 
                      paid_amount, balance_amount, payment_status, due_date) 
@@ -191,7 +191,7 @@ class Billing {
     public function recordPayment($data) {
         try {
             // Generate unique payment ID
-            $paymentId = 'PAY' . date('Ymd') . str_pad(rand(1, 9999), 4, '0', STR_PAD_LEFT);
+            $paymentId = 'PAY' . uniqid();
             
             $query = "INSERT INTO payments (payment_id, billing_id, amount, payment_method, 
                      transaction_id, notes, created_by) 

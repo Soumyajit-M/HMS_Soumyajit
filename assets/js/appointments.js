@@ -1,4 +1,12 @@
 // Appointments Management JavaScript
+
+// Sanitize HTML to prevent XSS
+function sanitizeHTML(str) {
+    const temp = document.createElement('div');
+    temp.textContent = str;
+    return temp.innerHTML;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize appointments table
     initializeAppointmentsTable();
@@ -124,24 +132,24 @@ function createAppointmentRow(appointment) {
     const specialization = appointment.specialization || appointment.department_name || '';
     
     row.innerHTML = `
-        <td>${appointment.appointment_id}</td>
+        <td>${sanitizeHTML(appointment.appointment_id)}</td>
         <td>
             <div class="d-flex align-items-center">
-                <img src="${appointment.patient_image || 'assets/images/default-avatar.png'}" 
+                <img src="${sanitizeHTML(appointment.patient_image) || 'assets/images/default-avatar.png'}"
                      class="rounded-circle me-2" width="32" height="32" alt="Patient">
                 <div>
-                    <div class="fw-bold">${patientName}</div>
-                    <small class="text-muted">${patientPhone}</small>
+                    <div class="fw-bold">${sanitizeHTML(patientName)}</div>
+                    <small class="text-muted">${sanitizeHTML(patientPhone)}</small>
                 </div>
             </div>
         </td>
         <td>
             <div class="d-flex align-items-center">
-                <img src="${appointment.doctor_image || 'assets/images/default-avatar.png'}" 
+                <img src="${sanitizeHTML(appointment.doctor_image) || 'assets/images/default-avatar.png'}"
                      class="rounded-circle me-2" width="32" height="32" alt="Doctor">
                 <div>
-                    <div class="fw-bold">Dr. ${doctorName}</div>
-                    <small class="text-muted">${specialization}</small>
+                    <div class="fw-bold">Dr. ${sanitizeHTML(doctorName)}</div>
+                    <small class="text-muted">${sanitizeHTML(specialization)}</small>
                 </div>
             </div>
         </td>
@@ -153,10 +161,10 @@ function createAppointmentRow(appointment) {
         </td>
         <td>
             <span class="badge bg-${getStatusBadgeColor(appointment.status)}">
-                ${appointment.status.charAt(0).toUpperCase() + appointment.status.slice(1)}
+                ${sanitizeHTML(appointment.status).charAt(0).toUpperCase() + sanitizeHTML(appointment.status).slice(1)}
             </span>
         </td>
-        <td>${appointment.reason || 'N/A'}</td>
+        <td>${sanitizeHTML(appointment.reason) || 'N/A'}</td>
         <td>
             <div class="btn-group" role="group">
                 <button type="button" class="btn btn-sm btn-outline-primary" 
@@ -402,15 +410,15 @@ function showAppointmentModal(appointment, mode) {
                     <hr>
                 </div>
                 <div class="col-md-6">
-                    <p><strong>Appointment ID:</strong> ${appointment.appointment_id || 'N/A'}</p>
+                    <p><strong>Appointment ID:</strong> ${sanitizeHTML(appointment.appointment_id) || 'N/A'}</p>
                     <p><strong>Date:</strong> ${formattedDate}</p>
-                    <p><strong>Time:</strong> ${appointment.appointment_time}</p>
-                    <p><strong>Type:</strong> ${appointment.appointment_type || 'Regular'}</p>
+                    <p><strong>Time:</strong> ${sanitizeHTML(appointment.appointment_time)}</p>
+                    <p><strong>Type:</strong> ${sanitizeHTML(appointment.appointment_type) || 'Regular'}</p>
                 </div>
                 <div class="col-md-6">
-                    <p><strong>Status:</strong> <span class="badge bg-${getStatusBadgeColor(appointment.status)}">${appointment.status}</span></p>
-                    <p><strong>Duration:</strong> ${appointment.duration || '30'} minutes</p>
-                    <p><strong>Department:</strong> ${appointment.department_name || 'N/A'}</p>
+                    <p><strong>Status:</strong> <span class="badge bg-${getStatusBadgeColor(appointment.status)}">${sanitizeHTML(appointment.status)}</span></p>
+                    <p><strong>Duration:</strong> ${sanitizeHTML(appointment.duration) || '30'} minutes</p>
+                    <p><strong>Department:</strong> ${sanitizeHTML(appointment.department_name) || 'N/A'}</p>
                 </div>
                 
                 <div class="col-md-12 mt-3 mb-3">
@@ -418,8 +426,8 @@ function showAppointmentModal(appointment, mode) {
                     <hr>
                 </div>
                 <div class="col-md-6">
-                    <p><strong>Patient Name:</strong> ${appointment.patient_name}</p>
-                    <p><strong>Phone:</strong> ${appointment.patient_phone || 'N/A'}</p>
+                    <p><strong>Patient Name:</strong> ${sanitizeHTML(appointment.patient_name)}</p>
+                    <p><strong>Phone:</strong> ${sanitizeHTML(appointment.patient_phone) || 'N/A'}</p>
                 </div>
                 
                 <div class="col-md-12 mt-3 mb-3">
@@ -427,8 +435,8 @@ function showAppointmentModal(appointment, mode) {
                     <hr>
                 </div>
                 <div class="col-md-6">
-                    <p><strong>Doctor:</strong> Dr. ${appointment.doctor_name}</p>
-                    <p><strong>Specialization:</strong> ${appointment.specialization || 'N/A'}</p>
+                    <p><strong>Doctor:</strong> Dr. ${sanitizeHTML(appointment.doctor_name)}</p>
+                    <p><strong>Specialization:</strong> ${sanitizeHTML(appointment.specialization) || 'N/A'}</p>
                 </div>
                 
                 <div class="col-md-12 mt-3 mb-3">
@@ -436,9 +444,9 @@ function showAppointmentModal(appointment, mode) {
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <p><strong>Reason:</strong><br>${appointment.reason || 'Not specified'}</p>
-                    <p><strong>Symptoms:</strong><br>${appointment.symptoms || 'Not specified'}</p>
-                    <p><strong>Notes:</strong><br>${appointment.notes || 'None'}</p>
+                    <p><strong>Reason:</strong><br>${sanitizeHTML(appointment.reason) || 'Not specified'}</p>
+                    <p><strong>Symptoms:</strong><br>${sanitizeHTML(appointment.symptoms) || 'Not specified'}</p>
+                    <p><strong>Notes:</strong><br>${sanitizeHTML(appointment.notes) || 'None'}</p>
                 </div>
             </div>
         `;

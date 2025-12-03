@@ -8,8 +8,8 @@
  * Usage: php tools/init_production_db.php
  */
 
-require_once __DIR__ . '/../config/config.php';
-require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../../config/config.php';
+require_once __DIR__ . '/../../config/database.php';
 
 echo "=== HMS 2.0 - Production Database Initialization ===\n\n";
 
@@ -25,17 +25,6 @@ try {
     if (count($tables) > 5) {
         echo "⚠️  WARNING: Database appears to already contain data.\n";
         echo "Found " . count($tables) . " tables.\n\n";
-        echo "Do you want to continue? This will NOT delete existing data.\n";
-        echo "It will only add missing tables and columns. (y/n): ";
-        
-        $handle = fopen("php://stdin", "r");
-        $line = trim(fgets($handle));
-        fclose($handle);
-        
-        if (strtolower($line) !== 'y') {
-            echo "\nAborted by user.\n";
-            exit(0);
-        }
         echo "\n";
     }
     
@@ -123,12 +112,12 @@ try {
     // 6. Create necessary directories
     echo "Step 6: Creating directory structure...\n";
     $dirs = [
-        __DIR__ . '/../logs',
-        __DIR__ . '/../backups',
-        __DIR__ . '/../uploads',
-        __DIR__ . '/../uploads/patients',
-        __DIR__ . '/../uploads/reports',
-        __DIR__ . '/../uploads/documents'
+        __DIR__ . '/../../logs',
+        __DIR__ . '/../../backups',
+        __DIR__ . '/../../uploads',
+        __DIR__ . '/../../uploads/patients',
+        __DIR__ . '/../../uploads/reports',
+        __DIR__ . '/../../uploads/documents'
     ];
     
     foreach ($dirs as $dir) {
@@ -144,10 +133,10 @@ try {
     // 7. Set file permissions (Unix-like systems only)
     if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN') {
         echo "Step 7: Setting file permissions (Linux/Mac)...\n";
-        chmod(__DIR__ . '/../database', 0777);
-        chmod(__DIR__ . '/../logs', 0777);
-        chmod(__DIR__ . '/../backups', 0777);
-        chmod(__DIR__ . '/../uploads', 0777);
+        chmod(__DIR__ . '/../../database', 0777);
+        chmod(__DIR__ . '/../../logs', 0777);
+        chmod(__DIR__ . '/../../backups', 0777);
+        chmod(__DIR__ . '/../../uploads', 0777);
         echo "✓ Permissions set\n\n";
     }
     
@@ -166,7 +155,7 @@ try {
     $tableCount = $conn->query("SELECT COUNT(*) as count FROM sqlite_master WHERE type='table'")->fetch(PDO::FETCH_ASSOC);
     echo "  Total tables: " . $tableCount['count'] . "\n";
     
-    $dbSize = filesize(__DIR__ . '/../database/hms_database.sqlite');
+    $dbSize = filesize(__DIR__ . '/../../database/hms_database.sqlite');
     echo "  Database size: " . number_format($dbSize / 1024, 2) . " KB\n\n";
     
     echo "Next Steps:\n";

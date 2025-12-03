@@ -1,4 +1,12 @@
 // Inventory Management JavaScript
+
+// Sanitize HTML to prevent XSS
+function sanitizeHTML(str) {
+    const temp = document.createElement('div');
+    temp.textContent = str;
+    return temp.innerHTML;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Load tabs when clicked
     document.querySelector('a[href="#lowStockTab"]').addEventListener('click', loadLowStock);
@@ -219,11 +227,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 result.items.forEach(item => {
                     const row = `
                         <tr>
-                            <td>${item.item_code}</td>
-                            <td>${item.item_name}</td>
-                            <td><span class="badge bg-warning">${item.total_quantity}</span></td>
-                            <td>${item.reorder_level}</td>
-                            <td>${item.category}</td>
+                            <td>${sanitizeHTML(item.item_code)}</td>
+                            <td>${sanitizeHTML(item.item_name)}</td>
+                            <td><span class="badge bg-warning">${sanitizeHTML(item.total_quantity)}</span></td>
+                            <td>${sanitizeHTML(item.reorder_level)}</td>
+                            <td>${sanitizeHTML(item.category)}</td>
                         </tr>
                     `;
                     tbody.innerHTML += row;
@@ -250,10 +258,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     const row = `
                         <tr>
-                            <td>${batch.batch_number}</td>
-                            <td>${batch.item_name}</td>
-                            <td>${batch.quantity}</td>
-                            <td>${batch.expiry_date}</td>
+                            <td>${sanitizeHTML(batch.batch_number)}</td>
+                            <td>${sanitizeHTML(batch.item_name)}</td>
+                            <td>${sanitizeHTML(batch.quantity)}</td>
+                            <td>${sanitizeHTML(batch.expiry_date)}</td>
                             <td><span class="badge ${badgeClass}">${daysUntilExpiry} days</span></td>
                         </tr>
                     `;

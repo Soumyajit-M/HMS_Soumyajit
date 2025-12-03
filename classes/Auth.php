@@ -83,6 +83,14 @@ class Auth {
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }
+        $_SESSION = array();
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
         session_destroy();
         return ['success' => true, 'message' => 'Logged out successfully'];
     }
@@ -127,6 +135,7 @@ class Auth {
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }
+        session_regenerate_id(true);
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
