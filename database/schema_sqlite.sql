@@ -76,6 +76,7 @@ CREATE TABLE appointments (
     department_id INTEGER,
     appointment_date DATE NOT NULL,
     appointment_time TEXT NOT NULL,
+    appointment_type TEXT DEFAULT 'routine' CHECK (appointment_type IN ('routine', 'emergency', 'follow-up')),
     status TEXT DEFAULT 'scheduled' CHECK (status IN ('scheduled', 'confirmed', 'in_progress', 'completed', 'cancelled')),
     reason TEXT,
     notes TEXT,

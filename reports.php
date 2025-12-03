@@ -3,7 +3,7 @@ session_start();
 require_once 'config/config.php';
 require_once 'config/database.php';
 require_once 'classes/Auth.php';
-require_once 'classes/Dashboard.php';
+require_once 'classes/Report.php';
 
 $auth = new Auth();
 
@@ -13,7 +13,7 @@ if (!$auth->isLoggedIn()) {
     exit();
 }
 
-$dashboard = new Dashboard();
+$report = new Report();
 ?>
 <!DOCTYPE html>
 <html lang="en">

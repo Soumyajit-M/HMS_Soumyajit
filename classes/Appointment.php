@@ -249,7 +249,7 @@ class Appointment {
         try {
             $query = "SELECT COUNT(*) as count FROM appointments
                      WHERE status = 'scheduled'
-                     AND reason LIKE '%emergency%'";
+                     AND appointment_type = 'emergency'";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
             $result = $stmt->fetch();

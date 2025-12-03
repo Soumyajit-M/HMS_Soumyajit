@@ -97,7 +97,7 @@ class Doctor {
             $userId = $userResult['user_id'];
 
             // Generate unique doctor ID
-            $doctorId = 'DOC' . date('Y') . str_pad(rand(1, 9999), 4, '0', STR_PAD_LEFT);
+            $doctorId = 'DOC' . uniqid();
 
             $query = "INSERT INTO doctors (user_id, doctor_id, specialization, qualification,
                      experience_years, consultation_fee, available_days, available_time_start,

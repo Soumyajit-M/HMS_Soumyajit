@@ -40,7 +40,7 @@ class Staff {
             }
 
             // Generate staff ID
-            $staff_id = 'STF' . date('Ymd') . str_pad(rand(1, 9999), 4, '0', STR_PAD_LEFT);
+            $staff_id = 'STF' . uniqid();
 
             $sql = "INSERT INTO staff (staff_id, first_name, last_name, email, phone, role, department, hire_date, salary, emergency_contact, certification, is_active) 
                     VALUES (:staff_id, :first_name, :last_name, :email, :phone, :role, :department, :hire_date, :salary, :emergency_contact, :certification, :is_active)";

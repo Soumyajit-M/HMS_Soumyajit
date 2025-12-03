@@ -1,4 +1,12 @@
 // Staff Management JavaScript
+
+// Sanitize HTML to prevent XSS
+function sanitizeHTML(str) {
+    const temp = document.createElement('div');
+    temp.textContent = str;
+    return temp.innerHTML;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Staff.js loaded successfully');
     let staffData = [];
@@ -285,11 +293,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 result.shifts.forEach(shift => {
                     const row = `
                         <tr>
-                            <td>${shift.shift_date}</td>
-                            <td>${shift.first_name} ${shift.last_name}</td>
-                            <td><span class="badge bg-info">${shift.shift_type}</span></td>
-                            <td>${shift.start_time} - ${shift.end_time}</td>
-                            <td>${shift.assigned_ward || 'Not assigned'}</td>
+                            <td>${sanitizeHTML(shift.shift_date)}</td>
+                            <td>${sanitizeHTML(shift.first_name)} ${sanitizeHTML(shift.last_name)}</td>
+                            <td><span class="badge bg-info">${sanitizeHTML(shift.shift_type)}</span></td>
+                            <td>${sanitizeHTML(shift.start_time)} - ${sanitizeHTML(shift.end_time)}</td>
+                            <td>${sanitizeHTML(shift.assigned_ward) || 'Not assigned'}</td>
                             <td>
                                 <button class="btn btn-sm btn-danger delete-shift" data-id="${shift.id}">
                                     <i class="fas fa-trash"></i>

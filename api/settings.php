@@ -1,10 +1,10 @@
 <?php
 session_start();
 header('Content-Type: application/json; charset=utf-8');
-require_once '../config/config.php';
-require_once '../config/database.php';
-require_once '../classes/Auth.php';
-    require_once __DIR__ . '/auth_helper.php';
+require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../classes/Auth.php';
+require_once __DIR__ . '/auth_helper.php';
 
 $auth = new Auth();
 
