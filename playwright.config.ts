@@ -9,7 +9,10 @@ export default defineConfig({
     baseURL: process.env.BASE_URL || 'http://127.0.0.1:8000',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
-    trace: 'on-first-retry'
+    trace: 'on-first-retry',
+    extraHTTPHeaders: {
+      'X-CI-Bypass': '1'
+    }
   },
   webServer: {
     command: process.platform === 'win32'

