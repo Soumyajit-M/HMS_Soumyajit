@@ -4,8 +4,8 @@
  * Run this file once to add auto-billing tables to your database
  */
 
-require_once __DIR__ . '/../config/config.php';
-require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../../config/config.php';
+require_once __DIR__ . '/../../config/database.php';
 
 try {
     $database = new Database();
