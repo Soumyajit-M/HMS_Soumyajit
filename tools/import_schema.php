@@ -23,22 +23,41 @@ try {
         throw new Exception('Schema file is empty or unreadable');
     }
 
-    // Execute statements separated by ; while ignoring empty lines and comments
-    $statements = preg_split('/;\s*\n/', $sql);
+    // Execute statements separated by semicolons
+    $statements = explode(';', $sql);
     $applied = 0;
+    
     foreach ($statements as $stmt) {
-        $clean = trim($stmt);
-        if ($clean === '' || preg_match('/^--|^\/\*/', $clean)) {
+        // Remove comment lines but keep the SQL
+        $lines = explode("\n", $stmt);
+        $sqlLines = [];
+        foreach ($lines as $line) {
+            $trimmed = trim($line);
+            // Skip pure comment lines and empty lines
+            if ($trimmed === '' || preg_match('/^--/', $trimmed)) {
+                continue;
+            }
+            $sqlLines[] = $line;
+        }
+        
+        $clean = trim(implode("\n", $sqlLines));
+        
+        // Skip if nothing left after removing comments
+        if ($clean === '') {
             continue;
         }
+        
         try {
             $conn->exec($clean);
             $applied++;
         } catch (PDOException $e) {
             // Continue on duplicate/exists errors
-            if (strpos($e->getMessage(), 'already exists') !== false) {
+            if (strpos($e->getMessage(), 'already exists') !== false ||
+                strpos($e->getMessage(), 'UNIQUE constraint') !== false) {
                 continue;
             }
+            echo "\n❌ Error executing statement:\n";
+            echo substr($clean, 0, 300) . "...\n\n";
             throw $e;
         }
     }
