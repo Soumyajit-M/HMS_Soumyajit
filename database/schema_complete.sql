@@ -314,24 +314,10 @@ CREATE TABLE staff_shifts (
     shift_date DATE NOT NULL,
     start_time TEXT NOT NULL,
     end_time TEXT NOT NULL,
-    shift_type TEXT CHECK (
-        shift_type IN (
-            'morning',
-            'evening',
-            'night',
-            'full-day'
-        )
-    ),
-    status TEXT DEFAULT 'scheduled' CHECK (
-        status IN (
-            'scheduled',
-            'completed',
-            'absent',
-            'cancelled'
-        )
-    ),
+    shift_type TEXT,
+    status TEXT DEFAULT 'scheduled',
     assigned_ward TEXT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    created_at DATETIME,
     FOREIGN KEY (staff_id) REFERENCES staff (id) ON DELETE CASCADE
 );
 
