@@ -131,7 +131,13 @@ async function generateReport() {
 function displayReport(data, reportType) {
     let html = '';
 
+    // Update summary cards
+    updateSummaryCards(data);
+
     switch (reportType) {
+        case 'overview':
+            html = generateOverviewReport(data);
+            break;
         case 'patients':
             html = generatePatientReport(data);
             break;
@@ -149,6 +155,103 @@ function displayReport(data, reportType) {
     }
 
     document.getElementById('reportContent').innerHTML = html;
+}
+
+function updateSummaryCards(data) {
+    // Update total patients
+    const totalPatients = data.patient_stats?.total_patients || 0;
+    document.getElementById('totalPatients').textContent = totalPatients;
+
+    // Update total appointments
+    const totalAppointments = data.appointment_stats?.total_appointments || 0;
+    document.getElementById('totalAppointments').textContent = totalAppointments;
+
+    // Update total revenue
+    const totalRevenue = data.billing_stats?.total_revenue || 0;
+    document.getElementById('totalRevenue').textContent = formatCurrency(totalRevenue);
+
+    // Update active doctors
+    const activeDoctors = data.doctor_stats?.active_doctors || 0;
+    document.getElementById('activeDoctors').textContent = activeDoctors;
+}
+
+function generateOverviewReport(data) {
+    return `
+        <div class="row mb-4">
+            <div class="col-lg-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="m-0 font-weight-bold text-primary">Appointments Trend</h6>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="appointmentsTrendChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="m-0 font-weight-bold text-primary">Patient Demographics</h6>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="patientDemographicsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-lg-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="m-0 font-weight-bold text-primary">Revenue Analysis</h6>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="revenueAnalysisChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="m-0 font-weight-bold text-primary">Payment Status</h6>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="paymentStatusChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="m-0 font-weight-bold text-primary">Detailed Report</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="detailedReportTable">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Patients</th>
+                                        <th>Appointments</th>
+                                        <th>Revenue</th>
+                                        <th>New Patients</th>
+                                        <th>Completed</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="6" class="text-center">No data available</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
 }
 
 function generatePatientReport(data) {
