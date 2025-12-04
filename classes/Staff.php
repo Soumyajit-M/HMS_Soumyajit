@@ -31,9 +31,6 @@ class Staff {
             if (empty($data['role'])) {
                 $validationErrors[] = 'Role is required';
             }
-            if (empty($data['department'])) {
-                $validationErrors[] = 'Department is required';
-            }
 
             if (!empty($validationErrors)) {
                 return ['success' => false, 'message' => implode(', ', $validationErrors)];
@@ -42,8 +39,8 @@ class Staff {
             // Generate staff ID
             $staff_id = 'STF' . uniqid();
 
-            $sql = "INSERT INTO staff (staff_id, first_name, last_name, email, phone, role, department, hire_date, salary, emergency_contact, certification, is_active) 
-                    VALUES (:staff_id, :first_name, :last_name, :email, :phone, :role, :department, :hire_date, :salary, :emergency_contact, :certification, :is_active)";
+            $sql = "INSERT INTO staff (staff_id, first_name, last_name, email, phone, role, date_of_joining, salary, emergency_contact_name, emergency_contact_phone, certifications, qualification, license_number, employment_type, is_active) 
+                    VALUES (:staff_id, :first_name, :last_name, :email, :phone, :role, :date_of_joining, :salary, :emergency_contact_name, :emergency_contact_phone, :certifications, :qualification, :license_number, :employment_type, :is_active)";
             
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':staff_id', $staff_id);
@@ -52,15 +49,22 @@ class Staff {
             $stmt->bindParam(':email', $data['email']);
             $stmt->bindParam(':phone', $data['phone']);
             $stmt->bindParam(':role', $data['role']);
-            $stmt->bindParam(':department', $data['department']);
-            $hire_date = $data['hire_date'] ?? date('Y-m-d');
-            $stmt->bindParam(':hire_date', $hire_date);
+            $date_of_joining = $data['hire_date'] ?? date('Y-m-d');
+            $stmt->bindParam(':date_of_joining', $date_of_joining);
             $salary = $data['salary'] ?? null;
             $stmt->bindParam(':salary', $salary);
-            $emergency_contact = $data['emergency_contact'] ?? null;
-            $stmt->bindParam(':emergency_contact', $emergency_contact);
-            $certification = $data['certification'] ?? null;
-            $stmt->bindParam(':certification', $certification);
+            $emergency_contact_name = $data['emergency_contact_name'] ?? null;
+            $stmt->bindParam(':emergency_contact_name', $emergency_contact_name);
+            $emergency_contact_phone = $data['emergency_contact_phone'] ?? null;
+            $stmt->bindParam(':emergency_contact_phone', $emergency_contact_phone);
+            $certifications = $data['certifications'] ?? null;
+            $stmt->bindParam(':certifications', $certifications);
+            $qualification = $data['qualification'] ?? null;
+            $stmt->bindParam(':qualification', $qualification);
+            $license_number = $data['license_number'] ?? null;
+            $stmt->bindParam(':license_number', $license_number);
+            $employment_type = $data['employment_type'] ?? null;
+            $stmt->bindParam(':employment_type', $employment_type);
             $is_active = $data['is_active'] ?? 1;
             $stmt->bindParam(':is_active', $is_active);
 
@@ -75,7 +79,10 @@ class Staff {
 
     public function getAllStaff() {
         try {
-            $sql = "SELECT * FROM staff ORDER BY last_name, first_name";
+            $sql = "SELECT s.*, d.name as department 
+                    FROM staff s 
+                    LEFT JOIN departments d ON s.department_id = d.id 
+                    ORDER BY s.last_name, s.first_name";
             $stmt = $this->conn->query($sql);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -103,10 +110,13 @@ class Staff {
                     email = :email,
                     phone = :phone,
                     role = :role,
-                    department = :department,
                     salary = :salary,
-                    emergency_contact = :emergency_contact,
-                    certification = :certification,
+                    emergency_contact_name = :emergency_contact_name,
+                    emergency_contact_phone = :emergency_contact_phone,
+                    certifications = :certifications,
+                    qualification = :qualification,
+                    license_number = :license_number,
+                    employment_type = :employment_type,
                     is_active = :is_active
                     WHERE id = :id";
             
@@ -117,10 +127,13 @@ class Staff {
             $stmt->bindParam(':email', $data['email']);
             $stmt->bindParam(':phone', $data['phone']);
             $stmt->bindParam(':role', $data['role']);
-            $stmt->bindParam(':department', $data['department']);
             $stmt->bindParam(':salary', $data['salary']);
-            $stmt->bindParam(':emergency_contact', $data['emergency_contact']);
-            $stmt->bindParam(':certification', $data['certification']);
+            $stmt->bindParam(':emergency_contact_name', $data['emergency_contact_name'] ?? null);
+            $stmt->bindParam(':emergency_contact_phone', $data['emergency_contact_phone'] ?? null);
+            $stmt->bindParam(':certifications', $data['certifications'] ?? null);
+            $stmt->bindParam(':qualification', $data['qualification'] ?? null);
+            $stmt->bindParam(':license_number', $data['license_number'] ?? null);
+            $stmt->bindParam(':employment_type', $data['employment_type'] ?? null);
             $stmt->bindParam(':is_active', $data['is_active']);
 
             if ($stmt->execute()) {

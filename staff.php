@@ -325,8 +325,14 @@ $members = $staff->getAllStaff();
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Department <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="department" required>
+                                <label class="form-label">Employment Type</label>
+                                <select class="form-select" name="employment_type">
+                                    <option value="">Select Type</option>
+                                    <option value="full-time">Full-time</option>
+                                    <option value="part-time">Part-time</option>
+                                    <option value="contract">Contract</option>
+                                    <option value="temporary">Temporary</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row">
