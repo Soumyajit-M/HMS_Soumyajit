@@ -214,7 +214,7 @@ $members = $staff->getAllStaff();
                                                 <td><?php echo htmlspecialchars($member['department']); ?></td>
                                                 <td><?php echo htmlspecialchars($member['email']); ?></td>
                                                 <td><?php echo htmlspecialchars($member['phone']); ?></td>
-                                                <td><?php echo htmlspecialchars($member['hire_date']); ?></td>
+                                                <td><?php echo htmlspecialchars($member['date_of_joining'] ?? 'N/A'); ?></td>
                                                 <td>
                                                     <?php if ($member['is_active']): ?>
                                                         <span class="badge bg-success">Active</span>
