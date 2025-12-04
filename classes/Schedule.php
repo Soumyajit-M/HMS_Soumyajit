@@ -151,8 +151,11 @@ class Schedule {
             if (empty($data['doctor_id'])) {
                 $validationErrors[] = 'Doctor ID is required';
             }
-            if (empty($data['leave_date'])) {
-                $validationErrors[] = 'Leave date is required';
+            if (empty($data['start_date'])) {
+                $validationErrors[] = 'Start date is required';
+            }
+            if (empty($data['end_date'])) {
+                $validationErrors[] = 'End date is required';
             }
             if (empty($data['leave_type'])) {
                 $validationErrors[] = 'Leave type is required';
@@ -162,17 +165,18 @@ class Schedule {
                 return ['success' => false, 'message' => implode(', ', $validationErrors)];
             }
 
-            $sql = "INSERT INTO doctor_leaves (doctor_id, leave_date, leave_type, reason, is_approved) 
-                    VALUES (:doctor_id, :leave_date, :leave_type, :reason, :is_approved)";
+            $sql = "INSERT INTO doctor_leaves (doctor_id, start_date, end_date, leave_type, reason, status) 
+                    VALUES (:doctor_id, :start_date, :end_date, :leave_type, :reason, :status)";
             
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':doctor_id', $data['doctor_id']);
-            $stmt->bindParam(':leave_date', $data['leave_date']);
+            $stmt->bindParam(':start_date', $data['start_date']);
+            $stmt->bindParam(':end_date', $data['end_date']);
             $stmt->bindParam(':leave_type', $data['leave_type']);
             $reason = $data['reason'] ?? null;
             $stmt->bindParam(':reason', $reason);
-            $is_approved = $data['is_approved'] ?? 0;
-            $stmt->bindParam(':is_approved', $is_approved);
+            $status = 'pending';
+            $stmt->bindParam(':status', $status);
 
             if ($stmt->execute()) {
                 return ['success' => true, 'message' => 'Leave request created successfully', 'id' => $this->conn->lastInsertId()];
@@ -185,7 +189,7 @@ class Schedule {
 
     public function getLeavesByDoctor($doctorId) {
         try {
-            $sql = "SELECT * FROM doctor_leaves WHERE doctor_id = :doctor_id ORDER BY leave_date DESC";
+            $sql = "SELECT * FROM doctor_leaves WHERE doctor_id = :doctor_id ORDER BY start_date DESC";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':doctor_id', $doctorId);
             $stmt->execute();
@@ -203,7 +207,7 @@ class Schedule {
                     FROM doctor_leaves dl
                     JOIN doctors d ON dl.doctor_id = d.id
                     JOIN users u ON d.user_id = u.id
-                    ORDER BY dl.leave_date DESC";
+                    ORDER BY dl.start_date DESC";
             $stmt = $this->conn->query($sql);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -213,7 +217,7 @@ class Schedule {
 
     public function approveLeave($id) {
         try {
-            $sql = "UPDATE doctor_leaves SET is_approved = 1 WHERE id = :id";
+            $sql = "UPDATE doctor_leaves SET status = 'approved' WHERE id = :id";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':id', $id);
             
