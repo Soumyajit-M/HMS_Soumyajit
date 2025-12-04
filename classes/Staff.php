@@ -128,12 +128,21 @@ class Staff {
             $stmt->bindParam(':phone', $data['phone']);
             $stmt->bindParam(':role', $data['role']);
             $stmt->bindParam(':salary', $data['salary']);
-            $stmt->bindParam(':emergency_contact_name', $data['emergency_contact_name'] ?? null);
-            $stmt->bindParam(':emergency_contact_phone', $data['emergency_contact_phone'] ?? null);
-            $stmt->bindParam(':certifications', $data['certifications'] ?? null);
-            $stmt->bindParam(':qualification', $data['qualification'] ?? null);
-            $stmt->bindParam(':license_number', $data['license_number'] ?? null);
-            $stmt->bindParam(':employment_type', $data['employment_type'] ?? null);
+            
+            // Use variables for nullable fields (bindParam requires variables by reference)
+            $emergency_contact_name = $data['emergency_contact_name'] ?? null;
+            $emergency_contact_phone = $data['emergency_contact_phone'] ?? null;
+            $certifications = $data['certifications'] ?? null;
+            $qualification = $data['qualification'] ?? null;
+            $license_number = $data['license_number'] ?? null;
+            $employment_type = $data['employment_type'] ?? null;
+            
+            $stmt->bindParam(':emergency_contact_name', $emergency_contact_name);
+            $stmt->bindParam(':emergency_contact_phone', $emergency_contact_phone);
+            $stmt->bindParam(':certifications', $certifications);
+            $stmt->bindParam(':qualification', $qualification);
+            $stmt->bindParam(':license_number', $license_number);
+            $stmt->bindParam(':employment_type', $employment_type);
             $stmt->bindParam(':is_active', $data['is_active']);
 
             if ($stmt->execute()) {
