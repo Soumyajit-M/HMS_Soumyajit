@@ -325,6 +325,20 @@ $members = $staff->getAllStaff();
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
+                                <label class="form-label">Department</label>
+                                <select class="form-select" name="department_id" id="department_id">
+                                    <option value="">Select Department</option>
+                                    <option value="1">Cardiology</option>
+                                    <option value="2">Neurology</option>
+                                    <option value="3">Orthopedics</option>
+                                    <option value="4">Pediatrics</option>
+                                    <option value="5">Emergency</option>
+                                    <option value="6">General Medicine</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
                                 <label class="form-label">Employment Type</label>
                                 <select class="form-select" name="employment_type">
                                     <option value="">Select Type</option>
@@ -333,6 +347,8 @@ $members = $staff->getAllStaff();
                                     <option value="contract">Contract</option>
                                     <option value="temporary">Temporary</option>
                                 </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
                             </div>
                         </div>
                         <div class="row">

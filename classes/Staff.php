@@ -39,8 +39,8 @@ class Staff {
             // Generate staff ID
             $staff_id = 'STF' . uniqid();
 
-            $sql = "INSERT INTO staff (staff_id, first_name, last_name, email, phone, role, date_of_joining, salary, emergency_contact_name, emergency_contact_phone, certifications, qualification, license_number, employment_type, is_active) 
-                    VALUES (:staff_id, :first_name, :last_name, :email, :phone, :role, :date_of_joining, :salary, :emergency_contact_name, :emergency_contact_phone, :certifications, :qualification, :license_number, :employment_type, :is_active)";
+            $sql = "INSERT INTO staff (staff_id, first_name, last_name, email, phone, role, department_id, date_of_joining, salary, emergency_contact_name, emergency_contact_phone, certifications, qualification, license_number, employment_type, is_active) 
+                    VALUES (:staff_id, :first_name, :last_name, :email, :phone, :role, :department_id, :date_of_joining, :salary, :emergency_contact_name, :emergency_contact_phone, :certifications, :qualification, :license_number, :employment_type, :is_active)";
             
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':staff_id', $staff_id);
@@ -49,6 +49,8 @@ class Staff {
             $stmt->bindParam(':email', $data['email']);
             $stmt->bindParam(':phone', $data['phone']);
             $stmt->bindParam(':role', $data['role']);
+            $department_id = $data['department_id'] ?? null;
+            $stmt->bindParam(':department_id', $department_id);
             $date_of_joining = $data['hire_date'] ?? date('Y-m-d');
             $stmt->bindParam(':date_of_joining', $date_of_joining);
             $salary = $data['salary'] ?? null;
@@ -110,6 +112,7 @@ class Staff {
                     email = :email,
                     phone = :phone,
                     role = :role,
+                    department_id = :department_id,
                     salary = :salary,
                     emergency_contact_name = :emergency_contact_name,
                     emergency_contact_phone = :emergency_contact_phone,
@@ -127,6 +130,8 @@ class Staff {
             $stmt->bindParam(':email', $data['email']);
             $stmt->bindParam(':phone', $data['phone']);
             $stmt->bindParam(':role', $data['role']);
+            $department_id = $data['department_id'] ?? null;
+            $stmt->bindParam(':department_id', $department_id);
             $stmt->bindParam(':salary', $data['salary']);
             
             // Use variables for nullable fields (bindParam requires variables by reference)
