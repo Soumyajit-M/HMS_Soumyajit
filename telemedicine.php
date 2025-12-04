@@ -376,7 +376,7 @@ $pendingSessions = count(array_filter($sessions, fn($s) => $s['status'] == 'Sche
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Session Date & Time <span class="text-danger">*</span></label>
-                            <input type="datetime-local" class="form-control" name="session_date" required>
+                            <input type="datetime-local" class="form-control" name="scheduled_time" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Meeting Link</label>
