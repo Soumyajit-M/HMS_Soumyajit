@@ -29,20 +29,26 @@ class Telemedicine {
                 return ['success' => false, 'message' => implode(', ', $validationErrors)];
             }
 
-            $sql = "INSERT INTO telemedicine_sessions (patient_id, doctor_id, scheduled_time, duration_minutes, session_type, meeting_link, status) 
-                    VALUES (:patient_id, :doctor_id, :scheduled_time, :duration_minutes, :session_type, :meeting_link, :status)";
+            // Generate unique session ID
+            $session_id = 'TM' . date('Ymd') . uniqid();
+            
+            // Check if appointment_id is provided, if not use 0 or create one
+            $appointment_id = $data['appointment_id'] ?? 0;
+
+            $sql = "INSERT INTO telemedicine_sessions (session_id, appointment_id, patient_id, doctor_id, scheduled_time, session_type, meeting_link, status) 
+                    VALUES (:session_id, :appointment_id, :patient_id, :doctor_id, :scheduled_time, :session_type, :meeting_link, :status)";
             
             $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':session_id', $session_id);
+            $stmt->bindParam(':appointment_id', $appointment_id);
             $stmt->bindParam(':patient_id', $data['patient_id']);
             $stmt->bindParam(':doctor_id', $data['doctor_id']);
             $stmt->bindParam(':scheduled_time', $data['scheduled_time']);
-            $duration_minutes = $data['duration_minutes'] ?? 30;
-            $stmt->bindParam(':duration_minutes', $duration_minutes);
-            $session_type = $data['session_type'] ?? 'Video';
+            $session_type = strtolower($data['session_type'] ?? 'video');
             $stmt->bindParam(':session_type', $session_type);
             $meeting_link = $data['meeting_link'] ?? null;
             $stmt->bindParam(':meeting_link', $meeting_link);
-            $status = 'Scheduled';
+            $status = 'scheduled';
             $stmt->bindParam(':status', $status);
 
             if ($stmt->execute()) {
@@ -92,7 +98,6 @@ class Telemedicine {
         try {
             $sql = "UPDATE telemedicine_sessions SET 
                     scheduled_time = :scheduled_time,
-                    duration_minutes = :duration_minutes,
                     session_type = :session_type,
                     meeting_link = :meeting_link,
                     status = :status
@@ -101,10 +106,12 @@ class Telemedicine {
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':id', $id);
             $stmt->bindParam(':scheduled_time', $data['scheduled_time']);
-            $stmt->bindParam(':duration_minutes', $data['duration_minutes']);
-            $stmt->bindParam(':session_type', $data['session_type']);
-            $stmt->bindParam(':meeting_link', $data['meeting_link']);
-            $stmt->bindParam(':status', $data['status']);
+            $session_type = strtolower($data['session_type']);
+            $stmt->bindParam(':session_type', $session_type);
+            $meeting_link = $data['meeting_link'] ?? null;
+            $stmt->bindParam(':meeting_link', $meeting_link);
+            $status = strtolower($data['status']);
+            $stmt->bindParam(':status', $status);
 
             if ($stmt->execute()) {
                 return ['success' => true, 'message' => 'Session updated successfully'];
