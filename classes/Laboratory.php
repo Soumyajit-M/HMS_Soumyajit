@@ -90,20 +90,24 @@ class Laboratory {
             $this->conn->beginTransaction();
 
             try {
+                // Generate order number
+                $order_number = 'LAB' . date('Ymd') . uniqid();
+                
                 // Create lab order
-                $sql = "INSERT INTO lab_orders (patient_id, doctor_id, order_date, priority, clinical_notes, status) 
-                        VALUES (:patient_id, :doctor_id, :order_date, :priority, :clinical_notes, :status)";
+                $sql = "INSERT INTO lab_orders (order_number, patient_id, doctor_id, order_date, priority, clinical_notes, status) 
+                        VALUES (:order_number, :patient_id, :doctor_id, :order_date, :priority, :clinical_notes, :status)";
                 
                 $stmt = $this->conn->prepare($sql);
+                $stmt->bindParam(':order_number', $order_number);
                 $stmt->bindParam(':patient_id', $data['patient_id']);
                 $stmt->bindParam(':doctor_id', $data['doctor_id']);
                 $order_date = $data['order_date'] ?? date('Y-m-d H:i:s');
                 $stmt->bindParam(':order_date', $order_date);
-                $priority = $data['priority'] ?? 'Routine';
+                $priority = $data['priority'] ?? 'routine';
                 $stmt->bindParam(':priority', $priority);
                 $clinical_notes = $data['clinical_notes'] ?? null;
                 $stmt->bindParam(':clinical_notes', $clinical_notes);
-                $status = 'Pending';
+                $status = 'pending';
                 $stmt->bindParam(':status', $status);
 
                 $stmt->execute();
