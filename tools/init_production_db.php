@@ -39,10 +39,33 @@ try {
         echo "\n";
     }
     
-    // 1. Run auto-billing migration
-    echo "Step 1: Running auto-billing migration...\n";
-    include __DIR__ . '/migrate_auto_billing.php';
-    echo "\n";
+    // 1. Import complete schema if database is empty
+    if (count($tables) < 5) {
+        echo "Step 1: Importing complete schema...\n";
+        $schemaPath = __DIR__ . '/../database/schema_complete.sql';
+        if (file_exists($schemaPath)) {
+            $sql = file_get_contents($schemaPath);
+            $statements = preg_split('/;\s*\n/', $sql);
+            $applied = 0;
+            foreach ($statements as $stmt) {
+                $clean = trim($stmt);
+                if ($clean === '' || preg_match('/^--|^\/\*/', $clean)) continue;
+                try {
+                    $conn->exec($clean);
+                    $applied++;
+                } catch (PDOException $e) {
+                    if (strpos($e->getMessage(), 'already exists') !== false) continue;
+                    // Ignore errors for default data that may conflict
+                    if (strpos($e->getMessage(), 'UNIQUE constraint') !== false) continue;
+                }
+            }
+            echo "✓ Schema imported ($applied statements applied)\n\n";
+        } else {
+            echo "⚠️  Warning: schema_complete.sql not found, creating minimal tables...\n\n";
+        }
+    } else {
+        echo "Step 1: Schema already exists, skipping import...\n\n";
+    }
     
     // 2. Ensure users table exists, then add default admin user if not exists
     echo "Step 2: Checking for admin user...\n";

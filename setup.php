@@ -7,7 +7,7 @@ try {
     $conn = $database->getConnection();
 
     // Read the schema file
-    $schema = file_get_contents('database/schema_sqlite.sql');
+    $schema = file_get_contents('database/schema_complete.sql');
 
     // Execute the schema
     $conn->exec($schema);

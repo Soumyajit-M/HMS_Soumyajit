@@ -1,19 +1,19 @@
 <?php
 /**
- * Import full SQLite schema from database/schema_sqlite.sql
+ * Import full SQLite schema from database/schema_complete.sql
  * Usage: php tools/import_schema.php
  */
 require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../config/database.php';
 
-echo "=== HMS 2.0 - SQLite Schema Import ===\n\n";
+echo "=== HMS 2.0 - Complete Schema Import ===\n\n";
 
 try {
     $db = new Database();
     $conn = $db->getConnection();
     echo "Connected to database successfully.\n\n";
 
-    $schemaPath = __DIR__ . '/../database/schema_sqlite.sql';
+    $schemaPath = __DIR__ . '/../database/schema_complete.sql';
     if (!file_exists($schemaPath)) {
         throw new Exception('Schema file not found: ' . $schemaPath);
     }

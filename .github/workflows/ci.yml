@@ -36,10 +36,10 @@ jobs:
 
       - name: Initialize SQLite database if schema exists
         run: |
-          if [ -f database/schema_sqlite.sql ]; then
+          if [ -f database/schema_complete.sql ]; then
             mkdir -p database
             rm -f database/hms_database.sqlite
-            sqlite3 database/hms_database.sqlite < database/schema_sqlite.sql || true
+            sqlite3 database/hms_database.sqlite < database/schema_complete.sql || true
           fi
 
       - name: Start PHP server

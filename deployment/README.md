@@ -90,8 +90,9 @@ chmod -R 755 /var/www/html/hms
 chmod -R 777 /var/www/html/hms/database
 chmod -R 777 /var/www/html/hms/logs
 
-# Run migration
-php tools/migrate_auto_billing.php
+# Import schema and initialize production data
+php tools/import_schema.php
+php tools/init_production_db.php
 
 # Install SSL
 sudo certbot --apache -d yourdomain.com
@@ -255,14 +256,15 @@ Before deploying to production:
 
 Your deployment package includes these ready-to-use tools:
 
-| Tool                       | Purpose                   | Usage                                |
-| -------------------------- | ------------------------- | ------------------------------------ |
-| `migrate_auto_billing.php` | Setup auto-billing tables | `php tools/migrate_auto_billing.php` |
-| `verify_tables.php`        | Check database structure  | `php tools/verify_tables.php`        |
-| `test_auto_billing.php`    | Test billing system       | `php tools/test_auto_billing.php`    |
-| `setup_rooms.php`          | Create wards/rooms        | `php tools/setup_rooms.php`          |
-| `check_rooms_table.php`    | Verify rooms setup        | `php tools/check_rooms_table.php`    |
-| `backup_database.php`      | Manual database backup    | Create this for auto-backups         |
+| Tool                     | Purpose                         | Usage                              |
+| ------------------------ | ------------------------------- | ---------------------------------- |
+| `import_schema.php`      | Import complete database schema | `php tools/import_schema.php`      |
+| `init_production_db.php` | Initialize production database  | `php tools/init_production_db.php` |
+| `verify_tables.php`      | Check database structure        | `php tools/verify_tables.php`      |
+| `test_auto_billing.php`  | Test billing system             | `php tools/test_auto_billing.php`  |
+| `setup_rooms.php`        | Create wards/rooms              | `php tools/setup_rooms.php`        |
+| `check_rooms_table.php`  | Verify rooms setup              | `php tools/check_rooms_table.php`  |
+| `backup_database.php`    | Manual database backup          | Create this for auto-backups       |
 
 ---
 
