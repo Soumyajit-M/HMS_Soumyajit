@@ -104,6 +104,7 @@ CREATE TABLE doctors (
     emergency_phone TEXT,
     emergency_email TEXT,
     license_number TEXT,
+    created_at DATETIME,
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
@@ -329,6 +330,7 @@ CREATE TABLE staff_shifts (
             'cancelled'
         )
     ),
+    assigned_ward TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (staff_id) REFERENCES staff (id) ON DELETE CASCADE
 );
@@ -375,6 +377,7 @@ CREATE TABLE rooms (
     available_beds INTEGER DEFAULT 1,
     amenities TEXT, -- JSON array
     daily_rate REAL,
+    charge_per_day REAL, -- Backward compatibility alias for daily_rate
     status TEXT DEFAULT 'available' CHECK (
         status IN (
             'available',
