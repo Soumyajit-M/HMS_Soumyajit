@@ -450,7 +450,7 @@ $pendingSessions = count(array_filter($sessions, fn($s) => $s['status'] == 'Sche
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Measurement Type <span class="text-danger">*</span></label>
-                            <select class="form-select" name="measurement_type" required>
+                            <select class="form-select" name="vital_type" required>
                                 <option value="">Select Type</option>
                                 <option value="Blood Pressure">Blood Pressure</option>
                                 <option value="Heart Rate">Heart Rate</option>
