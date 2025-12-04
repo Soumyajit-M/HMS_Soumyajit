@@ -160,14 +160,14 @@ if (!$auth->isLoggedIn()) {
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="siteName" class="form-label">Site Name</label>
-                                                <input type="text" class="form-control" id="siteName" name="site_name" value="<?php echo SITE_NAME; ?>">
+                                                <label for="site_name" class="form-label">Site Name</label>
+                                                <input type="text" class="form-control" id="site_name" name="site_name" placeholder="<?php echo SITE_NAME; ?>">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="siteUrl" class="form-label">Site URL</label>
-                                                <input type="url" class="form-control" id="siteUrl" name="site_url" value="<?php echo SITE_URL; ?>">
+                                                <label for="site_url" class="form-label">Site URL</label>
+                                                <input type="url" class="form-control" id="site_url" name="site_url" placeholder="<?php echo SITE_URL; ?>">
                                             </div>
                                         </div>
                                     </div>
@@ -201,14 +201,14 @@ if (!$auth->isLoggedIn()) {
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="recordsPerPage" class="form-label">Records Per Page</label>
-                                                <input type="number" class="form-control" id="recordsPerPage" name="records_per_page" value="<?php echo RECORDS_PER_PAGE; ?>" min="5" max="100">
+                                                <label for="records_per_page" class="form-label">Records Per Page</label>
+                                                <input type="number" class="form-control" id="records_per_page" name="records_per_page" placeholder="<?php echo RECORDS_PER_PAGE; ?>" min="5" max="100">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="maxFileSize" class="form-label">Max File Size (MB)</label>
-                                                <input type="number" class="form-control" id="maxFileSize" name="max_file_size" value="<?php echo MAX_FILE_SIZE / 1024 / 1024; ?>" min="1" max="50">
+                                                <label for="max_file_size" class="form-label">Max File Size (MB)</label>
+                                                <input type="number" class="form-control" id="max_file_size" name="max_file_size" placeholder="<?php echo MAX_FILE_SIZE / 1024 / 1024; ?>" min="1" max="50">
                                             </div>
                                         </div>
                                     </div>
@@ -232,34 +232,34 @@ if (!$auth->isLoggedIn()) {
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="hospitalName" class="form-label">Hospital Name</label>
-                                                <input type="text" class="form-control" id="hospitalName" name="hospital_name" value="City General Hospital">
+                                                <label for="hospital_name" class="form-label">Hospital Name</label>
+                                                <input type="text" class="form-control" id="hospital_name" name="hospital_name" placeholder="City General Hospital">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="hospitalPhone" class="form-label">Hospital Phone</label>
-                                                <input type="tel" class="form-control" id="hospitalPhone" name="hospital_phone" value="+1-234-567-8900">
+                                                <label for="hospital_phone" class="form-label">Hospital Phone</label>
+                                                <input type="tel" class="form-control" id="hospital_phone" name="hospital_phone" placeholder="+1-234-567-8900">
                                             </div>
                                         </div>
                                     </div>
                                     
                                     <div class="mb-3">
-                                        <label for="hospitalAddress" class="form-label">Hospital Address</label>
-                                        <textarea class="form-control" id="hospitalAddress" name="hospital_address" rows="3">123 Medical Street, City, State 12345</textarea>
+                                        <label for="hospital_address" class="form-label">Hospital Address</label>
+                                        <textarea class="form-control" id="hospital_address" name="hospital_address" rows="3" placeholder="123 Medical Street, City, State 12345"></textarea>
                                     </div>
                                     
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="hospitalEmail" class="form-label">Hospital Email</label>
-                                                <input type="email" class="form-control" id="hospitalEmail" name="hospital_email" value="info@hospital.com">
+                                                <label for="hospital_email" class="form-label">Hospital Email</label>
+                                                <input type="email" class="form-control" id="hospital_email" name="hospital_email" placeholder="info@hospital.com">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="hospitalWebsite" class="form-label">Hospital Website</label>
-                                                <input type="url" class="form-control" id="hospitalWebsite" name="hospital_website" value="https://hospital.com">
+                                                <label for="hospital_website" class="form-label">Hospital Website</label>
+                                                <input type="url" class="form-control" id="hospital_website" name="hospital_website" placeholder="https://hospital.com">
                                             </div>
                                         </div>
                                     </div>
