@@ -13,8 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('addProviderForm');
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
+        data.action = 'provider';
 
-        fetch('api/insurance.php?action=providers', {
+        fetch('api/insurance.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
