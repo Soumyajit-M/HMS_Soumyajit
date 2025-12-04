@@ -110,7 +110,7 @@ class Room {
             if (empty($data['ward_id'])) {
                 $validationErrors[] = 'Ward ID is required';
             }
-            if (empty($data['room_number'])) {
+            if (!isset($data['room_number']) || trim($data['room_number']) === '') {
                 $validationErrors[] = 'Room number is required';
             }
             if (empty($data['room_type'])) {
