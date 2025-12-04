@@ -368,13 +368,13 @@ $expiring = $inventory->getExpiringItems();
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Category <span class="text-danger">*</span></label>
-                            <select class="form-select" name="category" required>
+                            <select class="form-select" name="category_id" required>
                                 <option value="">Select Category</option>
-                                <option value="Medicines">Medicines</option>
-                                <option value="Surgical Supplies">Surgical Supplies</option>
-                                <option value="Laboratory Reagents">Laboratory Reagents</option>
-                                <option value="Medical Equipment">Medical Equipment</option>
-                                <option value="Disposables">Disposables</option>
+                                <option value="1">Medicines</option>
+                                <option value="2">Surgical Supplies</option>
+                                <option value="3">Laboratory Reagents</option>
+                                <option value="4">Medical Equipment</option>
+                                <option value="5">Disposables</option>
                             </select>
                         </div>
                         <div class="row">
@@ -520,7 +520,7 @@ $expiring = $inventory->getExpiringItems();
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Category</label>
-                            <select class="form-select" name="category" id="edit_category" required>
+                            <select class="form-select" name="category_id" id="edit_category" required>
                                 <option value="Medicines">Medicines</option>
                                 <option value="Surgical Supplies">Surgical Supplies</option>
                                 <option value="Laboratory Reagents">Laboratory Reagents</option>
