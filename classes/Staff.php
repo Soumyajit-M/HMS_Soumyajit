@@ -106,6 +106,31 @@ class Staff {
 
     public function updateStaff($id, $data) {
         try {
+            // Validate required fields
+            $validationErrors = [];
+
+            if (empty($data['first_name'])) {
+                $validationErrors[] = 'First name is required';
+            }
+            if (empty($data['last_name'])) {
+                $validationErrors[] = 'Last name is required';
+            }
+            if (empty($data['email'])) {
+                $validationErrors[] = 'Email is required';
+            } elseif (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+                $validationErrors[] = 'Invalid email format';
+            }
+            if (empty($data['phone'])) {
+                $validationErrors[] = 'Phone is required';
+            }
+            if (empty($data['role'])) {
+                $validationErrors[] = 'Role is required';
+            }
+
+            if (!empty($validationErrors)) {
+                return ['success' => false, 'message' => implode(', ', $validationErrors)];
+            }
+
             $sql = "UPDATE staff SET 
                     first_name = :first_name,
                     last_name = :last_name,
@@ -132,7 +157,8 @@ class Staff {
             $stmt->bindParam(':role', $data['role']);
             $department_id = $data['department_id'] ?? null;
             $stmt->bindParam(':department_id', $department_id);
-            $stmt->bindParam(':salary', $data['salary']);
+            $salary = $data['salary'] ?? null;
+            $stmt->bindParam(':salary', $salary);
             
             // Use variables for nullable fields (bindParam requires variables by reference)
             $emergency_contact_name = $data['emergency_contact_name'] ?? null;
@@ -141,6 +167,7 @@ class Staff {
             $qualification = $data['qualification'] ?? null;
             $license_number = $data['license_number'] ?? null;
             $employment_type = $data['employment_type'] ?? null;
+            $is_active = $data['is_active'] ?? 1;
             
             $stmt->bindParam(':emergency_contact_name', $emergency_contact_name);
             $stmt->bindParam(':emergency_contact_phone', $emergency_contact_phone);
@@ -148,7 +175,7 @@ class Staff {
             $stmt->bindParam(':qualification', $qualification);
             $stmt->bindParam(':license_number', $license_number);
             $stmt->bindParam(':employment_type', $employment_type);
-            $stmt->bindParam(':is_active', $data['is_active']);
+            $stmt->bindParam(':is_active', $is_active);
 
             if ($stmt->execute()) {
                 return ['success' => true, 'message' => 'Staff member updated successfully'];
@@ -188,16 +215,20 @@ class Staff {
             if (empty($data['shift_type'])) {
                 $validationErrors[] = 'Shift type is required';
             }
-            if (empty($data['start_time'])) {
-                $validationErrors[] = 'Start time is required';
-            }
-            if (empty($data['end_time'])) {
-                $validationErrors[] = 'End time is required';
-            }
 
             if (!empty($validationErrors)) {
                 return ['success' => false, 'message' => implode(', ', $validationErrors)];
             }
+
+            // Set start_time and end_time based on shift_type
+            $shiftTimes = [
+                'Morning' => ['start' => '06:00:00', 'end' => '14:00:00'],
+                'Evening' => ['start' => '14:00:00', 'end' => '22:00:00'],
+                'Night' => ['start' => '22:00:00', 'end' => '06:00:00']
+            ];
+
+            $start_time = $data['start_time'] ?? $shiftTimes[$data['shift_type']]['start'];
+            $end_time = $data['end_time'] ?? $shiftTimes[$data['shift_type']]['end'];
 
             $sql = "INSERT INTO staff_shifts (staff_id, shift_date, shift_type, start_time, end_time, assigned_ward) 
                     VALUES (:staff_id, :shift_date, :shift_type, :start_time, :end_time, :assigned_ward)";
@@ -206,8 +237,8 @@ class Staff {
             $stmt->bindParam(':staff_id', $data['staff_id']);
             $stmt->bindParam(':shift_date', $data['shift_date']);
             $stmt->bindParam(':shift_type', $data['shift_type']);
-            $stmt->bindParam(':start_time', $data['start_time']);
-            $stmt->bindParam(':end_time', $data['end_time']);
+            $stmt->bindParam(':start_time', $start_time);
+            $stmt->bindParam(':end_time', $end_time);
             $assigned_ward = $data['assigned_ward'] ?? null;
             $stmt->bindParam(':assigned_ward', $assigned_ward);
 
@@ -234,7 +265,7 @@ class Staff {
 
     public function getAllShifts() {
         try {
-            $sql = "SELECT ss.*, s.first_name, s.last_name, s.role, s.department 
+            $sql = "SELECT ss.*, s.first_name, s.last_name, s.role 
                     FROM staff_shifts ss
                     JOIN staff s ON ss.staff_id = s.id
                     ORDER BY ss.shift_date DESC, ss.start_time";

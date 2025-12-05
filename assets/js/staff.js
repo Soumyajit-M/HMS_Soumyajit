@@ -23,6 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const shiftsTab = document.querySelector('a[href="#shiftsTab"]');
     if (shiftsTab) {
         shiftsTab.addEventListener('click', loadShifts);
+        // Load shifts immediately if on shifts tab
+        if (shiftsTab.classList.contains('active')) {
+            loadShifts();
+        }
     }
 
     // Add Shift button (from Shifts tab)
@@ -37,10 +41,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('assignShiftForm');
             if (form) form.reset();
             
-            const staffIdInput = document.getElementById('shift_staff_id');
-            const staffNameInput = document.getElementById('shift_staff_name');
-            if (staffIdInput) staffIdInput.value = '';
-            if (staffNameInput) staffNameInput.value = '';
+            // Load staff members into dropdown
+            loadStaffDropdown();
             
             const modal = document.getElementById('assignShiftModal');
             if (modal) {
@@ -122,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById('edit_email').value = staff.email;
                     document.getElementById('edit_phone').value = staff.phone;
                     document.getElementById('edit_role').value = staff.role;
-                    document.getElementById('edit_department').value = staff.department;
+                    document.getElementById('edit_department_id').value = staff.department_id || '';
                     document.getElementById('edit_salary').value = staff.salary || '';
                     document.getElementById('edit_is_active').value = staff.is_active;
                     document.getElementById('edit_emergency_contact').value = staff.emergency_contact || '';
@@ -227,24 +229,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const staffName = button.getAttribute('data-name');
             console.log('Assign shift clicked for:', staffName, 'ID:', staffId);
             
-            const staffIdInput = document.getElementById('shift_staff_id');
-            const staffNameInput = document.getElementById('shift_staff_name');
+            // Load staff members into dropdown
+            loadStaffDropdown(staffId);
             
-            if (staffIdInput && staffNameInput) {
-                staffIdInput.value = staffId;
-                staffNameInput.value = staffName;
-                
-                console.log('Opening assign shift modal...');
-                const modal = document.getElementById('assignShiftModal');
-                if (modal) {
-                    const bsModal = new bootstrap.Modal(modal);
-                    bsModal.show();
-                    console.log('Shift modal shown');
-                } else {
-                    console.error('Assign shift modal not found!');
-                }
+            console.log('Opening assign shift modal...');
+            const modal = document.getElementById('assignShiftModal');
+            if (modal) {
+                const bsModal = new bootstrap.Modal(modal);
+                bsModal.show();
+                console.log('Shift modal shown');
             } else {
-                console.error('Shift form inputs not found!');
+                console.error('Assign shift modal not found!');
             }
         }
     });
@@ -283,30 +278,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Load Shifts
     function loadShifts() {
+        console.log('Loading shifts...');
         fetch('api/staff.php?action=shifts')
-        .then(response => response.json())
+        .then(response => {
+            console.log('Shifts response status:', response.status);
+            return response.json();
+        })
         .then(result => {
+            console.log('Shifts result:', result);
             if (result.success) {
                 const tbody = document.querySelector('#shiftsTable tbody');
                 tbody.innerHTML = '';
                 
-                result.shifts.forEach(shift => {
-                    const row = `
-                        <tr>
-                            <td>${sanitizeHTML(shift.shift_date)}</td>
-                            <td>${sanitizeHTML(shift.first_name)} ${sanitizeHTML(shift.last_name)}</td>
-                            <td><span class="badge bg-info">${sanitizeHTML(shift.shift_type)}</span></td>
-                            <td>${sanitizeHTML(shift.start_time)} - ${sanitizeHTML(shift.end_time)}</td>
-                            <td>${sanitizeHTML(shift.assigned_ward) || 'Not assigned'}</td>
-                            <td>
-                                <button class="btn btn-sm btn-danger delete-shift" data-id="${shift.id}">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    `;
-                    tbody.innerHTML += row;
-                });
+                if (result.shifts && result.shifts.length > 0) {
+                    result.shifts.forEach(shift => {
+                        const row = `
+                            <tr>
+                                <td>${sanitizeHTML(shift.shift_date)}</td>
+                                <td>${sanitizeHTML(shift.first_name)} ${sanitizeHTML(shift.last_name)}</td>
+                                <td><span class="badge bg-info">${sanitizeHTML(shift.shift_type)}</span></td>
+                                <td>${sanitizeHTML(shift.start_time)} - ${sanitizeHTML(shift.end_time)}</td>
+                                <td>${sanitizeHTML(shift.assigned_ward) || 'Not assigned'}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-danger delete-shift" data-id="${shift.id}">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                        tbody.innerHTML += row;
+                    });
+                } else {
+                    tbody.innerHTML = '<tr><td colspan="6" class="text-center">No shifts found. Click "Assign Shift" to create one.</td></tr>';
+                }
 
                 // Add delete event listeners
                 document.querySelectorAll('.delete-shift').forEach(button => {
@@ -330,9 +334,43 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     });
                 });
+            } else {
+                console.error('Failed to load shifts:', result.message);
             }
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => {
+            console.error('Error loading shifts:', error);
+        });
+    }
+
+    // Function to load staff members into dropdown
+    function loadStaffDropdown(selectedId = null) {
+        fetch('api/staff.php')
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                const dropdown = document.getElementById('shift_staff_id');
+                if (dropdown) {
+                    // Clear existing options except the first one
+                    dropdown.innerHTML = '<option value="">Select Staff Member</option>';
+                    
+                    // Add staff members as options
+                    result.staff.forEach(staff => {
+                        const option = document.createElement('option');
+                        option.value = staff.id;
+                        option.textContent = `${staff.first_name} ${staff.last_name} - ${staff.role}`;
+                        
+                        // Select the staff member if specified
+                        if (selectedId && staff.id == selectedId) {
+                            option.selected = true;
+                        }
+                        
+                        dropdown.appendChild(option);
+                    });
+                }
+            }
+        })
+        .catch(error => console.error('Error loading staff:', error));
     }
 
     // Add Shift button in Shifts tab is already handled above

@@ -243,22 +243,26 @@ $notifications = $dashboard->getNotifications();
                                 <h6 class="m-0 font-weight-bold text-primary">Recent Appointments</h6>
                             </div>
                             <div class="card-body">
-                                <?php foreach ($recentAppointments as $appointment): ?>
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="flex-shrink-0">
-                                        <i class="fas fa-calendar text-primary"></i>
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <div class="fw-bold"><?php echo htmlspecialchars($appointment['patient_name']); ?></div>
-                                        <div class="text-muted small">
-                                            <?php echo date('M j, Y g:i A', strtotime($appointment['appointment_date'] . ' ' . $appointment['appointment_time'])); ?>
+                                <?php if (!empty($recentAppointments)): ?>
+                                    <?php foreach ($recentAppointments as $appointment): ?>
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="flex-shrink-0">
+                                            <i class="fas fa-calendar text-primary"></i>
                                         </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <div class="fw-bold"><?php echo htmlspecialchars($appointment['patient_name'] ?? 'Unknown Patient'); ?></div>
+                                            <div class="text-muted small">
+                                                <?php echo date('M j, Y g:i A', strtotime($appointment['appointment_date'] . ' ' . $appointment['appointment_time'])); ?>
+                                            </div>
+                                        </div>
+                                        <span class="badge bg-<?php echo $appointment['status'] == 'completed' ? 'success' : 'warning'; ?>">
+                                            <?php echo ucfirst($appointment['status']); ?>
+                                        </span>
                                     </div>
-                                    <span class="badge bg-<?php echo $appointment['status'] == 'completed' ? 'success' : 'warning'; ?>">
-                                        <?php echo ucfirst($appointment['status']); ?>
-                                    </span>
-                                </div>
-                                <?php endforeach; ?>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <p class="text-muted text-center">No recent appointments</p>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

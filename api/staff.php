@@ -62,6 +62,10 @@ switch ($method) {
             exit();
         }
 
+        // Log the received data for debugging
+        error_log("PUT request data: " . json_encode($input));
+        error_log("Role value: " . ($input['role'] ?? 'NOT SET'));
+
         $result = $staff->updateStaff($input['id'], $input);
         echo json_encode($result);
         break;

@@ -396,13 +396,21 @@ $members = $staff->getAllStaff();
                                 <input type="text" class="form-control" name="first_name" id="edit_first_name" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Last Name</label>
-                                <input type="text" class="form-control" name="last_name" id="edit_last_name" required>
+                                <label class="form-label">Department</label>
+                                <select class="form-select" name="department_id" id="edit_department_id">
+                                    <option value="">Select Department</option>
+                                    <option value="1">Cardiology</option>
+                                    <option value="2">Neurology</option>
+                                    <option value="3">Orthopedics</option>
+                                    <option value="4">Pediatrics</option>
+                                    <option value="5">Emergency</option>
+                                    <option value="6">General Medicine</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Email</label>
+                                <label class="form-label">Salary</label>
                                 <input type="email" class="form-control" name="email" id="edit_email" required pattern="[^\s@]+@[^\s@]+\.[^\s@]+" title="Please enter a valid email address with @ symbol">
                             </div>
                             <div class="col-md-6 mb-3">
@@ -428,19 +436,26 @@ $members = $staff->getAllStaff();
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Role</label>
                                 <select class="form-select" name="role" id="edit_role" required>
-                                    <option value="Nurse">Nurse</option>
-                                    <option value="Lab Technician">Lab Technician</option>
-                                    <option value="Pharmacist">Pharmacist</option>
-                                    <option value="Radiologist">Radiologist</option>
-                                    <option value="Receptionist">Receptionist</option>
-                                    <option value="Accountant">Accountant</option>
-                                    <option value="Security">Security</option>
-                                    <option value="Cleaner">Cleaner</option>
+                                    <option value="">Select Role</option>
+                                    <option value="nurse">Nurse</option>
+                                    <option value="technician">Technician</option>
+                                    <option value="receptionist">Receptionist</option>
+                                    <option value="pharmacist">Pharmacist</option>
+                                    <option value="lab_technician">Lab Technician</option>
+                                    <option value="radiologist">Radiologist</option>
+                                    <option value="other">Other</option>
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Department</label>
-                                <input type="text" class="form-control" name="department" id="edit_department" required>
+                                <select class="form-select" name="department_id" id="edit_department_id">
+                                    <option value="">Select Department</option>
+                                    <?php
+                                    foreach ($departments as $dept) {
+                                        echo '<option value="' . $dept['id'] . '">' . htmlspecialchars($dept['name']) . '</option>';
+                                    }
+                                    ?>
+                                </select>
                             </div>
                         </div>
                         <div class="row">
@@ -484,10 +499,11 @@ $members = $staff->getAllStaff();
                 </div>
                 <div class="modal-body">
                     <form id="assignShiftForm">
-                        <input type="hidden" name="staff_id" id="shift_staff_id">
                         <div class="mb-3">
-                            <label class="form-label">Staff Member</label>
-                            <input type="text" class="form-control" id="shift_staff_name" readonly>
+                            <label class="form-label">Staff Member <span class="text-danger">*</span></label>
+                            <select class="form-select" name="staff_id" id="shift_staff_id" required>
+                                <option value="">Select Staff Member</option>
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Shift Date <span class="text-danger">*</span></label>
@@ -501,16 +517,6 @@ $members = $staff->getAllStaff();
                                 <option value="Evening">Evening (2PM - 10PM)</option>
                                 <option value="Night">Night (10PM - 6AM)</option>
                             </select>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Start Time <span class="text-danger">*</span></label>
-                                <input type="time" class="form-control" name="start_time" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">End Time <span class="text-danger">*</span></label>
-                                <input type="time" class="form-control" name="end_time" required>
-                            </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Assigned Ward</label>

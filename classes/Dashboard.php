@@ -44,21 +44,28 @@ class Dashboard {
 
     public function getRecentAppointments($limit = 5) {
         try {
-            $query = "SELECT a.*, p.first_name as patient_first_name, p.last_name as patient_last_name, 
-                     p.phone as patient_phone, d.doctor_id, u.first_name as doctor_first_name, 
-                     u.last_name as doctor_last_name, dept.name as department_name
+            $query = "SELECT a.*, 
+                     p.first_name as patient_first_name, 
+                     p.last_name as patient_last_name, 
+                     p.phone as patient_phone, 
+                     d.doctor_id,
+                     COALESCE(u.first_name, '') as doctor_first_name, 
+                     COALESCE(u.last_name, '') as doctor_last_name,
+                     COALESCE(dept.name, 'General') as department_name,
+                     (p.first_name || ' ' || p.last_name) as patient_name
                      FROM appointments a 
-                     JOIN patients p ON a.patient_id = p.id 
-                     JOIN doctors d ON a.doctor_id = d.id 
-                     JOIN users u ON d.user_id = u.id 
+                     LEFT JOIN patients p ON a.patient_id = p.id 
+                     LEFT JOIN doctors d ON a.doctor_id = d.id 
+                     LEFT JOIN users u ON d.user_id = u.id 
                      LEFT JOIN departments dept ON a.department_id = dept.id 
                      ORDER BY a.created_at DESC 
                      LIMIT :limit";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
             $stmt->execute();
-            return $stmt->fetchAll();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
+            error_log("Dashboard getRecentAppointments error: " . $e->getMessage());
             return [];
         }
     }
