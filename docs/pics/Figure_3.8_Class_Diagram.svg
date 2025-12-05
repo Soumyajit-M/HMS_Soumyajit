@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="750" height="480" xmlns="http://www.w3.org/2000/svg">
+    <!-- UML Class Diagram -->
+    <!-- Patient Class -->
+    <rect x="20" y="20" width="200" height="140" fill="#E3F2FD" stroke="#000" stroke-width="2"/>
+    <rect x="20" y="20" width="200" height="30" fill="#1976D2" stroke="#000" stroke-width="2"/>
+    <text x="120" y="40" text-anchor="middle" font-family="Times New Roman" font-size="13" font-weight="bold" fill="#fff">Patient</text>
+    <line x1="20" y1="50" x2="220" y2="50" stroke="#000" stroke-width="1"/>
+    <text x="25" y="65" font-family="Times New Roman" font-size="10">- id: int</text>
+    <text x="25" y="80" font-family="Times New Roman" font-size="10">- patient_id: string</text>
+    <text x="25" y="95" font-family="Times New Roman" font-size="10">- name: string</text>
+    <text x="25" y="110" font-family="Times New Roman" font-size="10">- phone: string</text>
+    <line x1="20" y1="115" x2="220" y2="115" stroke="#000" stroke-width="1"/>
+    <text x="25" y="130" font-family="Times New Roman" font-size="10">+ create()</text>
+    <text x="25" y="145" font-family="Times New Roman" font-size="10">+ getAll()</text>
+    <text x="25" y="160" font-family="Times New Roman" font-size="10">+ getById()</text>
+    
+    <!-- Doctor Class -->
+    <rect x="270" y="20" width="200" height="140" fill="#E8F5E9" stroke="#000" stroke-width="2"/>
+    <rect x="270" y="20" width="200" height="30" fill="#388E3C" stroke="#000" stroke-width="2"/>
+    <text x="370" y="40" text-anchor="middle" font-family="Times New Roman" font-size="13" font-weight="bold" fill="#fff">Doctor</text>
+    <line x1="270" y1="50" x2="470" y2="50" stroke="#000" stroke-width="1"/>
+    <text x="275" y="65" font-family="Times New Roman" font-size="10">- id: int</text>
+    <text x="275" y="80" font-family="Times New Roman" font-size="10">- user_id: int</text>
+    <text x="275" y="95" font-family="Times New Roman" font-size="10">- specialization: string</text>
+    <text x="275" y="110" font-family="Times New Roman" font-size="10">- consultation_fee: float</text>
+    <line x1="270" y1="115" x2="470" y2="115" stroke="#000" stroke-width="1"/>
+    <text x="275" y="130" font-family="Times New Roman" font-size="10">+ create()</text>
+    <text x="275" y="145" font-family="Times New Roman" font-size="10">+ getSchedule()</text>
+    <text x="275" y="160" font-family="Times New Roman" font-size="10">+ getAvailable()</text>
+    
+    <!-- Appointment Class -->
+    <rect x="520" y="20" width="210" height="140" fill="#FFF3E0" stroke="#000" stroke-width="2"/>
+    <rect x="520" y="20" width="210" height="30" fill="#F57C00" stroke="#000" stroke-width="2"/>
+    <text x="625" y="40" text-anchor="middle" font-family="Times New Roman" font-size="13" font-weight="bold" fill="#fff">Appointment</text>
+    <line x1="520" y1="50" x2="730" y2="50" stroke="#000" stroke-width="1"/>
+    <text x="525" y="65" font-family="Times New Roman" font-size="10">- id: int</text>
+    <text x="525" y="80" font-family="Times New Roman" font-size="10">- patient_id: int (FK)</text>
+    <text x="525" y="95" font-family="Times New Roman" font-size="10">- doctor_id: int (FK)</text>
+    <text x="525" y="110" font-family="Times New Roman" font-size="10">- date: date, time: time</text>
+    <line x1="520" y1="115" x2="730" y2="115" stroke="#000" stroke-width="1"/>
+    <text x="525" y="130" font-family="Times New Roman" font-size="10">+ create()</text>
+    <text x="525" y="145" font-family="Times New Roman" font-size="10">+ cancel()</text>
+    <text x="525" y="160" font-family="Times New Roman" font-size="10">+ updateStatus()</text>
+    
+    <!-- Billing Class -->
+    <rect x="20" y="200" width="200" height="140" fill="#F3E5F5" stroke="#000" stroke-width="2"/>
+    <rect x="20" y="200" width="200" height="30" fill="#7B1FA2" stroke="#000" stroke-width="2"/>
+    <text x="120" y="220" text-anchor="middle" font-family="Times New Roman" font-size="13" font-weight="bold" fill="#fff">Billing</text>
+    <line x1="20" y1="230" x2="220" y2="230" stroke="#000" stroke-width="1"/>
+    <text x="25" y="245" font-family="Times New Roman" font-size="10">- id: int</text>
+    <text x="25" y="260" font-family="Times New Roman" font-size="10">- patient_id: int (FK)</text>
+    <text x="25" y="275" font-family="Times New Roman" font-size="10">- total_amount: float</text>
+    <text x="25" y="290" font-family="Times New Roman" font-size="10">- paid_amount: float</text>
+    <line x1="20" y1="295" x2="220" y2="295" stroke="#000" stroke-width="1"/>
+    <text x="25" y="310" font-family="Times New Roman" font-size="10">+ create()</text>
+    <text x="25" y="325" font-family="Times New Roman" font-size="10">+ addPayment()</text>
+    <text x="25" y="340" font-family="Times New Roman" font-size="10">+ generatePDF()</text>
+    
+    <!-- Auth Class -->
+    <rect x="270" y="200" width="200" height="120" fill="#FFEBEE" stroke="#000" stroke-width="2"/>
+    <rect x="270" y="200" width="200" height="30" fill="#C62828" stroke="#000" stroke-width="2"/>
+    <text x="370" y="220" text-anchor="middle" font-family="Times New Roman" font-size="13" font-weight="bold" fill="#fff">Auth</text>
+    <line x1="270" y1="230" x2="470" y2="230" stroke="#000" stroke-width="1"/>
+    <text x="275" y="245" font-family="Times New Roman" font-size="10">- db: Database</text>
+    <text x="275" y="260" font-family="Times New Roman" font-size="10">- session: array</text>
+    <line x1="270" y1="265" x2="470" y2="265" stroke="#000" stroke-width="1"/>
+    <text x="275" y="280" font-family="Times New Roman" font-size="10">+ login()</text>
+    <text x="275" y="295" font-family="Times New Roman" font-size="10">+ logout()</text>
+    <text x="275" y="310" font-family="Times New Roman" font-size="10">+ isLoggedIn()</text>
+    
+    <!-- Inventory Class -->
+    <rect x="520" y="200" width="210" height="130" fill="#E0F2F1" stroke="#000" stroke-width="2"/>
+    <rect x="520" y="200" width="210" height="30" fill="#00796B" stroke="#000" stroke-width="2"/>
+    <text x="625" y="220" text-anchor="middle" font-family="Times New Roman" font-size="13" font-weight="bold" fill="#fff">Inventory</text>
+    <line x1="520" y1="230" x2="730" y2="230" stroke="#000" stroke-width="1"/>
+    <text x="525" y="245" font-family="Times New Roman" font-size="10">- id: int</text>
+    <text x="525" y="260" font-family="Times New Roman" font-size="10">- item_name: string</text>
+    <text x="525" y="275" font-family="Times New Roman" font-size="10">- quantity: int</text>
+    <line x1="520" y1="280" x2="730" y2="280" stroke="#000" stroke-width="1"/>
+    <text x="525" y="295" font-family="Times New Roman" font-size="10">+ create()</text>
+    <text x="525" y="310" font-family="Times New Roman" font-size="10">+ updateStock()</text>
+    <text x="525" y="325" font-family="Times New Roman" font-size="10">+ getLowStock()</text>
+    
+    <!-- Database Class (Abstract) -->
+    <rect x="270" y="360" width="200" height="100" fill="#FFFDE7" stroke="#000" stroke-width="2"/>
+    <rect x="270" y="360" width="200" height="30" fill="#F9A825" stroke="#000" stroke-width="2"/>
+    <text x="370" y="380" text-anchor="middle" font-family="Times New Roman" font-size="13" font-weight="bold">«abstract» Database</text>
+    <line x1="270" y1="390" x2="470" y2="390" stroke="#000" stroke-width="1"/>
+    <text x="275" y="405" font-family="Times New Roman" font-size="10">- conn: PDO</text>
+    <line x1="270" y1="410" x2="470" y2="410" stroke="#000" stroke-width="1"/>
+    <text x="275" y="425" font-family="Times New Roman" font-size="10">+ getConnection()</text>
+    <text x="275" y="440" font-family="Times New Roman" font-size="10">+ query()</text>
+    <text x="275" y="455" font-family="Times New Roman" font-size="10">+ execute()</text>
+    
+    <!-- Relationships (Dependency) - All classes depend on Database -->
+    <line x1="120" y1="340" x2="370" y2="360" stroke="#000" stroke-width="1" stroke-dasharray="5,5"/>
+    <line x1="370" y1="320" x2="370" y2="360" stroke="#000" stroke-width="1" stroke-dasharray="5,5"/>
+    <line x1="625" y1="330" x2="370" y2="360" stroke="#000" stroke-width="1" stroke-dasharray="5,5"/>
+</svg>

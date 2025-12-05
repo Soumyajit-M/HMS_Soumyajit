@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="750" height="480" xmlns="http://www.w3.org/2000/svg">
+    <!-- Use Case Diagram -->
+    <defs>
+        <marker id="ucArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <polygon points="0 0, 8 4, 0 8" fill="#000" />
+        </marker>
+    </defs>
+    
+    <!-- System Boundary -->
+    <rect x="150" y="40" width="450" height="400" fill="#F5F5F5" stroke="#000" stroke-width="2"/>
+    <text x="375" y="30" text-anchor="middle" font-family="Times New Roman" font-size="14" font-weight="bold">Hospital Management System</text>
+    
+    <!-- Actors -->
+    <!-- Admin -->
+    <circle cx="50" cy="100" r="20" fill="#E3F2FD" stroke="#000" stroke-width="2"/>
+    <line x1="50" y1="120" x2="50" y2="150" stroke="#000" stroke-width="2"/>
+    <line x1="30" y1="130" x2="70" y2="130" stroke="#000" stroke-width="2"/>
+    <line x1="50" y1="150" x2="30" y2="180" stroke="#000" stroke-width="2"/>
+    <line x1="50" y1="150" x2="70" y2="180" stroke="#000" stroke-width="2"/>
+    <text x="50" y="200" text-anchor="middle" font-family="Times New Roman" font-size="12" font-weight="bold">Admin</text>
+    
+    <!-- Doctor -->
+    <circle cx="50" cy="280" r="20" fill="#E8F5E9" stroke="#000" stroke-width="2"/>
+    <line x1="50" y1="300" x2="50" y2="330" stroke="#000" stroke-width="2"/>
+    <line x1="30" y1="310" x2="70" y2="310" stroke="#000" stroke-width="2"/>
+    <line x1="50" y1="330" x2="30" y2="360" stroke="#000" stroke-width="2"/>
+    <line x1="50" y1="330" x2="70" y2="360" stroke="#000" stroke-width="2"/>
+    <text x="50" y="380" text-anchor="middle" font-family="Times New Roman" font-size="12" font-weight="bold">Doctor</text>
+    
+    <!-- Receptionist -->
+    <circle cx="700" cy="190" r="20" fill="#FFF3E0" stroke="#000" stroke-width="2"/>
+    <line x1="700" y1="210" x2="700" y2="240" stroke="#000" stroke-width="2"/>
+    <line x1="680" y1="220" x2="720" y2="220" stroke="#000" stroke-width="2"/>
+    <line x1="700" y1="240" x2="680" y2="270" stroke="#000" stroke-width="2"/>
+    <line x1="700" y1="240" x2="720" y2="270" stroke="#000" stroke-width="2"/>
+    <text x="700" y="290" text-anchor="middle" font-family="Times New Roman" font-size="12" font-weight="bold">Receptionist</text>
+    
+    <!-- Use Cases -->
+    <!-- Manage Users -->
+    <ellipse cx="300" cy="80" rx="90" ry="35" fill="#E3F2FD" stroke="#000" stroke-width="2"/>
+    <text x="300" y="85" text-anchor="middle" font-family="Times New Roman" font-size="11">Manage Users</text>
+    
+    <!-- Manage Doctors -->
+    <ellipse cx="450" cy="80" rx="90" ry="35" fill="#E3F2FD" stroke="#000" stroke-width="2"/>
+    <text x="450" y="85" text-anchor="middle" font-family="Times New Roman" font-size="11">Manage Doctors</text>
+    
+    <!-- Manage Patients -->
+    <ellipse cx="300" cy="150" rx="90" ry="35" fill="#E8F5E9" stroke="#000" stroke-width="2"/>
+    <text x="300" y="155" text-anchor="middle" font-family="Times New Roman" font-size="11">Manage Patients</text>
+    
+    <!-- Schedule Appointments -->
+    <ellipse cx="450" cy="150" rx="100" ry="35" fill="#FFF3E0" stroke="#000" stroke-width="2"/>
+    <text x="450" y="155" text-anchor="middle" font-family="Times New Roman" font-size="11">Schedule</text>
+    <text x="450" y="168" text-anchor="middle" font-family="Times New Roman" font-size="11">Appointments</text>
+    
+    <!-- View Medical Records -->
+    <ellipse cx="300" cy="220" rx="100" ry="35" fill="#E8F5E9" stroke="#000" stroke-width="2"/>
+    <text x="300" y="225" text-anchor="middle" font-family="Times New Roman" font-size="11">View Medical</text>
+    <text x="300" y="238" text-anchor="middle" font-family="Times New Roman" font-size="11">Records</text>
+    
+    <!-- Generate Bills -->
+    <ellipse cx="450" cy="220" rx="90" ry="35" fill="#FFF3E0" stroke="#000" stroke-width="2"/>
+    <text x="450" y="225" text-anchor="middle" font-family="Times New Roman" font-size="11">Generate Bills</text>
+    
+    <!-- Manage Inventory -->
+    <ellipse cx="300" cy="290" rx="95" ry="35" fill="#E3F2FD" stroke="#000" stroke-width="2"/>
+    <text x="300" y="295" text-anchor="middle" font-family="Times New Roman" font-size="11">Manage Inventory</text>
+    
+    <!-- Generate Reports -->
+    <ellipse cx="450" cy="290" rx="95" ry="35" fill="#E3F2FD" stroke="#000" stroke-width="2"/>
+    <text x="450" y="295" text-anchor="middle" font-family="Times New Roman" font-size="11">Generate Reports</text>
+    
+    <!-- Laboratory Tests -->
+    <ellipse cx="300" cy="360" rx="90" ry="35" fill="#E8F5E9" stroke="#000" stroke-width="2"/>
+    <text x="300" y="365" text-anchor="middle" font-family="Times New Roman" font-size="11">Laboratory Tests</text>
+    
+    <!-- Telemedicine -->
+    <ellipse cx="450" cy="360" rx="85" ry="35" fill="#E8F5E9" stroke="#000" stroke-width="2"/>
+    <text x="450" y="365" text-anchor="middle" font-family="Times New Roman" font-size="11">Telemedicine</text>
+    
+    <!-- Relationships -->
+    <!-- Admin connections -->
+    <line x1="70" y1="140" x2="210" y2="80" stroke="#000" stroke-width="1.5"/>
+    <line x1="70" y1="140" x2="360" y2="80" stroke="#000" stroke-width="1.5"/>
+    <line x1="70" y1="150" x2="210" y2="150" stroke="#000" stroke-width="1.5"/>
+    <line x1="70" y1="160" x2="205" y2="290" stroke="#000" stroke-width="1.5"/>
+    <line x1="70" y1="160" x2="355" y2="290" stroke="#000" stroke-width="1.5"/>
+    
+    <!-- Doctor connections -->
+    <line x1="70" y1="320" x2="210" y2="220" stroke="#000" stroke-width="1.5"/>
+    <line x1="70" y1="310" x2="350" y2="150" stroke="#000" stroke-width="1.5"/>
+    <line x1="70" y1="330" x2="210" y2="360" stroke="#000" stroke-width="1.5"/>
+    <line x1="70" y1="330" x2="365" y2="360" stroke="#000" stroke-width="1.5"/>
+    
+    <!-- Receptionist connections -->
+    <line x1="680" y1="220" x2="550" y2="150" stroke="#000" stroke-width="1.5"/>
+    <line x1="680" y1="230" x2="540" y2="220" stroke="#000" stroke-width="1.5"/>
+    <line x1="680" y1="220" x2="390" y2="150" stroke="#000" stroke-width="1.5"/>
+</svg>

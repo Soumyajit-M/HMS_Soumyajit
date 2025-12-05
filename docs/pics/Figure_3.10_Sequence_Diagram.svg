@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="700" height="460" xmlns="http://www.w3.org/2000/svg">
+    <!-- Sequence Diagram: Appointment Booking -->
+    <defs>
+        <marker id="seqArrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+            <polygon points="0 0, 10 5, 0 10" fill="#000" />
+        </marker>
+        <marker id="seqReturn" markerWidth="10" markerHeight="10" refX="1" refY="5" orient="auto">
+            <polygon points="10 0, 0 5, 10 10" fill="none" stroke="#000" stroke-width="1"/>
+        </marker>
+    </defs>
+    
+    <!-- Actors/Objects -->
+    <!-- Receptionist -->
+    <rect x="20" y="10" width="100" height="40" fill="#E3F2FD" stroke="#000" stroke-width="2"/>
+    <text x="70" y="35" text-anchor="middle" font-family="Times New Roman" font-size="12" font-weight="bold">Receptionist</text>
+    <line x1="70" y1="50" x2="70" y2="440" stroke="#000" stroke-width="1" stroke-dasharray="5,5"/>
+    
+    <!-- UI/Form -->
+    <rect x="160" y="10" width="100" height="40" fill="#FFF3E0" stroke="#000" stroke-width="2"/>
+    <text x="210" y="35" text-anchor="middle" font-family="Times New Roman" font-size="12" font-weight="bold">UI/Form</text>
+    <line x1="210" y1="50" x2="210" y2="440" stroke="#000" stroke-width="1" stroke-dasharray="5,5"/>
+    
+    <!-- Appointment Class -->
+    <rect x="300" y="10" width="120" height="40" fill="#E8F5E9" stroke="#000" stroke-width="2"/>
+    <text x="360" y="35" text-anchor="middle" font-family="Times New Roman" font-size="12" font-weight="bold">Appointment</text>
+    <line x1="360" y1="50" x2="360" y2="440" stroke="#000" stroke-width="1" stroke-dasharray="5,5"/>
+    
+    <!-- Doctor Class -->
+    <rect x="460" y="10" width="100" height="40" fill="#FCE4EC" stroke="#000" stroke-width="2"/>
+    <text x="510" y="35" text-anchor="middle" font-family="Times New Roman" font-size="12" font-weight="bold">Doctor</text>
+    <line x1="510" y1="50" x2="510" y2="440" stroke="#000" stroke-width="1" stroke-dasharray="5,5"/>
+    
+    <!-- Database -->
+    <rect x="600" y="10" width="80" height="40" fill="#F3E5F5" stroke="#000" stroke-width="2"/>
+    <text x="640" y="35" text-anchor="middle" font-family="Times New Roman" font-size="12" font-weight="bold">Database</text>
+    <line x1="640" y1="50" x2="640" y2="440" stroke="#000" stroke-width="1" stroke-dasharray="5,5"/>
+    
+    <!-- Messages -->
+    <!-- 1. Open Form -->
+    <line x1="70" y1="70" x2="210" y2="70" stroke="#000" stroke-width="2" marker-end="url(#seqArrow)"/>
+    <text x="140" y="65" text-anchor="middle" font-family="Times New Roman" font-size="10">1: openForm()</text>
+    
+    <!-- 2. Display Form -->
+    <line x1="210" y1="90" x2="70" y2="90" stroke="#000" stroke-width="1" stroke-dasharray="5,5" marker-end="url(#seqReturn)"/>
+    <text x="140" y="85" text-anchor="middle" font-family="Times New Roman" font-size="10">displayForm</text>
+    
+    <!-- 3. Get Available Doctors -->
+    <line x1="210" y1="110" x2="510" y2="110" stroke="#000" stroke-width="2" marker-end="url(#seqArrow)"/>
+    <text x="360" y="105" text-anchor="middle" font-family="Times New Roman" font-size="10">2: getAvailableDoctors(date)</text>
+    
+    <!-- 4. Query Database -->
+    <line x1="510" y1="130" x2="640" y2="130" stroke="#000" stroke-width="2" marker-end="url(#seqArrow)"/>
+    <text x="575" y="125" text-anchor="middle" font-family="Times New Roman" font-size="10">query()</text>
+    
+    <!-- 5. Return Doctors -->
+    <line x1="640" y1="150" x2="510" y2="150" stroke="#000" stroke-width="1" stroke-dasharray="5,5" marker-end="url(#seqReturn)"/>
+    <text x="575" y="145" text-anchor="middle" font-family="Times New Roman" font-size="10">doctors[]</text>
+    
+    <!-- 6. Return to UI -->
+    <line x1="510" y1="170" x2="210" y2="170" stroke="#000" stroke-width="1" stroke-dasharray="5,5" marker-end="url(#seqReturn)"/>
+    <text x="360" y="165" text-anchor="middle" font-family="Times New Roman" font-size="10">availableDoctors[]</text>
+    
+    <!-- 7. Enter Details -->
+    <line x1="70" y1="200" x2="210" y2="200" stroke="#000" stroke-width="2" marker-end="url(#seqArrow)"/>
+    <text x="140" y="195" text-anchor="middle" font-family="Times New Roman" font-size="10">3: enterDetails()</text>
+    
+    <!-- 8. Submit Appointment -->
+    <line x1="70" y1="230" x2="210" y2="230" stroke="#000" stroke-width="2" marker-end="url(#seqArrow)"/>
+    <text x="140" y="225" text-anchor="middle" font-family="Times New Roman" font-size="10">4: submitForm()</text>
+    
+    <!-- 9. Create Appointment -->
+    <line x1="210" y1="250" x2="360" y2="250" stroke="#000" stroke-width="2" marker-end="url(#seqArrow)"/>
+    <text x="285" y="245" text-anchor="middle" font-family="Times New Roman" font-size="10">create(data)</text>
+    
+    <!-- 10. Validate Data -->
+    <rect x="340" y="265" width="40" height="30" fill="#fff" stroke="#000" stroke-width="1"/>
+    <text x="360" y="283" text-anchor="middle" font-family="Times New Roman" font-size="9">validate()</text>
+    
+    <!-- 11. Save to DB -->
+    <line x1="360" y1="310" x2="640" y2="310" stroke="#000" stroke-width="2" marker-end="url(#seqArrow)"/>
+    <text x="500" y="305" text-anchor="middle" font-family="Times New Roman" font-size="10">INSERT INTO</text>
+    
+    <!-- 12. Return ID -->
+    <line x1="640" y1="330" x2="360" y2="330" stroke="#000" stroke-width="1" stroke-dasharray="5,5" marker-end="url(#seqReturn)"/>
+    <text x="500" y="325" text-anchor="middle" font-family="Times New Roman" font-size="10">appointment_id</text>
+    
+    <!-- 13. Return Success -->
+    <line x1="360" y1="350" x2="210" y2="350" stroke="#000" stroke-width="1" stroke-dasharray="5,5" marker-end="url(#seqReturn)"/>
+    <text x="285" y="345" text-anchor="middle" font-family="Times New Roman" font-size="10">success</text>
+    
+    <!-- 14. Display Confirmation -->
+    <line x1="210" y1="370" x2="70" y2="370" stroke="#000" stroke-width="1" stroke-dasharray="5,5" marker-end="url(#seqReturn)"/>
+    <text x="140" y="365" text-anchor="middle" font-family="Times New Roman" font-size="10">showConfirmation()</text>
+    
+    <!-- Note -->
+    <rect x="450" y="390" width="220" height="40" fill="#FFFDE7" stroke="#888" stroke-width="1"/>
+    <text x="560" y="405" text-anchor="middle" font-family="Times New Roman" font-size="9" font-style="italic">Note: Solid arrows = synchronous calls</text>
+    <text x="560" y="420" text-anchor="middle" font-family="Times New Roman" font-size="9" font-style="italic">Dashed arrows = returns</text>
+</svg>
