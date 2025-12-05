@@ -100,6 +100,9 @@ async function initializeReports() {
 
     // Generate initial report
     generateReport();
+    
+    // Load and render charts
+    loadCharts();
 }
 
 async function generateReport() {
@@ -108,53 +111,25 @@ async function generateReport() {
     const startDate = document.getElementById('startDate').value;
     const endDate = document.getElementById('endDate').value;
 
-    // Show loading
-    const reportContent = document.getElementById('reportContent');
-    reportContent.innerHTML = '<div class="text-center"><div class="spinner-border" role="status"></div></div>';
-
     // Fetch report data (core stats unaffected by doctor/department filters for now)
     fetch(`api/dashboard-stats.php?report=${reportType}&start=${startDate}&end=${endDate}`)
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                displayReport(data, reportType);
-            } else {
-                reportContent.innerHTML = '<div class="alert alert-danger">Error loading report data</div>';
+                updateSummaryCards(data);
             }
         })
         .catch(error => {
             console.error('Error generating report:', error);
-            reportContent.innerHTML = '<div class="alert alert-danger">Error loading report data</div>';
         });
+    
+    // Reload charts with new date range
+    loadCharts();
 }
 
 function displayReport(data, reportType) {
-    let html = '';
-
     // Update summary cards
     updateSummaryCards(data);
-
-    switch (reportType) {
-        case 'overview':
-            html = generateOverviewReport(data);
-            break;
-        case 'patients':
-            html = generatePatientReport(data);
-            break;
-        case 'appointments':
-            html = generateAppointmentReport(data);
-            break;
-        case 'billing':
-            html = generateBillingReport(data);
-            break;
-        case 'doctors':
-            html = generateDoctorReport(data);
-            break;
-        default:
-            html = '<div class="alert alert-info">Select a report type to generate</div>';
-    }
-
-    document.getElementById('reportContent').innerHTML = html;
 }
 
 function updateSummaryCards(data) {
@@ -469,4 +444,348 @@ function loadDepartments() {
             }
         })
         .catch(() => {});
+}
+
+// Chart instances
+let appointmentsTrendChart = null;
+let demographicsChart = null;
+let revenueChart = null;
+let paymentStatusChart = null;
+
+// Load and render all charts
+async function loadCharts() {
+    await ensureCurrencyPreferences();
+    const startDate = document.getElementById('startDate').value;
+    const endDate = document.getElementById('endDate').value;
+    
+    // Load each chart
+    loadAppointmentsTrendChart(startDate, endDate);
+    loadDemographicsChart();
+    loadRevenueChart(startDate, endDate);
+    loadPaymentStatusChart(startDate, endDate);
+    loadDetailedReportTable(startDate, endDate);
+}
+
+// Appointments Trend Chart
+async function loadAppointmentsTrendChart(startDate, endDate) {
+    try {
+        const response = await fetch(`api/reports-api.php?action=appointment_statistics&start_date=${startDate}&end_date=${endDate}`);
+        const data = await response.json();
+        
+        const canvas = document.getElementById('appointmentsTrendChart');
+        if (!canvas) return;
+        
+        // Destroy existing chart if it exists
+        if (appointmentsTrendChart) {
+            appointmentsTrendChart.destroy();
+        }
+        
+        const ctx = canvas.getContext('2d');
+        
+        // Prepare data
+        const labels = data.data?.map(item => item.status) || ['Scheduled', 'Completed', 'Cancelled'];
+        const counts = data.data?.map(item => item.count) || [0, 0, 0];
+        
+        appointmentsTrendChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Appointments',
+                    data: counts,
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(255, 99, 132, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: false
+                    }
+                }
+            }
+        });
+    } catch (error) {
+        console.error('Error loading appointments trend chart:', error);
+    }
+}
+
+// Patient Demographics Chart
+async function loadDemographicsChart() {
+    try {
+        const response = await fetch('api/reports-api.php?action=patient_demographics');
+        const data = await response.json();
+        
+        const canvas = document.getElementById('demographicsChart');
+        if (!canvas) return;
+        
+        // Destroy existing chart if it exists
+        if (demographicsChart) {
+            demographicsChart.destroy();
+        }
+        
+        const ctx = canvas.getContext('2d');
+        
+        const demographics = data.data || {};
+        const maleCount = parseInt(demographics.male_count) || 0;
+        const femaleCount = parseInt(demographics.female_count) || 0;
+        const otherCount = parseInt(demographics.other_count) || 0;
+        
+        demographicsChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Male', 'Female', 'Other'],
+                datasets: [{
+                    data: [maleCount, femaleCount, otherCount],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(255, 206, 86, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    } catch (error) {
+        console.error('Error loading demographics chart:', error);
+    }
+}
+
+// Revenue Analysis Chart
+async function loadRevenueChart(startDate, endDate) {
+    try {
+        const response = await fetch(`api/reports-api.php?action=revenue&start_date=${startDate}&end_date=${endDate}`);
+        const data = await response.json();
+        
+        const canvas = document.getElementById('revenueChart');
+        if (!canvas) return;
+        
+        // Destroy existing chart if it exists
+        if (revenueChart) {
+            revenueChart.destroy();
+        }
+        
+        const ctx = canvas.getContext('2d');
+        
+        // Prepare data
+        const revenueData = data.data || [];
+        const labels = revenueData.map(item => item.date).reverse();
+        const revenue = revenueData.map(item => parseFloat(item.total_revenue) || 0).reverse();
+        const collected = revenueData.map(item => parseFloat(item.amount_collected) || 0).reverse();
+        
+        revenueChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Total Revenue',
+                    data: revenue,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    tension: 0.4
+                }, {
+                    label: 'Amount Collected',
+                    data: collected,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return formatCurrency(value);
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + formatCurrency(context.parsed.y);
+                            }
+                        }
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    } catch (error) {
+        console.error('Error loading revenue chart:', error);
+    }
+}
+
+// Payment Status Chart
+async function loadPaymentStatusChart(startDate, endDate) {
+    try {
+        const response = await fetch(`api/reports-api.php?action=revenue&start_date=${startDate}&end_date=${endDate}`);
+        const data = await response.json();
+        
+        const canvas = document.getElementById('paymentStatusChart');
+        if (!canvas) return;
+        
+        // Destroy existing chart if it exists
+        if (paymentStatusChart) {
+            paymentStatusChart.destroy();
+        }
+        
+        const ctx = canvas.getContext('2d');
+        
+        // Calculate totals
+        const revenueData = data.data || [];
+        let totalRevenue = 0;
+        let totalCollected = 0;
+        
+        revenueData.forEach(item => {
+            totalRevenue += parseFloat(item.total_revenue) || 0;
+            totalCollected += parseFloat(item.amount_collected) || 0;
+        });
+        
+        const outstanding = totalRevenue - totalCollected;
+        
+        paymentStatusChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Paid', 'Outstanding'],
+                datasets: [{
+                    data: [totalCollected, outstanding],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(255, 99, 132, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + formatCurrency(context.parsed);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    } catch (error) {
+        console.error('Error loading payment status chart:', error);
+    }
+}
+
+// Load Detailed Report Table
+async function loadDetailedReportTable(startDate, endDate) {
+    try {
+        const response = await fetch(`api/reports-api.php?action=revenue&start_date=${startDate}&end_date=${endDate}`);
+        const data = await response.json();
+        
+        const tbody = document.getElementById('reportsTableBody');
+        if (!tbody) return;
+        
+        tbody.innerHTML = '';
+        
+        const revenueData = data.data || [];
+        
+        if (revenueData.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6" class="text-center">No data available for selected date range</td></tr>';
+            return;
+        }
+        
+        // Get appointment data
+        const appointmentResponse = await fetch(`api/reports-api.php?action=appointment_statistics&start_date=${startDate}&end_date=${endDate}`);
+        const appointmentData = await appointmentResponse.json();
+        const appointments = appointmentData.data || [];
+        
+        // Get total appointments count
+        const totalAppointments = appointments.reduce((sum, item) => sum + (parseInt(item.count) || 0), 0);
+        const completedAppointments = appointments.find(item => item.status === 'Completed')?.count || 0;
+        
+        revenueData.reverse().forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.date}</td>
+                <td>-</td>
+                <td>${item.bill_count || 0}</td>
+                <td>${formatCurrency(item.total_revenue)}</td>
+                <td>-</td>
+                <td>${item.bill_count || 0}</td>
+            `;
+            tbody.appendChild(row);
+        });
+        
+        // Add summary row
+        const totalRow = document.createElement('tr');
+        totalRow.style.fontWeight = 'bold';
+        const totalRevenue = revenueData.reduce((sum, item) => sum + (parseFloat(item.total_revenue) || 0), 0);
+        const totalBills = revenueData.reduce((sum, item) => sum + (parseInt(item.bill_count) || 0), 0);
+        
+        totalRow.innerHTML = `
+            <td>Total</td>
+            <td>-</td>
+            <td>${totalAppointments}</td>
+            <td>${formatCurrency(totalRevenue)}</td>
+            <td>-</td>
+            <td>${completedAppointments}</td>
+        `;
+        tbody.appendChild(totalRow);
+    } catch (error) {
+        console.error('Error loading detailed report table:', error);
+        const tbody = document.getElementById('reportsTableBody');
+        if (tbody) {
+            tbody.innerHTML = '<tr><td colspan="6" class="text-center text-danger">Error loading data</td></tr>';
+        }
+    }
 }
