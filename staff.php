@@ -396,21 +396,13 @@ $members = $staff->getAllStaff();
                                 <input type="text" class="form-control" name="first_name" id="edit_first_name" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Department</label>
-                                <select class="form-select" name="department_id" id="edit_department_id">
-                                    <option value="">Select Department</option>
-                                    <option value="1">Cardiology</option>
-                                    <option value="2">Neurology</option>
-                                    <option value="3">Orthopedics</option>
-                                    <option value="4">Pediatrics</option>
-                                    <option value="5">Emergency</option>
-                                    <option value="6">General Medicine</option>
-                                </select>
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control" name="last_name" id="edit_last_name" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Salary</label>
+                                <label class="form-label">Email</label>
                                 <input type="email" class="form-control" name="email" id="edit_email" required pattern="[^\s@]+@[^\s@]+\.[^\s@]+" title="Please enter a valid email address with @ symbol">
                             </div>
                             <div class="col-md-6 mb-3">
@@ -450,11 +442,12 @@ $members = $staff->getAllStaff();
                                 <label class="form-label">Department</label>
                                 <select class="form-select" name="department_id" id="edit_department_id">
                                     <option value="">Select Department</option>
-                                    <?php
-                                    foreach ($departments as $dept) {
-                                        echo '<option value="' . $dept['id'] . '">' . htmlspecialchars($dept['name']) . '</option>';
-                                    }
-                                    ?>
+                                    <option value="1">Cardiology</option>
+                                    <option value="2">Neurology</option>
+                                    <option value="3">Orthopedics</option>
+                                    <option value="4">Pediatrics</option>
+                                    <option value="5">Emergency</option>
+                                    <option value="6">General Medicine</option>
                                 </select>
                             </div>
                         </div>
@@ -473,11 +466,11 @@ $members = $staff->getAllStaff();
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Emergency Contact</label>
-                            <input type="text" class="form-control" name="emergency_contact" id="edit_emergency_contact">
+                            <input type="text" class="form-control" name="emergency_contact_name" id="edit_emergency_contact">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Certification</label>
-                            <textarea class="form-control" name="certification" id="edit_certification" rows="2"></textarea>
+                            <textarea class="form-control" name="certifications" id="edit_certification" rows="2"></textarea>
                         </div>
                     </form>
                 </div>

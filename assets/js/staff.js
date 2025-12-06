@@ -118,17 +118,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Staff data received:', result);
                 if (result.success && result.staff) {
                     const staff = result.staff;
-                    document.getElementById('edit_id').value = staff.id;
-                    document.getElementById('edit_first_name').value = staff.first_name;
-                    document.getElementById('edit_last_name').value = staff.last_name;
-                    document.getElementById('edit_email').value = staff.email;
-                    document.getElementById('edit_phone').value = staff.phone;
-                    document.getElementById('edit_role').value = staff.role;
-                    document.getElementById('edit_department_id').value = staff.department_id || '';
-                    document.getElementById('edit_salary').value = staff.salary || '';
-                    document.getElementById('edit_is_active').value = staff.is_active;
-                    document.getElementById('edit_emergency_contact').value = staff.emergency_contact || '';
-                    document.getElementById('edit_certification').value = staff.certification || '';
+                    
+                    // Set values with null checks
+                    const setFieldValue = (id, value) => {
+                        const field = document.getElementById(id);
+                        if (field) {
+                            field.value = value || '';
+                        } else {
+                            console.error(`Field not found: ${id}`);
+                        }
+                    };
+                    
+                    setFieldValue('edit_id', staff.id);
+                    setFieldValue('edit_first_name', staff.first_name);
+                    setFieldValue('edit_last_name', staff.last_name);
+                    setFieldValue('edit_email', staff.email);
+                    setFieldValue('edit_phone', staff.phone);
+                    setFieldValue('edit_role', staff.role);
+                    setFieldValue('edit_department_id', staff.department_id);
+                    setFieldValue('edit_salary', staff.salary);
+                    setFieldValue('edit_is_active', staff.is_active);
+                    setFieldValue('edit_emergency_contact', staff.emergency_contact_name);
+                    setFieldValue('edit_certification', staff.certifications);
                     
                     console.log('Opening edit modal...');
                     const modal = document.getElementById('editStaffModal');
